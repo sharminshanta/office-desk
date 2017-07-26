@@ -1,0 +1,68 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin-bottom: 60px;
+
+}
+.footer {
+    position: absolute !important;
+    bottom: 0;
+    width: 100%;
+    background-color: #fbfbfb;
+    padding: 0!important;
+}
+
+.navbar-inverse {
+    background-color: #0057a7;
+    border-color: #0057a7;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #fff;
+    background-color: #348bd6;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #FFFFFF;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: #125792;
+}
+
+.btn-danger, .btn-danger:hover, .btn-danger:active {
+    color: #fff;
+    background-color: #454b50;
+    border-color: #454b50;
+}
+
+@media screen and (max-width: 767px){
+    body{
+        margin-bottom: 80px !important;
+    }
+
+    .footer{
+        height: 80px !important;
+    }
+
+    .table-responsive {
+        border: none;
+    }
+    .visible-xs {
+        display: block!important;
+        text-align: center;
+        line-height: .2;
+        padding-top: 20px;
+    }
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
