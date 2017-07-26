@@ -31,7 +31,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="footer">
             <input type="submit" name="btnsubmit" id='btn' onclick="move()" value="Login" class="button animate-me" />
-
+           <div class="formFooter">
+               <a href="">haven't account?</a>
+           </div>
             <script>
                 $('.animate-me').on('click',function(){
 
@@ -42,6 +44,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </form>
 </div>
 <div class="gradient"></div>
-
 </body>
 </html>

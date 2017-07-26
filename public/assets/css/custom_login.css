@@ -297,6 +297,14 @@ FOOTER
     -webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
 }
 
+.login-form .footer .formFooter {
+    margin-top: 10px;
+}
+
+.login-form .footer .formFooter a {
+    text-decoration: none;
+}
+
 /* Register button
 .login-form .footer .register {
 	display: block;
