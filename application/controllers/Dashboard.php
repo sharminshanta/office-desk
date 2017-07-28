@@ -16,7 +16,7 @@ class Dashboard extends CI_Controller {
         $user = $this->session->userdata('details');
 
         if($user == null) {
-            $message['error'] = 'Your Email Or Password is Invalid !';
+            $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
             $this->session->set_userdata($message);
             redirect('login','refresh');
         }
