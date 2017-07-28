@@ -3,18 +3,12 @@
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
             <a href="#">
-                <a href="/"><img src="<?php echo base_url(); ?>assets/img/besofty.png" class="logo" alt="Logo"/></a>
+                <a href="/"><img src="assets/img/besofty.png" class="logo" alt="Logo"/></a>
             </a>
         </li>
         <li>
             <a href="/"><i class="fa fa-dashboard"></i> Dashboard</a>
         </li>
-
-        <?php
-
-        $role = $this->session->userdata('role_name');
-
-            if ($role->slug == 'admin') { ?>
 
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#settings" class="collapsed"
@@ -34,9 +28,6 @@
                 </li>
             </ul>
         </li>
-
-       <?php } ?>
-
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#manage_profile" class="collapsed"
                aria-expanded="false">
@@ -112,27 +103,28 @@
                 <div class="pull-right">
                     <div class="profile-overview">
                         <div class="dropdown customm-dropdown">
-                            <img src="" class="profile-pic" onerror="this.onerror=null;this.src='<?php echo base_url();?>assets/img/profile.jpg'"/>
+                            <img src="" class="profile-pic" onerror="this.onerror=null;this.src='assets/img/profile.jpg'"/>
                             <!--<img src="assets/img/profile_pic.jpg" class="profile-pic"/>-->
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenu1"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Besofty Software Limited
                                 <?php
-                                    $userDetails = $this->session->userdata('details');
+/*                                    $userDetails = $this->session->userdata('details');
                                     echo $userDetails->first_name . " " . $userDetails->last_name;
-                                ?>
+                                */?>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li>
                                     <a href="/profile"><i class="fa fa-user"></i>
                                         <?php
-                                            $userDetails = $this->session->userdata('details');
+/*                                            $userDetails = $this->session->userdata('details');
                                             echo $userDetails->first_name . " " . $userDetails->last_name;
-                                        ?>
+                                        */?>
                                     </a>
                                 </li>
                                 <li><a href="/settings"><i class="fa fa-wrench"></i> Setting</a></li>
-                                <li><a href="<?php echo base_url(); ?>logout/"><i class="fa fa-power-off"></i> Logout</a></li>
+                                <li><a href="logout/"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
                         </div>
                     </div>
