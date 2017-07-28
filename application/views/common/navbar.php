@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="/"><i class="fa fa-dashboard"></i> Dashboard</a>
+            <a href="dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
         </li>
 
         <li>
