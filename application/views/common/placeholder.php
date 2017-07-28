@@ -57,30 +57,30 @@
                 </form>
             </div>
         </div>-->
-<!--        <div class="row">
-            <div class="col-md-12">
-                <div class="jumbotron">
-                    <h2>API Key Details</h2>
-                    <p>Manage your developer account. Manage your credentials. All in one place to integrate our platform
-                        with third party tools and libraries.</p>
+        <!--        <div class="row">
+                    <div class="col-md-12">
+                        <div class="jumbotron">
+                            <h2>API Key Details</h2>
+                            <p>Manage your developer account. Manage your credentials. All in one place to integrate our platform
+                                with third party tools and libraries.</p>
 
-                    <p>
-                        <strong>Name of API Key: </strong>{{ apikey.name }}<br>
-                        <strong>Description: </strong>{{ apikey.description }} <br><br>
-                        <strong>Your API Key: </strong> {{ apikey.api_keys }}
-                    </p>
-                    <p>
-                    <form method="post"
-                          action="/developers/api_keys/{{ apikey.uuid }}/delete">
-                        <input name="csrf_token" type="hidden" value="{{ csrf_token }}">
-                        <button type="submit" class="btn btn-danger cApiKey_btn">
-                            <i class="fa fa-remove"></i> &nbsp; Set Role
-                        </button>
-                    </form>
-                    </p>
-                </div>
-            </div>
-        </div>-->
+                            <p>
+                                <strong>Name of API Key: </strong>{{ apikey.name }}<br>
+                                <strong>Description: </strong>{{ apikey.description }} <br><br>
+                                <strong>Your API Key: </strong> {{ apikey.api_keys }}
+                            </p>
+                            <p>
+                            <form method="post"
+                                  action="/developers/api_keys/{{ apikey.uuid }}/delete">
+                                <input name="csrf_token" type="hidden" value="{{ csrf_token }}">
+                                <button type="submit" class="btn btn-danger cApiKey_btn">
+                                    <i class="fa fa-remove"></i> &nbsp; Set Role
+                                </button>
+                            </form>
+                            </p>
+                        </div>
+                    </div>
+                </div>-->
         <div class="row">
             <div class="col-lg-6">
                 <div class="panel panel-default">
@@ -101,9 +101,17 @@
                         <h3 class="panel-title">Important Information</h3>
                     </div>
                     <div class="panel-body" id="infoPanel">
-                        <div class="notice notice-danger"><a target="_blank" href="https://kb.previewtechs.com/developers-center/oauth2-authentication/create-oauth-2-client-id">Learn more</a> to create OAuth2 client id
+                        <div class="notice notice-danger">
+                            <a target="_blank" href="https://besofty.com/">
+                                Learn more
+                            </a>
+                            To assign role permission
                         </div>
-                        <div class="notice notice-info"><a target="_blank" href="https://kb.previewtechs.com/developers-center/api-keys/generate-api-keys">Learn more</a> to create API Keys and enable services
+                        <div class="notice notice-info">
+                            <a target="_blank" href="https://besofty.com/">
+                                Learn more
+                            </a>
+                            To assign role permission
                         </div>
                     </div>
                 </div>
@@ -143,7 +151,8 @@
                         {% else %}
                         <div class="row">
                             <div class="col-lg-2 col-lg-offset-5">
-                                <a href="/credentials/oauth_clients" class="btn btn-outlined btn-primary">Please add a Oauth Client</a>
+                                <a href="/credentials/oauth_clients" class="btn btn-outlined btn-primary">Please add a
+                                    Oauth Client</a>
                             </div>
                         </div>
                         {% endif %}
@@ -183,7 +192,8 @@
                         {% else %}
                         <div class="row">
                             <div class="col-lg-2 col-lg-offset-5">
-                                <a href="/credentials/api_keys" class="btn btn-outlined btn-primary">Please add a Api Key</a>
+                                <a href="/credentials/api_keys" class="btn btn-outlined btn-primary">Please add a Api
+                                    Key</a>
                             </div>
                         </div>
                         {% endif %}

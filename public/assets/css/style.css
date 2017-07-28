@@ -305,6 +305,7 @@ ul.sidebar-nav li {
 
 .panel-body .notice-danger {
     border-color: #d73814;
+    color: #3c3c3c;
 }
 
 .panel-body .notice-danger > strong {
