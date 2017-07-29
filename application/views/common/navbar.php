@@ -1,7 +1,4 @@
 <!-- Sidebar -->
-<?php
-$userDetails = $this->session->userdata('details');
-?>
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
@@ -9,14 +6,20 @@ $userDetails = $this->session->userdata('details');
                 <a href="/"><img src="assets/img/besofty.png" class="logo" alt="Logo"/></a>
             </a>
         </li>
+        <?php
+            $userDetails = $this->session->userdata('details');
+            $userRole = $this->session->userdata('role');
+        ?>
         <li>
-            <a href="dashboard"><i class="col-md-4"></i> Hi, Admin</a>
+            <a href="dashboard"><i class="col-md-4"></i> Hi, <?php echo $userRole->name; ?></a>
         </li>
         <li>
             <a href="dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
         </li>
 
-        <li>
+        <?php
+            if($userRole->slug == 'super-administrator'){ ?>
+            <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#settings" class="collapsed"
                aria-expanded="false">
                 <i class="fa fa-fw fa-cog"></i> Settings
@@ -34,6 +37,7 @@ $userDetails = $this->session->userdata('details');
                 </li>
             </ul>
         </li>
+        <?php } ?>
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#manage_profile" class="collapsed"
                aria-expanded="false">
