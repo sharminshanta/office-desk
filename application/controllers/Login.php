@@ -13,7 +13,7 @@ class Login extends CI_Controller {
          * All data of a user is saved with session
          * If all data is true then redirect to dashboard
          */
-        $user = $this->session->userdata('details', 'role_name');
+        $user = $this->session->userdata('details', 'role');
 
         if($user != null) {
             redirect('dashboard','refresh');
@@ -37,10 +37,11 @@ class Login extends CI_Controller {
         $password = md5($this->input->post('password', true));
         $user = Users::authentication($email, $password);
         $userDetails['details'] = Users::userDetails($user->uuid);
+        //var_dump($userDetails['details']['user']->role_id); die();
 
         if ($user) {
             $userDetails['details'] = Users::userDetails($user->uuid);
-            //$userDetails['role_name'] = Roles_model::getRoleName($user->role_id);
+            $userDetails['role'] = Roles::getName($userDetails['details']['user']->role_id);
             $this->session->set_userdata($userDetails);
             $userDetails['user_id'] = $this->session->set_userdata($user->id);
             redirect('dashboard');
