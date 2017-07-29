@@ -1,4 +1,7 @@
 <!-- Sidebar -->
+<?php
+$userDetails = $this->session->userdata('details');
+?>
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
@@ -7,13 +10,16 @@
             </a>
         </li>
         <li>
+            <a href="dashboard"><i class="col-md-4"></i> Hi, Admin</a>
+        </li>
+        <li>
             <a href="dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
         </li>
 
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#settings" class="collapsed"
                aria-expanded="false">
-                <i class="fa fa-fw fa-user"></i> Settings
+                <i class="fa fa-fw fa-cog"></i> Settings
                 <i class="fa fa-fw fa-caret-down"></i>
             </a>
             <ul id="settings" class="submenu collapse" aria-expanded="false" style="height: 0px;">
@@ -31,7 +37,7 @@
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#manage_profile" class="collapsed"
                aria-expanded="false">
-                <i class="fa fa-fw fa-user"></i> Manage Profile
+                <i class="fa fa-fw fa-users"></i> Manage Profile
                 <i class="fa fa-fw fa-caret-down"></i>
             </a>
             <ul id="manage_profile" class="submenu collapse" aria-expanded="false" style="height: 0px;">
@@ -107,20 +113,17 @@
                             <!--<img src="assets/img/profile_pic.jpg" class="profile-pic"/>-->
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenu1"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Besofty Software Limited
                                 <?php
-/*                                    $userDetails = $this->session->userdata('details');
-                                    echo $userDetails->first_name . " " . $userDetails->last_name;
-                                */?>
+                                    echo $userDetails['user']->first_name . " " .$userDetails['user']->last_name;
+                                ?>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li>
                                     <a href="/profile"><i class="fa fa-user"></i>
                                         <?php
-/*                                            $userDetails = $this->session->userdata('details');
-                                            echo $userDetails->first_name . " " . $userDetails->last_name;
-                                        */?>
+                                            echo $userDetails['user']->first_name . " " .$userDetails['user']->last_name;
+                                        ?>
                                     </a>
                                 </li>
                                 <li><a href="/settings"><i class="fa fa-wrench"></i> Setting</a></li>
