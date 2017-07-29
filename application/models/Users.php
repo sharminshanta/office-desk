@@ -43,8 +43,14 @@ class Users extends CI_Model {
      */
     public static function userDetails($uuid)
     {
-        $user = self:: $db->where('uuid', $uuid)
+        $user['user'] = self:: $db->where('uuid', $uuid)
+            ->join('users_roles', 'users.id = users_roles.user_id')
+            ->join('users_profile', 'users.id = users_profile.user_id')
             ->get('users')
+            ->row();
+
+        $user['address'] = self::$db->where('user_id', $user['user']->id)
+            ->get('users_addresses')
             ->row();
 
         if ($user) {
