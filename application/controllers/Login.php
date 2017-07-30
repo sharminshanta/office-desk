@@ -35,10 +35,10 @@ class Login extends CI_Controller {
     public function authentication() {
         $email = $this->input->post('email_address', true);
         $password = md5($this->input->post('password', true));
-        $user = Users::authentication($email, $password);
+        $user = UsersModel::authentication($email, $password);
 
         if ($user) {
-            $userDetails['details'] = Users::userDetails($user->uuid);
+            $userDetails['details'] = UsersModel::userDetails($user->uuid);
             $userDetails['role'] = Roles::getName($userDetails['details']['user']->role_id);
             $this->session->set_userdata($userDetails);
             $userDetails['user_id'] = $this->session->set_userdata($user->id);

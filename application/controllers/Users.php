@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class UsersController extends CI_Controller
+class Users extends CI_Controller
 {
     /**
-     * UsersController constructor.
+     * Users constructor.
      */
     function __construct()
     {
@@ -16,7 +16,7 @@ class UsersController extends CI_Controller
      */
     public function create()
     {
-        $formData = Users::addUser($_POST);
+        $formData = UsersModel::addUser($_POST);
         var_dump($formData); die();
     }
 }

@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-container">
             <h1 id="feedbackFormTitle">Create New User</h1>
-            <form action="usersController/create" method="post" id="signup_signupForm">
+            <form action="users/create" method="post" id="signup_signupForm">
                 <div class="form-group">
                     <label for="exampleInputFirstName" class="control-label">First Name</label>
                     <input required="required" type="text" name="user[first_name]" class="form-control"

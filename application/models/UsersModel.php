@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users extends CI_Model {
+class UsersModel extends CI_Model {
 
     /**
      * @var
@@ -9,7 +9,7 @@ class Users extends CI_Model {
     private static $db;
 
     /**
-     * Users constructor.
+     * UsersModel constructor.
      */
     function __construct()
     {
