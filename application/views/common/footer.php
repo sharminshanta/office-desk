@@ -8,7 +8,7 @@
 <script src="assets/js/theme.js"></script>
 <script src="assets/js/bootstrap-editable.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <script>
     $('#addMoreField').click(function (e) {
         var max_field = 10;
@@ -89,7 +89,7 @@
             $("#rightList").css("min-height", leftList + 30);
         }
 
-    })
+    });
 
     $(document).ready(function () {
         $(".changeRole").click(function () {
@@ -97,6 +97,38 @@
             $("#dataId").val($(this).data('id'));//database table field
             $('#changeRole').modal('show');
         });
+    });
+
+    var ctxAPIUsageMonthly = document.getElementById("apiUsageChartMonthly").getContext('2d');
+    var apiUsageChartMonthly = new Chart(ctxAPIUsageMonthly, {
+        "type": "line",
+        "data": {
+            "labels": ["January", "February", "March", "April", "May", "June", "July"],
+            "datasets": [{
+                "label": "Monthly API Usage",
+                "data": [65, 59, 80, 81, 56, 55, 40],
+                "fill": false,
+                "borderColor": "#114c69",
+                "lineTension": 0.1
+            }]
+        },
+        "options": {}
+    });
+
+    var ctxAPIUsageDaily = document.getElementById("apiUsageChartDaily").getContext('2d');
+    var apiUsageChartDaily = new Chart(ctxAPIUsageDaily, {
+        "type": "line",
+        "data": {
+            "labels": [01, 02, 03, 04, 05, 06, 07],
+            "datasets": [{
+                "label": "Daily API Usage",
+                "data": [65, 59, 80, 81, 56, 55, 40],
+                "fill": false,
+                "borderColor": "#114c69",
+                "lineTension": 0.1
+            }]
+        },
+        "options": {}
     });
 
 </script>
