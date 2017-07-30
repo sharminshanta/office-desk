@@ -3,7 +3,6 @@
         <?php
         $userRole = $this->session->userdata('role');
         $userDetails = $this->session->userdata('details');
-
         if($userRole->slug == 'super-administrator') { ?>
             <div class="row">
                 <div class="col-md-12">

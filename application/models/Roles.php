@@ -33,4 +33,15 @@ class Roles extends CI_Model
             false;
         }
     }
+
+    public static function getRoles()
+    {
+        $roles = self::$db
+            ->get('roles')
+            ->result();
+
+        return $roles;
+        //var_dump($roles); die();
+
+    }
 }

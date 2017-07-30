@@ -24,6 +24,9 @@
                     <label for="exampleInputRole" class="control-label">Role</label>
                     <select required="required" class="form-control" name="user[role_id]">
                         <option value="" hidden="hidden">Choose One</option>
+                        <?php foreach($roles as $role) { ?>
+                            <option value="<?php echo $role->id; ?>"><?php echo $role->name; ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-group">
