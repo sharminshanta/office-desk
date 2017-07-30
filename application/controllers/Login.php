@@ -36,8 +36,6 @@ class Login extends CI_Controller {
         $email = $this->input->post('email_address', true);
         $password = md5($this->input->post('password', true));
         $user = Users::authentication($email, $password);
-        $userDetails['details'] = Users::userDetails($user->uuid);
-        //var_dump($userDetails['details']['user']->role_id); die();
 
         if ($user) {
             $userDetails['details'] = Users::userDetails($user->uuid);
