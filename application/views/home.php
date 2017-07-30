@@ -1,11 +1,15 @@
 <div class="container-fluid">
     <div class="content-area">
+        <?php
+            $userDetails = $this->session->userdata('details');
+        ?>
         <div class="row">
             <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Welcome
-                            , Firstname Lastname</h3>
+                        <h3 class="panel-title">Welcome,
+                            <?php echo $userDetails['user']->first_name . " " . $userDetails['user']->last_name; ?>
+                        </h3>
                     </div>
                     <div class="panel-body text-center" id="leftPanel">
                         <a class="btn btn-primary" href="/profile/general/update"
