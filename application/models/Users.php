@@ -77,4 +77,14 @@ class Users extends CI_Model {
            return false;
         }
     }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    public static function addUser($data = [])
+    {
+        $formdata = $data['user'];
+        return $formdata;
+    }
 }
