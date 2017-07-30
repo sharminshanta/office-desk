@@ -30,18 +30,24 @@ class Roles extends CI_Model
         if($role) {
             return $role;
         } else {
-            false;
+            return false;
         }
     }
 
+    /**
+     * @return mixed
+     */
     public static function getRoles()
     {
         $roles = self::$db
             ->get('roles')
             ->result();
 
-        return $roles;
-        //var_dump($roles); die();
+        if($roles) {
+            return $roles;
+        }else{
+            return false;
+        }
 
     }
 }
