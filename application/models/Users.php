@@ -33,7 +33,7 @@ class Users extends CI_Model {
         if ($user) {
             return $user;
         } else {
-            false;
+           return false;
         }
     }
 
@@ -56,7 +56,7 @@ class Users extends CI_Model {
         if ($user) {
             return $user;
         } else {
-            false;
+           return false;
         }
     }
 
@@ -74,7 +74,7 @@ class Users extends CI_Model {
         if ($user) {
             return $user;
         } else {
-            false;
+           return false;
         }
     }
 }
