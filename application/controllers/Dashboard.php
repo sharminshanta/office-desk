@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller {
          * All data of a user is saved with session
          * If all data is true then redirect to dashboard
          */
-        $user = $this->session->userdata('details');
+        $user = $this->session->userdata('details', 'role');
 
         if($user == null) {
             $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
