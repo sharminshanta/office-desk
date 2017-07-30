@@ -2,17 +2,29 @@
      aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-container">
+            <?php
+            $error = $this->session->userdata('error');
+
+            if (isset($error)) { ?>
+                <div class="notice notice-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <?php
+                    echo $error;
+                    $this->session->unset_userdata('error');
+                    ?>
+                </div>
+            <?php } ?>
             <h1 id="feedbackFormTitle">Create New User</h1>
             <form action="users/create" method="post" id="signup_signupForm">
                 <div class="form-group">
                     <label for="exampleInputFirstName" class="control-label">First Name</label>
-                    <input required="required" type="text" name="user[first_name]" class="form-control"
+                    <input type="text" name="user[first_name]" class="form-control"
                            value="" id="exampleInputFirstName"
                            placeholder="First Name">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputLastName" class="control-label">Last Name</label>
-                    <input required="required" type="text" name="user[last_name]" class="form-control"
+                    <input  type="text" name="user[last_name]" class="form-control"
                            id="exampleInputLastName" placeholder="Last Name">
                 </div>
                 <div class="form-group">
