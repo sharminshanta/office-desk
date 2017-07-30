@@ -24,9 +24,10 @@ class Dashboard extends CI_Controller {
 
     public function index()
     {
+        $roles['roles'] = Roles::getRoles();
         $data['header'] = $this->load->view('common/header', '', true);
         $data['navbar'] = $this->load->view('common/navbar', '', true);
-        $data['placeholder'] = $this->load->view('home', '', true);
+        $data['placeholder'] = $this->load->view('home', $roles, true);
         $data['footer'] = $this->load->view('common/footer', '', true);
         $this->load->view('dashboard/dashboard', $data);
     }
