@@ -11,8 +11,18 @@ class Users extends CI_Controller
         parent::__construct();
     }
 
+    public function index()
+    {
+        $roles['roles'] = Roles::getRoles();
+        $data['header'] = $this->load->view('common/header', '', true);
+        $data['navbar'] = $this->load->view('common/navbar', '', true);
+        $data['placeholder'] = $this->load->view('users/add', $roles, true);
+        $data['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $data);
+    }
+
     /**
-     *
+     * This is user's add
      */
     public function create()
     {

@@ -11,8 +11,13 @@
                         <p>Manage your company. Manage your credentials. All in one place to integrate platform
                             with third party tools and libraries.</p>
                         <p>
-                            <a href="#" data-toggle="modal" data-target="#createUserModal" class="btn btn-primary" href="/profile/general/update"
+                            <!--<a href="#" data-toggle="modal" data-target="#createUserModal" class="btn btn-primary" href="/profile/general/update"
                                title="Add user"><i class="fa fa-info"></i>
+                                Add User
+                            </a>-->
+                            <a class="btn btn-primary" href="/users"
+                               title="Add a new user">
+                                <i class="fa fa-info"></i>
                                 Add User
                             </a>
                             <a class="btn btn-warning" href="/profile/security"
