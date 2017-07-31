@@ -84,7 +84,7 @@ class UsersModel extends CI_Model {
      */
     public static function addUser($data = [])
     {
-        $formdata = $data['user'];
+        $formdata = $data;
         return $formdata;
     }
 }

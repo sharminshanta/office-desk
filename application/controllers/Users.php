@@ -43,7 +43,9 @@ class Users extends CI_Controller
     public function create()
     {
         //@TODO try to manage it with the best way
-
+        /**
+         * Form validation with valitron that is so easy
+         */
         $formData = $_POST['user'];
         $validation = new Valitron\Validator($formData);
         $validation->rule('required', 'first_name')->message('First name is required');
@@ -77,5 +79,24 @@ class Users extends CI_Controller
             $this->session->set_userdata($oldValue);
             redirect('users');
         }
+
+        try{
+            $user = UsersModel::addUser($formData);
+            $success = true;
+        }catch (Exception $exception) {
+            $exception->getMessage('This is an error');
+            $success = false;
+        }
+
+        if($success == true) {
+            $message['success'] = 'User created success';
+            $this->session->set_userdata($message);
+            redirect('users/details');
+        }
+    }
+
+    public function details()
+    {
+        var_dump("This is a details page for a user"); die();
     }
 }
