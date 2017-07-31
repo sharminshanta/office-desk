@@ -625,7 +625,7 @@ Developer Portal
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url("/assets/img/pexels-photo.jpg");
+    /*background-image: url("/assets/img/pexels-photo.jpg");*/
     position: relative;
     height: 100%;
 
