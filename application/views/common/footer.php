@@ -10,7 +10,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <script src="assets/js/jquery.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<!--<script src="assets/js/bootstrap.min.js"></script>-->
 <script src="assets/datatables/js/jquery.dataTables.min.js"></script>
 <script src="assets/datatables/js/dataTables.bootstrap.js"></script>
 <script>
