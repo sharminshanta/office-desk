@@ -25,6 +25,8 @@ class Users extends CI_Controller
             $this->session->set_userdata($message);
             redirect('login','refresh');
         }
+
+
     }
 
     public function index()
@@ -81,7 +83,8 @@ class Users extends CI_Controller
         }
 
         try{
-            $user = UsersModel::addUser($formData);
+            $userDetails = $this->session->userdata('details');
+            $this->usersModel->addUser($userDetails['user']->user_id, $userDetails['user']->role_id);
             $success = true;
         }catch (Exception $exception) {
             $exception->getMessage('This is an error');

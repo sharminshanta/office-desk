@@ -82,9 +82,30 @@ class UsersModel extends CI_Model {
      * @param array $data
      * @return array
      */
-    public static function addUser($data = [])
+    public function addUser($userID, $roleID)
     {
-        $formdata = $data;
-        return $formdata;
+        $CI = &get_instance();
+        $CI->load->model('Utilities');
+
+        $userData = [
+            'uuid' => $CI->Utilities->v4(),
+            'username' => $_POST['user']['email_address'],
+            'email_address' => $_POST['user']['email_address'],
+            'password' => md5($_POST['user']['password']),
+            'created' => date('Y-m-d h:i:s'),
+            ];
+
+        $userRole = [
+            'user_id' => $userID,
+            'role_id' => $roleID,
+            'created' => date('Y-m-d h:i:s'),
+        ];
+
+        if ($userData && $userRole) {
+            $this->db->insert('users', $userData);
+            $this->db->insert('users_roles', $userRole);
+        } else {
+            return false;
+        }
     }
 }
