@@ -211,7 +211,7 @@
             $('#deleteList').hide();
     }
 
-    function addEstudiante()
+    function addUser()
     {
         save_method = 'add';
         $('#form')[0].reset(); // reset form on modals

@@ -11,6 +11,7 @@
                         <p>Manage your company. Manage your credentials. All in one place to integrate platform
                             with third party tools and libraries.</p>
                         <p>
+                            <a class="btn btn-success" onclick="addUser()"><i class="fa fa-plus"></i> Add User</a>
                             <!--<a href="#" data-toggle="modal" data-target="#createUserModal" class="btn btn-primary" href="/profile/general/update"
                                title="Add user"><i class="fa fa-info"></i>
                                 Add User
