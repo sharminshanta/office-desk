@@ -17,6 +17,7 @@
                                     <input type="text" name="user[first_name]" class="form-control"
                                            value="" id="exampleInputFirstName"
                                            placeholder="First Name">
+                                    <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputLastName" class="control-label">Last Name</label>
@@ -27,6 +28,7 @@
                                     <label for="exampleInputEmail1" class="control-label">Email</label>
                                     <input required="required" type="email" name="user[email_address]" class="form-control"
                                            placeholder="example@gmail.com">
+                                    <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputRole" class="control-label">Role</label>
@@ -36,16 +38,19 @@
                                         <option value="<?php echo $role->id; ?>"><?php echo $role->name; ?></option>
                                         <?php } ?>
                                     </select>
+                                    <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1" class="control-label">Password</label>
                                     <input required="required" type="password" name="user[password]" class="form-control"
                                            id="exampleInputPassword1" placeholder="Password">
+                                    <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword2" class="control-label">Confirm Password</label>
                                     <input required="required" type="password" name="user[confirm_password]" class="form-control"
                                            id="exampleInputPassword2" placeholder="Confirm Password">
+                                    <span class="help-block"></span>
                                 </div>
                             </div>
                         </div>

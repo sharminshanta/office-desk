@@ -150,6 +150,11 @@
         $('#modal_form').modal('show'); // show bootstrap modal
         $('.modal-title').text('Add student'); // Set Title to Bootstrap modal title
     }
+
+    function saveUser()
+    {
+        $('#modal_form').modal('hide'); // show bootstrap modal
+    }
 </script>
 </body>
 </html>
