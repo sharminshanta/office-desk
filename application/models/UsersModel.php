@@ -82,7 +82,7 @@ class UsersModel extends CI_Model {
      * @param array $data
      * @return array
      */
-    public function addUser()
+    public static function addUser()
     {
         $CI = &get_instance();
         $CI->load->model('Utilities');
@@ -106,8 +106,8 @@ class UsersModel extends CI_Model {
 
         if($checkUser == null) {
             if ($userData) {
-                $this->db->insert('users', $userData);
-                $lastInsertID = $this->db->insert_id();
+                self::$db->insert('users', $userData);
+                $lastInsertID = self::$db->insert_id();
             } else {
                 return false;
             }
@@ -126,7 +126,7 @@ class UsersModel extends CI_Model {
          */
         if($checkUser == null) {
             if ($userProfileData) {
-                $this->db->insert('users_profile', $userProfileData);
+                self::$db->insert('users_profile', $userProfileData);
             } else {
                 return false;
             }
@@ -144,10 +144,33 @@ class UsersModel extends CI_Model {
          */
         if($checkUser == null) {
             if($userRole) {
-                $this->db->insert('users_roles', $userRole);
+                self::$db->insert('users_roles', $userRole);
             } else {
                 return false;
             }
+        }
+
+       return $lastInsertID;
+    }
+
+
+    /**
+     * @param $id
+     * @return bool
+     * Get uuid of a user that is created at this moment for his details information
+     * Returns uuid of last created user
+     */
+    public static  function userInfo($id)
+    {
+        $info = self::$db->where('id', $id)
+            ->select('uuid')
+            ->get('users')
+            ->row();
+
+        if($info) {
+           return $info;
+        } else {
+            return false;
         }
     }
 

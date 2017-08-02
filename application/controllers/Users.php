@@ -96,8 +96,7 @@ class Users extends CI_Controller
         }
 
         try{
-            $userDetails = $this->session->userdata('details');
-            $this->usersModel->addUser($userDetails['user']->role_id);
+            $userID = UsersModel::addUser();
             $success = true;
         }catch (Exception $exception) {
             $exception->getMessage('This is an error');
@@ -107,12 +106,19 @@ class Users extends CI_Controller
         if($success == true) {
             $message['success'] = 'User created success';
             $this->session->set_userdata($message);
-            redirect('users/details');
+            $user = UsersModel::userInfo($userID);
+            redirect('users/details/' . $user->uuid);
         }
     }
 
+    /**
+     * User's information
+     * When a new user is created , redirect to his detail page
+     */
     public function details()
     {
-        var_dump("This is a details page for a user"); die();
+        $uuid = $this->uri->segment(3);
+        $userDetails = UsersModel::userDetails($uuid);
+        var_dump($userDetails); die();
     }
 }
