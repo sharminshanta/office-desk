@@ -82,7 +82,7 @@ class UsersModel extends CI_Model {
      * @param array $data
      * @return array
      */
-    public function addUser($userID, $roleID)
+    public function addUser()
     {
         $CI = &get_instance();
         $CI->load->model('Utilities');
@@ -93,19 +93,80 @@ class UsersModel extends CI_Model {
             'email_address' => $_POST['user']['email_address'],
             'password' => md5($_POST['user']['password']),
             'created' => date('Y-m-d h:i:s'),
-            ];
+        ];
+
+        /**
+         * check user's email address as if duplicate email address is not permitted
+         * to database
+         */
+        $checkUser = self::$db->where('email_address', $userData['email_address'])
+                    ->select('id')
+                    ->get('users')
+                    ->row();
+
+        if($checkUser == null) {
+            if ($userData) {
+                $this->db->insert('users', $userData);
+                $lastInsertID = $this->db->insert_id();
+            } else {
+                return false;
+            }
+        }
+
+        $userProfileData = [
+          'user_id' => $lastInsertID,
+          'first_name' => $_POST['user']['first_name'],
+          'last_name' => $_POST['user']['last_name'],
+          'created' => date('Y-m-d h:i:s'),
+        ];
+
+        /**
+         *check user as if duplicate user is not permitted
+         * to database
+         */
+        if($checkUser == null) {
+            if ($userProfileData) {
+                $this->db->insert('users_profile', $userProfileData);
+            } else {
+                return false;
+            }
+        }
 
         $userRole = [
-            'user_id' => $userID,
-            'role_id' => $roleID,
+            'user_id' => $lastInsertID,
+            'role_id' => $_POST['user']['role_id'],
             'created' => date('Y-m-d h:i:s'),
         ];
 
-        if ($userData && $userRole) {
-            $this->db->insert('users', $userData);
-            $this->db->insert('users_roles', $userRole);
-        } else {
+        /**
+         * check user's id as if duplicate user is not permitted
+         * to database
+         */
+        if($checkUser == null) {
+            if($userRole) {
+                $this->db->insert('users_roles', $userRole);
+            } else {
+                return false;
+            }
+        }
+    }
+
+    /**
+     * @param $emailAddress
+     * @return bool
+     */
+    public static function getEmailAddress($emailAddress)
+    {
+        $emailAddress = self::$db->where('email_address', $emailAddress)
+            ->select('email_address')
+            ->get('users')
+            ->row();
+
+        if($emailAddress) {
+            return true;
+        } else{
             return false;
         }
+
     }
 }

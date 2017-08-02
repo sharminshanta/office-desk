@@ -29,6 +29,9 @@ class Users extends CI_Controller
 
     }
 
+    /**
+     * It's default page for user controller
+     */
     public function index()
     {
         $roles['roles'] = Roles::getRoles();
@@ -41,6 +44,8 @@ class Users extends CI_Controller
 
     /**
      * This is user's add method
+     * Firstly check user's information with form input data
+     * If form validation occurs error then data is not permitted to database insert
      */
     public function create()
     {
@@ -57,7 +62,8 @@ class Users extends CI_Controller
         $validation->rule('required', 'password')->message('Password is required');
         $validation->rule('required', 'confirm_password')->message('Confirm password is required');
         $validation->rule('lengthMin', 'password', 6);
-        $validation->rule('email', 'email_address');
+        $validation->rule('email', 'email_address')->message('This is invalid email address');
+        $userMail = UsersModel::getEmailAddress($formData['email_address']);
         $validation->rule('equals', 'password', 'confirm_password')->message('Password does not matched');
 
         if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
@@ -74,6 +80,13 @@ class Users extends CI_Controller
             $validation->rule('lastName', 'last_name')->message('Alphabetic characters only');
         }
 
+        if ($userMail == true) {
+            $validation->addInstanceRule('uMail', function () {
+                return false;
+            });
+            $validation->rule('uMail', 'email_address')->message('This email has already registered');
+        }
+
         if (!$validation->validate()) {
             $error['error'] = $validation->errors();
             $oldValue['oldValue'] = $validation->data();
@@ -84,7 +97,7 @@ class Users extends CI_Controller
 
         try{
             $userDetails = $this->session->userdata('details');
-            $this->usersModel->addUser($userDetails['user']->user_id, $userDetails['user']->role_id);
+            $this->usersModel->addUser($userDetails['user']->role_id);
             $success = true;
         }catch (Exception $exception) {
             $exception->getMessage('This is an error');

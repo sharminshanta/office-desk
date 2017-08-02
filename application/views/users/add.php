@@ -25,7 +25,7 @@
                     <div class="form-group <?php echo (isset($error['first_name']) ? 'has-error' : ''); ?>">
                         <label for="exampleInputFirstName" class="control-label">First Name</label>
                         <input required="required" type="text" name="user[first_name]" class="form-control"
-                               value="<?php echo (isset($oldValue['first_name']) ? $oldValue['first_name'] : ''); ?>" id="exampleInputFirstName"
+                               value="<?php echo (isset($oldValue['first_name']) ? $oldValue['first_name'] : ''); $this->session->unset_userdata('oldValue');  ?>" id="exampleInputFirstName"
                                placeholder="First Name">
                         <?php
                             if(isset($error['first_name'])){ ?>
@@ -40,7 +40,7 @@
                     <div class="form-group <?php echo (isset($error['last_name']) ? 'has-error' : ''); ?>">
                         <label for="exampleInputLastName" class="control-label">Last Name</label>
                         <input required="required" type="text" name="user[last_name]" class="form-control"
-                               value="<?php echo (isset($oldValue['last_name']) ? $oldValue['last_name'] : ''); ?>" id="exampleInputLastName" placeholder="Last Name">
+                               value="<?php echo (isset($oldValue['last_name']) ? $oldValue['last_name'] : ''); $this->session->unset_userdata('oldValue');  ?>" id="exampleInputLastName" placeholder="Last Name">
                         <?php
                         if(isset($error['last_name'])){ ?>
                             <span class="error-text">
@@ -54,7 +54,7 @@
                     <div class="form-group <?php echo (isset($error['email_address']) ? 'has-error' : ''); ?>">
                         <label for="exampleInputEmail1" class="control-label">Email</label>
                         <input required="required" type="text" name="user[email_address]" class="form-control"
-                              value="<?php echo (isset($oldValue['email_address']) ? $oldValue['email_address'] : '');?>" placeholder="example@gmail.com">
+                              value="<?php echo (isset($oldValue['email_address']) ? $oldValue['email_address'] : ''); $this->session->unset_userdata('oldValue'); ?>" placeholder="example@gmail.com">
                         <?php
                         if(isset($error['email_address'])){ ?>
                             <span class="error-text">
@@ -83,7 +83,7 @@
                                 </span>
                         <?php } ?>
                     </div>
-                    <div class="form-group <?php echo (isset($error['password']) ? 'has-error' : ''); ?>">
+                    <div class="form-group <?php echo (isset($error['password']) ? 'has-error' : '');?>">
                         <label for="exampleInputPassword1" class="control-label">Password</label>
                         <input required="required" type="password" name="user[password]" class="form-control"
                                id="exampleInputPassword1" placeholder="Password">
