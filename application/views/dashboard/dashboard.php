@@ -9,7 +9,11 @@
     <!--End Navigation -->
 
     <!--Placeholder -->
-    <?php echo isset($placeholder) ? $placeholder : ""; ?>
+    <div class="container-fluid">
+        <div class="content-area">
+            <?php echo isset($placeholder) ? $placeholder : ""; ?>
+        </div>
+    </div>
     <!--End Placeholder-->
 
     <footer class="footer">

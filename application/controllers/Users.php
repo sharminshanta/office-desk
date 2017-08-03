@@ -104,7 +104,7 @@ class Users extends CI_Controller
         }
 
         if($success == true) {
-            $message['success'] = 'User created success';
+            $message['success'] = 'New user has been created successfully';
             $this->session->set_userdata($message);
             $user = UsersModel::userInfo($userID);
             redirect('users/details/' . $user->uuid);
