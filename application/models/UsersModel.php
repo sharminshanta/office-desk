@@ -190,6 +190,20 @@ class UsersModel extends CI_Model {
         } else{
             return false;
         }
+    }
 
+    /**
+     * Fetching all users
+     */
+    public static function getUsers()
+    {
+        $users = self::$db
+            ->get('users')
+            ->result();
+        if($users) {
+            return $users;
+        }else {
+            return false;
+        }
     }
 }

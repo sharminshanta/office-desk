@@ -43,6 +43,89 @@ if ($userRole->slug == 'super-administrator') { ?>
             <canvas id="apiUsageChartDaily"></canvas>
         </div>
     </div>
+
+    <!-- Users Overview -->
+    <?php
+        if((sizeof($users) > 0) or sizeof($attendance) > 0) { ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Users Overview</h3>
+                    <div class="tabbable-panel">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs ">
+                                <?php if(sizeof($users) > 0) { ?>
+                                    <li class="active">
+                                        <a href="#usersList" data-toggle="tab">Users List</a>
+                                    </li>
+                                <?php } ?>
+                                <?php if(sizeof($attendance) > 0) { ?>
+                                    <li <?php if(sizeof($users) < 1) { ?> class="active" <?php } ?>>
+                                        <a href="#usersAttendanceList" data-toggle="tab">Attendance List</a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                            <div class="tab-content">
+                                <?php if(sizeof($users) > 0) { ?>
+                                    <div class="tab-pane active" id="usersList">
+                                        <h3>This is Users List</h3>
+                                        <!--<table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Api Key</th>
+                                                <th>Status</th>
+                                                <th>Created</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for apikey in api_keys %}
+                                            <tr>
+                                                <td>
+                                                    <a href="/developers/api_keys/{{ apikey.uuid }}">{{ apikey.name }}</a>
+                                                </td>
+                                                <td>{{ apikey.api_keys }}</td>
+                                                <td>{{ apikey.is_active == 1 ? "Enabled" : "Disabled" }}</td>
+                                                <td>{{ apikey.created | date("Y-m-d h:i A", currentUser.timezone ?: "UTC") }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>-->
+                                    </div>
+                                <?php } ?>
+                                <?php if(sizeof($attendance) > 0) { ?>
+                                    <div class="tab-pane <?php if(sizeof($users) < 1) {?> active <?php } ?>"
+                                         id="usersAttendanceList">
+                                        <h3>This is Attendance List</h3>
+                                        <!--<table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Name of Client</th>
+                                                <th>Client ID</th>
+                                                <th>Status</th>
+                                                <th>Created</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for client in oauth_clients %}
+                                            <tr>
+                                                <td>
+                                                    <a href="/developers/oauth_clients/{{ client.uuid }}">{{ client.client_name }}</a>
+                                                </td>
+                                                <td>{{ client.client_id }}</td>
+                                                <td>{{ client.is_active == 1 ? "Enabled" : "Disabled" }}</td>
+                                                <td>{{ client.created | date("Y-m-d h:i A", currentUser.timezone ?: "UTC") }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>-->
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <?php } ?>
     <!-- Modal -->
     <?php require 'blocks/modal.php'; ?>
 <?php } else { ?>
