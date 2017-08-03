@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller {
     {
         $user['users'] = UsersModel::getUsers();
         $user['roles'] = Roles::getRoles();
-        $user['attendance'] = [1 => 'aa', 2 => 'aaa'];
+        $user['attendance'] = [1 => 'There has no attendance', 2 => 'Please put attendance list'];
         $data['header'] = $this->load->view('common/header', '', true);
         $data['navbar'] = $this->load->view('common/navbar', '', true);
         $data['placeholder'] = $this->load->view('home', $user, true);
