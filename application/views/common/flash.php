@@ -1,7 +1,14 @@
 <?php
-    $message[''] = $this->session->set_userdata('success');
-    //var_dump($message);
-?>
+$sucessMessage = $this->session->userdata('success');
+if (isset($sucessMessage)) { ?>
+    <div class="notice notice-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $sucessMessage;
+        $this->session->unset_userdata('success')
+        ?>
+    </div>
+<?php } ?>
 
 <!--{% if message %}
     {% if message.success %}
