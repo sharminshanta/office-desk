@@ -7,8 +7,8 @@
 <!-- Custom javascript -->
 <script src="<?php echo base_url()?>assets/js/theme.js"></script>
 <script src="<?php echo base_url()?>assets/js/bootstrap-editable.js"></script>
-<script src="<?php echo base_url()?>http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-<script src="<?php echo base_url()?>https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <script src="<?php echo base_url()?>assets/js/jquery.js"></script>
 <!--<script src="assets/js/bootstrap.min.js"></script>-->
 <script src="<?php echo base_url()?>assets/datatables/js/jquery.dataTables.min.js"></script>
