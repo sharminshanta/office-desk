@@ -118,7 +118,12 @@ class Users extends CI_Controller
     public function details()
     {
         $uuid = $this->uri->segment(3);
-        $userDetails = UsersModel::userDetails($uuid);
-        var_dump($userDetails); die();
+        $userDetails['details'] = UsersModel::userDetails($uuid);
+        $userDetails['role'] = Roles::getName($userDetails['details']['user']->role_id);
+        $data['header'] = $this->load->view('common/header', '', true);
+        $data['navbar'] = $this->load->view('common/navbar', '', true);
+        $data['placeholder'] = $this->load->view('users/details', $userDetails, true);
+        $data['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $data);
     }
 }

@@ -3,7 +3,7 @@
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
             <a href="#">
-                <a href="/"><img src="assets/img/besofty.png" class="logo" alt="Logo"/></a>
+                <a href="/"><img src="<?php echo base_url()?>assets/img/accounts_logo.png" class="logo" alt="Logo"/></a>
             </a>
         </li>
         <?php
@@ -11,10 +11,10 @@
             $userRole = $this->session->userdata('role');
         ?>
         <li>
-            <a href="dashboard"><i class="col-md-4"></i> Hi, <?php echo $userRole->name; ?></a>
+            <a href="<?php echo base_url()?>dashboard"><i class="col-md-4"></i> Hi, <?php echo $userRole->name; ?></a>
         </li>
         <li>
-            <a href="dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+            <a href="<?php echo base_url()?>dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
         </li>
 
         <?php
@@ -113,7 +113,7 @@
                 <div class="pull-right">
                     <div class="profile-overview">
                         <div class="dropdown customm-dropdown">
-                            <img src="" class="profile-pic" onerror="this.onerror=null;this.src='assets/img/profile.jpg'"/>
+                            <img src="" class="profile-pic" onerror="this.onerror=null;this.src='<?php echo base_url()?>assets/img/profile.jpg'"/>
                             <!--<img src="assets/img/profile_pic.jpg" class="profile-pic"/>-->
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenu1"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -131,7 +131,7 @@
                                     </a>
                                 </li>
                                 <li><a href="/settings"><i class="fa fa-wrench"></i> Setting</a></li>
-                                <li><a href="logout/"><i class="fa fa-power-off"></i> Logout</a></li>
+                                <li><a href="<?php echo base_url()?>logout/"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
                         </div>
                     </div>

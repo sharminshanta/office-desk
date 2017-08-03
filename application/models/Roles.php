@@ -20,9 +20,9 @@ class Roles extends CI_Model
     /**
      * @param $id
      */
-    public static function getName($id)
+    public static function getName($roleID)
     {
-        $role = self::$db->where('id', $id)
+        $role = self::$db->where('id', $roleID)
             ->select(['slug', 'name'])
             ->get('roles')
             ->row();

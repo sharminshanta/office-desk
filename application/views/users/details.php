@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="content-area">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $details['user']->first_name . " " . $details['user']->last_name; ?></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 " align="center">
+                        <?php
+                            if($details['user']->picture != null) { ?>
+                                <img src="<?php echo $details['user']->picture; ?>" class="profile-pic"
+                                     onerror="this.onerror=null;this.src='<?php echo base_url()?>assets/img/profile.jpg'"/>
+                           <?php }else { ?>
+                                <img src="<?php echo base_url()?>assets/img/profile.jpg" class="profile-pic"/>
+                            <?php } ?>
+                    </div>
+
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                            <tr>
+                                <td>Role:</td>
+                                <td><?php echo ($role->name ?: ""); ?></td>
+                            </tr>
+                            <tr>
+                                <td>Hire date:</td>
+                                <td><?php echo ($details['user']->created ?: "N/A")?></td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth</td>
+                                <td><?php echo ($details['user']->date_of_birth ?: "N/A")?></td>
+                            </tr>
+
+                            <tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td><?php echo ($details['user']->gender ?: "N/A")?></td>
+                            </tr>
+                            <tr>
+                                <td>Home Address</td>
+                                <td><?php echo ($details['address'] ?: "N/A")?></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    <a href="info@support.com"><?php echo ($details['user']->email_address ?: "N/A")?></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td><?php echo ($details['user']->status == 1 ? "<span class='label label-info'>Active</span>" : "<span class='label label-danger'>Not Active</span>"); ?></td>
+                            </tr>
+                            <td>Phone Number</td>
+                            <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                            </td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <a href="#" class="btn btn-primary">My Sales Performance</a>
+                        <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+            </div>
+
+        </div>
+    </div>
+</div>

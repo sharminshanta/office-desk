@@ -1,18 +1,18 @@
-<script src="assets/js/jquery-2.2.0.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery-2.2.0.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="<?php echo base_url()?>assets/js/ie10-viewport-bug-workaround.js"></script>
 
 <!-- Custom javascript -->
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/bootstrap-editable.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-<script src="assets/js/jquery.js"></script>
+<script src="<?php echo base_url()?>assets/js/theme.js"></script>
+<script src="<?php echo base_url()?>assets/js/bootstrap-editable.js"></script>
+<script src="<?php echo base_url()?>http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<script src="<?php echo base_url()?>https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.js"></script>
 <!--<script src="assets/js/bootstrap.min.js"></script>-->
-<script src="assets/datatables/js/jquery.dataTables.min.js"></script>
-<script src="assets/datatables/js/dataTables.bootstrap.js"></script>
+<script src="<?php echo base_url()?>assets/datatables/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url()?>assets/datatables/js/dataTables.bootstrap.js"></script>
 <script>
     $('#addMoreField').click(function (e) {
         var max_field = 10;
