@@ -6,7 +6,7 @@
                     <h3 class="panel-title">List of Users </h3>
                 </div>
                 <div class="pull-right">
-                    <h3 class="panel-title">Total users # 2 </h3>
+                    <h3 class="panel-title">Total users # <?php echo sizeof($users); ?> </h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -47,6 +47,36 @@
                            <?php } ?>
                             </tbody>
                         </table>
+                        <?php
+                            $page = 1;
+
+                            if($_SERVER['QUERY_STRING'] == 'page'){
+                                $page = $_SERVER['QUERY_STRING'];
+                            }
+
+                            $total = sizeof($users);
+                            $perPage = 10;
+                            $totalPage = $total/$perPage;
+                        ?>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pull-right">
+                                <?php if ($page != 1) { ?>
+                                <li>
+                                    <a href="lists?page=<?php ($page-1) ;?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <?php } ?>
+
+                                <?php if ($page < ($total)/$perPage) { ?>
+                                <li>
+                                    <a href="lists?page=<?php ($page+1) ;?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <?php } ?>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
