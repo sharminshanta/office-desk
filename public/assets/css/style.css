@@ -462,6 +462,10 @@ ul.sidebar-nav li {
     transition: opacity ease 0.5s;
 }
 
+.table tbody> tr> td> a {
+    text-decoration: none;
+}
+
 .feedbackmodal-container .feedbackTypeDropdown {
     height: 44px;
     padding: 0 5px;
