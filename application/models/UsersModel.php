@@ -193,6 +193,14 @@ class UsersModel extends CI_Model {
     }
 
     /**
+     * @return mixed
+     * All users count
+     */
+    public static function record_count() {
+        return self::$db->count_all("users");
+    }
+
+    /**
      * Fetching all users
      */
     public static function getUsers()
@@ -206,5 +214,26 @@ class UsersModel extends CI_Model {
         }else {
             return false;
         }
+    }
+
+    /**
+     * @param $limit
+     * @param $start
+     * @return array|bool
+     * Test Pagination
+     */
+    public static function getUsers1($limit, $start)
+    {
+        self::$db->limit($limit, $start);
+        $query = self::$db
+            ->get('users');
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
     }
 }
