@@ -14,12 +14,12 @@ if ($userRole->slug == 'super-administrator') { ?>
                        title="Add user"><i class="fa fa-info"></i>
                         Add User
                     </a>-->
-                    <a class="btn btn-primary" href="/users"
+                    <a class="btn btn-primary" href="<?php echo base_url()?>users"
                        title="Add a new user">
                         <i class="fa fa-info"></i>
                         Add User
                     </a>
-                    <a class="btn btn-warning" href="/users/lists"
+                    <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
                        title="Users List">
                         <i class="fa fa-user-secret"></i>
                         Users List

@@ -20,7 +20,7 @@ $oldValue = $this->session->userdata('oldValue');
         <div class="clearfix"></div>
     </div>
     <div class="widget-body">
-        <form action="users/create" method="post" id="signup_signupForm">
+        <form action="<?php echo base_url()?>users/create" method="post" id="signup_signupForm">
             <div class="form-group <?php echo(isset($error['first_name']) ? 'has-error' : ''); ?>">
                 <label for="exampleInputFirstName" class="control-label">First Name</label>
                 <input required="required" type="text" name="user[first_name]" class="form-control"
