@@ -34,9 +34,9 @@
                              */
                                 foreach ($users as $user) { $userDetails = UsersModel::userDetails($user->uuid); ?>
                                 <tr>
-                                    <td><a href="details/<?php echo $user->uuid; ?>"><?php echo ($user->id ?: '-'); ?></a></td>
-                                    <td><a href="details/<?php echo $user->uuid; ?>"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
-                                    <td><a href="details/<?php echo $user->uuid; ?>"><?php echo ($user->email_address ?: '-'); ?></a></td>
+                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>"><?php echo ($user->id ?: '-'); ?></a></td>
+                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
+                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>"><?php echo ($user->email_address ?: '-'); ?></a></td>
                                     <td>
                                         <?php echo ($user->status == 1 ? '<span class="label label-info">Active</span>': "-"); ?>
                                     </td>
