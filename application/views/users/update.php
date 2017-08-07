@@ -19,6 +19,7 @@
         <form class="form" method="post" action="<?php echo base_url()?>users/profile" id="pupdate_puForm">
             <div class="row">
                 <div class="col-lg-6">
+                    <input type="hidden" name="profile[user_id]" value="<?php echo (isset($details['user']->user_id) ? $details['user']->user_id : ''); ?>">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input name="profile[first_name]" type="text"

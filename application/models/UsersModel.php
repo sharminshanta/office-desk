@@ -236,4 +236,8 @@ class UsersModel extends CI_Model {
         }
         return false;
     }
+
+    public static function updateProfile() {
+
+    }
 }

@@ -164,6 +164,7 @@ class Users extends CI_Controller
     }
 
     /**
+     * Users update view part
      * User's update with timezone, country
      */
     public function update()
@@ -179,10 +180,65 @@ class Users extends CI_Controller
         $this->load->view('dashboard/dashboard', $content);
     }
 
+    /**
+     * Users profile update post
+     */
     public function profile()
     {
-        var_dump($_POST); die();
+        //@TODO try to manage it with the best way
+        /**
+         * Form validation with valitron that is so easy
+         */
+        $formData = $_POST['profile'];
+        $validation = new Valitron\Validator($formData);
+        $validation->rule('required', 'first_name')->message('First name is required');
+        $validation->rule('required', 'last_name')->message('Last name is required');
+        $validation->rule('required', 'title')->message('Title is required');
+        $validation->rule('required', 'gender')->message('Gender is required');
+
+
+        if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
+            $validation->addInstanceRule('firstName', function () {
+                return false;
+            });
+            $validation->rule('firstName', 'first_name')->message('Alphabetic characters only');
+        }
+
+        if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['last_name'])) {
+            $validation->addInstanceRule('lastName', function () {
+                return false;
+            });
+            $validation->rule('lastName', 'last_name')->message('Alphabetic characters only');
+        }
+
+
+        if (!$validation->validate()) {
+            $error['error'] = $validation->errors();
+            $oldValue['oldValue'] = $validation->data();
+            $this->session->set_userdata($error);
+            $this->session->set_userdata($oldValue);
+            redirect('users/update' );
+        }
+
+        try{
+            $userID = UsersModel::addUser();
+            $success = true;
+        }catch (Exception $exception) {
+            $exception->getMessage('This is an error');
+            $success = false;
+        }
+
+        if($success == true) {
+            $message['success'] = 'New user has been created successfully';
+            $this->session->set_userdata($message);
+            $user = UsersModel::userInfo($userID);
+            redirect('users/details/' . $user->uuid);
+        }
     }
+
+    /**
+     * Users address update post
+     */
     public function address()
     {
         var_dump($_POST); die();
