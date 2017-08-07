@@ -163,6 +163,9 @@ class Users extends CI_Controller
         $this->load->view('dashboard/dashboard', $content);
     }
 
+    /**
+     * User's update with timezone, country
+     */
     public function update()
     {
         $uuid = $this->uri->segment(3);
@@ -175,4 +178,15 @@ class Users extends CI_Controller
         $content['footer'] = $this->load->view('common/footer', '', true);
         $this->load->view('dashboard/dashboard', $content);
     }
+
+    public function profile()
+    {
+        var_dump($_POST); die();
+    }
+    public function address()
+    {
+        var_dump($_POST); die();
+    }
+
+
 }
