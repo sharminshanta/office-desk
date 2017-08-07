@@ -47,10 +47,16 @@ if (isset($message)) { ?>
                         <td>Gender</td>
                         <td><?php echo($details['user']->gender ?: "N/A") ?></td>
                     </tr>
-                    <tr>
-                        <td>Home Address</td>
-                        <td><?php echo($details['address'] ?: "N/A") ?></td>
-                    </tr>
+                    <?php
+                        if($details['address'] != null) { ?>
+                            <tr>
+                                <td>Home Address</td>
+                                <td>
+                                    <?php echo ($details['address']->street ? "Street: ".$details['address']->street : "N/A") . "<br>";?>
+                                    <?php echo($details['address']->city ? "City: ".$details['address']->city : "N/A");?>
+                                </td>
+                            </tr>
+                       <?php } ?>
                     <tr>
                         <td>Email</td>
                         <td>
@@ -70,8 +76,8 @@ if (isset($message)) { ?>
                     </tbody>
                 </table>
 
-                <a href="#" class="btn btn-primary">My Sales Performance</a>
-                <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                <a href="#" class="btn btn-primary">My Attendance</a>
+                <a href="#" class="btn btn-primary">My Leave</a>
             </div>
         </div>
     </div>
@@ -79,10 +85,8 @@ if (isset($message)) { ?>
         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
            class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
         <span class="pull-right">
-            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button"
-               class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-            <a data-original-title="Remove this user" data-toggle="tooltip" type="button"
-               class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+            <a href="edit.html" title="Edit this user" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+            <a title="Remove this user" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
         </span>
     </div>
 

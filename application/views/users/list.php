@@ -6,7 +6,7 @@
                     <h3 class="panel-title">List of Users </h3>
                 </div>
                 <div class="pull-right">
-                    <h3 class="panel-title">Total users # 2 </h3>
+                    <h3 class="panel-title">Total users # <?php echo sizeof($users); ?> </h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -26,22 +26,57 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a href="">1</a></td>
-                                <td><a href="">Shanta Sharmin</a></td>
-                                <td>shanta@besofty.com</td>
-                                <td><span class="label label-info">Active</span></td>
-                                <td><span class="label label-success">Visible</span></td>
-                                <td>2017-08-02 08:11:10</td>
-                                <td>2017-08-02 08:11:10</td>
-                                <!--<td>
-                                    <a class="btn btn-sm btn-danger" title="Remove User">Remove</a>
-                                    <a class="btn btn-sm btn-primary" title="Edit User">Edit</a>
-                                    <a class="btn btn-sm btn-success" title="View User">View</a>
-                                </td>-->
-                            </tr>
+                            <?php
+                            /**
+                             * Get all users with their details
+                             * Firstly fetch all user then call a userDetails method from UsersModel
+                             * and put the $uuid parameter
+                             */
+                                foreach ($users as $user) { $userDetails = UsersModel::userDetails($user->uuid); ?>
+                                <tr>
+                                    <td><a href="details/<?php echo $user->uuid; ?>"><?php echo ($user->id ?: '-'); ?></a></td>
+                                    <td><a href="details/<?php echo $user->uuid; ?>"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
+                                    <td><a href="details/<?php echo $user->uuid; ?>"><?php echo ($user->email_address ?: '-'); ?></a></td>
+                                    <td>
+                                        <?php echo ($user->status == 1 ? '<span class="label label-info">Active</span>': "-"); ?>
+                                    </td>
+                                    <td><?php echo ($user->is_visible == 1 ? '<span class="label label-success">Visible</span>': "-"); ?></td>
+                                    <td><?php echo ($user->created ?: '-'); ?></td>
+                                    <td><?php echo ($user->last_seen ?: '-')?></td>
+                                </tr>
+                           <?php } ?>
                             </tbody>
                         </table>
+                        <?php
+                            $page = 1;
+
+                            if($_SERVER['QUERY_STRING'] == 'page'){
+                                $page = $_SERVER['QUERY_STRING'];
+                            }
+
+                            $total = sizeof($users);
+                            $perPage = 10;
+                            $totalPage = $total/$perPage;
+                        ?>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pull-right">
+                                <?php if ($page != 1) { ?>
+                                <li>
+                                    <a href="lists?page=<?php ($page-1) ;?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <?php } ?>
+
+                                <?php if ($page < ($total)/$perPage) { ?>
+                                <li>
+                                    <a href="lists?page=<?php ($page+1) ;?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <?php } ?>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

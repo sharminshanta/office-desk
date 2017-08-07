@@ -132,11 +132,11 @@ class Users extends CI_Controller
      */
     public function lists()
     {
-        $data['header'] = $this->load->view('common/header', '', true);
-        $data['navbar'] = $this->load->view('common/navbar', '', true);
-        $data['placeholder'] = $this->load->view('users/list', '', true);
-        $data['footer'] = $this->load->view('common/footer', '', true);
-        $this->load->view('dashboard/dashboard', $data);
+        $users['users'] = UsersModel::getUsers();
+        $content['header'] = $this->load->view('common/header', '', true);
+        $content['navbar'] = $this->load->view('common/navbar', '', true);
+        $content['placeholder'] = $this->load->view('users/list', $users, true);
+        $content['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $content);
     }
-
 }

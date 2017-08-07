@@ -200,6 +200,7 @@ class UsersModel extends CI_Model {
         $users = self::$db
             ->get('users')
             ->result();
+
         if($users) {
             return $users;
         }else {

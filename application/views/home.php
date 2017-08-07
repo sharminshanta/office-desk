@@ -19,7 +19,7 @@ if ($userRole->slug == 'super-administrator') { ?>
                         <i class="fa fa-info"></i>
                         Add User
                     </a>
-                    <a class="btn btn-warning" href="/profile/security"
+                    <a class="btn btn-warning" href="/users/lists"
                        title="Users List">
                         <i class="fa fa-user-secret"></i>
                         Users List
