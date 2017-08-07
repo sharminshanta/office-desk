@@ -85,7 +85,7 @@ if (isset($message)) { ?>
         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
            class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
         <span class="pull-right">
-            <a href="edit.html" title="Edit this user" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+            <a href="<?php echo base_url()?>users/update" title="Edit this user" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
             <a title="Remove this user" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
         </span>
     </div>
