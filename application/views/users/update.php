@@ -21,13 +21,15 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input name="profile[general][first_name]" type="text" value="" class="form-control" placeholder="First name">
+                        <input name="profile[first_name]" type="text"
+                               value="<?php echo (isset($details['user']->first_name) ? $details['user']->first_name : ''); ?>" class="form-control" placeholder="First name">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input name="profile[general][last_name]" type="text" value="" class="form-control" placeholder="Last name">
+                        <input name="profile[last_name]" type="text"
+                               value="<?php echo (isset($details['user']->last_name) ? $details['user']->last_name : ''); ?>" class="form-control" placeholder="Last name">
                     </div>
                 </div>
             </div>
@@ -35,14 +37,15 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="firstName">Family Name</label>
-                        <input name="profile[general][family_name]" type="text" value=""
-                               class="form-control" placeholder="Family name">
+                        <input name="profile[family_name]" type="text"
+                               value="<?php echo (isset($details['user']->family_name) ? $details['user']->family_name : ''); ?>" class="form-control" placeholder="Family name">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="lastName">Nick Name</label>
-                        <input name="profile[general][nick_name]" type="text" value="" class="form-control" placeholder="Nick name">
+                        <input name="profile[nick_name]" type="text"
+                               value="<?php echo (isset($details['user']->nick_name) ? $details['user']->nick_name : ''); ?>" class="form-control" placeholder="Nick name">
                     </div>
                 </div>
             </div>
@@ -50,21 +53,27 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <select name="profile[general][title]" class="form-control">
+                        <select name="profile[title]" class="form-control">
                             <option value="" hidden>Choose one</option>
-                            <option value="Mr">Mr</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Miss">Miss</option>
-                            <option value="Ms">Ms"</option>
-                            <option value="Dr">Dr</option>
+                            <option value="Mr" <?php echo $details['user']->title == 'Mr' ? 'selected' : ''; ?>>Mr</option>
+                            <option value="Mrs" <?php echo $details['user']->title == 'Mrs' ? 'selected' : ''; ?>>Mrs</option>
+                            <option value="Miss" <?php echo $details['user']->title == 'Miss' ? 'selected' : ''; ?>>Miss</option>
+                            <option value="Ms" <?php echo $details['user']->title == 'Ms' ? 'selected' : ''; ?>>Ms</option>
+                            <option value="Dr" <?php echo $details['user']->title == 'Dr' ? 'selected' : ''; ?>>Dr</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="timezone">Timezone</label>
-                        <select name="profile[general][timezone]" id="time" class="form-control">
+                        <select name="profile[timezone]" id="time" class="form-control">
                             <option value="" hidden>Choose one</option>
+                            <?php
+                                foreach ($timezones as $timezone) { ?>
+                                    <option value="<?php echo $timezone; ?>" <?php echo ($timezone == $details['user']->timezone) ? 'selected' : ''?>>
+                                        <?php echo $timezone; ?>
+                                    </option>
+                                <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -73,17 +82,17 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <select name="profile[general][gender]" class="form-control" style="color: grey">
+                        <select name="profile[gender]" class="form-control" style="color: grey">
                             <option value="" hidden>Choose one</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="male" <?php echo ($details['user']->gender == 'male' ? 'selected' : '')?>>Male</option>
+                            <option value="female" <?php echo ($details['user']->gender == 'female' ? 'selected' : '')?>>Female</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="birthdate">Date of birth</label>
-                        <input name="profile[general][date_of_birth]" type="date" value="" class="form-control">
+                        <input name="profile[date_of_birth]" type="date" value="<?php echo isset($details['user']->date_of_birth) ?: ''?>" class="form-control">
                     </div>
                 </div>
             </div>
@@ -91,10 +100,10 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="language">Language</label>
-                        <select name="profile[general][language]" class="form-control" style="color: grey">
+                        <select name="profile[language]" class="form-control" style="color: grey">
                             <option value="" hidden>Choose one</option>
-                            <option value="bn_BD">Bangla</option>
-                            <option value="en_US">English</option>
+                            <option value="bn_BD" <?php echo ($details['user']->language == 'bn_BD' ? 'selected' : "");?>>Bangla</option>
+                            <option value="en_US" <?php echo ($details['user']->language == 'en_US' ? 'selected' : "");?>>English</option>
                         </select>
                     </div>
                 </div>
