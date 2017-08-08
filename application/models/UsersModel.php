@@ -237,7 +237,35 @@ class UsersModel extends CI_Model {
         return false;
     }
 
-    public static function updateProfile() {
+    public static function updateProfile($userID)
+    {
+        $user = self::$db->where('user_id', $userID)
+            ->select('user_id')
+            ->get('users_profile')
+            ->row();
 
+        if(!$user) {
+            return "This is not a valid user";
+        }
+
+        $userData = [
+            'first_name' => $_POST['profile']['first_name'],
+            'last_name' => $_POST['profile']['last_name'],
+            'family_name' => $_POST['profile']['family_name'],
+            'nick_name' => $_POST['profile']['family_name'],
+            'title' => $_POST['profile']['title'],
+            'gender' => $_POST['profile']['gender'],
+            'date_of_birth' => $_POST['profile']['date_of_birth'],
+            'timezone' => $_POST['profile']['timezone'],
+            'language' => $_POST['profile']['language'],
+            'modified' => date('Y-m-d h:i:s'),
+        ];
+
+        if ($userData) {
+            self::$db->where('user_id', $userID);
+            self::$db->update('users_profile', $userData);
+        } else {
+            return false;
+        }
     }
 }

@@ -47,6 +47,10 @@ if (isset($message)) { ?>
                         <td>Gender</td>
                         <td><?php echo($details['user']->gender ?: "N/A") ?></td>
                     </tr>
+                    <tr>
+                        <td>Title</td>
+                        <td><?php echo($details['user']->title ?: "N/A") ?></td>
+                    </tr>
                     <?php
                         if($details['address'] != null) { ?>
                             <tr>
@@ -67,10 +71,13 @@ if (isset($message)) { ?>
                         <td>Status</td>
                         <td><?php echo($details['user']->status == 1 ? "<span class='label label-info'>Active</span>" : "<span class='label label-danger'>Not Active</span>"); ?></td>
                     </tr>
-                    <td>Phone Number</td>
-                    <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                    </td>
-
+                    <tr>
+                        <td>Visibility</td>
+                        <td><?php echo($details['user']->is_visible == 1 ? "<span class='label label-success'>Visible</span>" : "<span class='label label-danger'>Disable</span>"); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td><?php if(isset($details['address']) && $details['address']->phone) { echo $details['address']->phone; } else {echo 'N/A' ;} ?></td>
                     </tr>
 
                     </tbody>

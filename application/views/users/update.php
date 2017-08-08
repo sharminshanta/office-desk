@@ -20,6 +20,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <input type="hidden" name="profile[user_id]" value="<?php echo (isset($details['user']->user_id) ? $details['user']->user_id : ''); ?>">
+                    <input type="hidden" name="profile[user_uuid]" value="<?php echo (isset($details['user']->uuid) ? $details['user']->uuid : ''); ?>">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input name="profile[first_name]" type="text"

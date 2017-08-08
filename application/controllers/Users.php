@@ -217,11 +217,11 @@ class Users extends CI_Controller
             $oldValue['oldValue'] = $validation->data();
             $this->session->set_userdata($error);
             $this->session->set_userdata($oldValue);
-            redirect('users/update' );
+            redirect('users/update/' . $formData['user_uuid']);
         }
 
         try{
-            $userID = UsersModel::addUser();
+            UsersModel::updateProfile($formData['user_id']);
             $success = true;
         }catch (Exception $exception) {
             $exception->getMessage('This is an error');
@@ -229,9 +229,9 @@ class Users extends CI_Controller
         }
 
         if($success == true) {
-            $message['success'] = 'New user has been created successfully';
+            $message['success'] = 'User has been updated successfully';
             $this->session->set_userdata($message);
-            $user = UsersModel::userInfo($userID);
+            $user = UsersModel::userInfo($formData['user_id']);
             redirect('users/details/' . $user->uuid);
         }
     }
