@@ -12,8 +12,8 @@
                 <li id="nav_generalInformation2" class="<?php echo (($this->uri->segment(3)) == 'profile' ? 'active' : '')?>"><a
                         href="<?php echo base_url()?>users/profile/<?php echo $details['user']->uuid; ?>">Profile</a>
                 </li>
-                <li id="nav_generalInformation3" class="<?php echo (($this->uri->segment(4)) == 'notes' ? 'active' : '')?>"><a
-                        href="<?php echo base_url()?>users/details/<?php echo $details['user']->uuid; ?>/notes">Notes</a>
+                <li id="nav_generalInformation3" class="<?php echo (($this->uri->segment(2)) == 'notes' ? 'active' : '')?>"><a
+                        href="<?php echo base_url()?>users/notes/<?php echo $details['user']->uuid; ?>">Notes</a>
                 </li>
             </ul>
         </div>

@@ -13,7 +13,7 @@
                         href="<?php echo base_url()?>users/profile/<?php echo $details['user']->uuid; ?>">Profile</a>
                 </li>
                 <li id="nav_generalInformation3" class="<?php echo (($this->uri->segment(4)) == 'notes' ? 'active' : '')?>"><a
-                        href="<?php echo base_url()?>users/details/<?php echo $details['user']->uuid; ?>/notes">Notes</a>
+                        href="<?php echo base_url()?>users/notes/<?php echo $details['user']->uuid; ?>">Notes</a>
                 </li>
             </ul>
         </div>
@@ -136,7 +136,7 @@
         </form>
     </div>
 </div>
-
+<!-- Role and Accsess Settings -->
 <div class="widget">
     <div class="widget-header">
         <div class="pull-left">
@@ -154,22 +154,20 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="isVisible">Is Visible</label>
-                                <select name="role_access_control[is_visible]" class="form-control"
-                                        style="color: grey">
+                                <select name="users[is_visible]" class="form-control" style="color: grey">
                                 <option value="" hidden>Choose one</option>
-                                <option value="0" >No</option>
-                                <option value="1" >Yes</option>
+                                <option value="0" <?php echo ($details['user']->is_visible == 0 ? 'selected' : "");?>>No</option>
+                                <option value="1" <?php echo ($details['user']->is_visible == 1 ? 'selected' : "");?>>Yes</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="status">Status</label>
-                                <select name="role_access_control[status]" class="form-control"
-                                        style="color: grey">
+                                <select name="users[status]" class="form-control" style="color: grey">
                                 <option value="" hidden="hidden">Choose one</option>
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                    <option value="0" <?php echo ($details['user']->status == 0 ? 'selected' : "");?>>No</option>
+                                    <option value="1" <?php echo ($details['user']->status == 1 ? 'selected' : "");?>>Yes</option>
                                 </select>
                             </div>
                         </div>
@@ -178,7 +176,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="status">Roles</label>
-                                <select multiple="multiple" name="role_access_control[roles][]" class="form-control"
+                                <select multiple="multiple" name="roles[role_id][]" class="form-control"
                                         style="color: grey">
                                     <option value="" hidden="hidden">Choose one</option>
                                     <option>General User</option>
@@ -191,6 +189,118 @@
                     </div>
                     <button type="submit" class="btn btn-success" id="pu_btnUpdate">Update</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Security Settings -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-header">
+                <div class="pull-left">
+                    <h2>Security Settings</h2>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form" method="post" action="" id="pupdate_puForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">First Question</label>
+                                        <select class="form-control"
+                                                name="user[security_questions_one]">
+                                        <option value="" hidden="hidden">Please select one</option>
+                                        <option value="What is your pet’s name?" <?php echo ($details['user']->security_questions_one == "What is your pet’s name?" ? 'selected' : "");?>>What is your pet’s name?</option>
+                                        <option value="In what year was your father born?" <?php echo ($details['user']->security_questions_one == "In what year was your father born?" ? 'selected' : "");?>>In what year was your father born?</option>
+                                        <option value="What is your favorite color?" <?php echo ($details['user']->security_questions_one == "What is your favorite color?" ? 'selected' : "");?>>What is your favorite color?</option>
+                                        <option value="What is your favorite game?" <?php echo ($details['user']->security_questions_one == "What is your favorite game?" ? 'selected' : "");?>>What is your favorite game?</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group form-group">
+                                        <label class="control-label">Answer</label>
+                                        <input type="text" class="form-control" value=""
+                                               name="user[security_questions_one_answer]" placeholder="Answer One">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Second Question</label>
+                                        <select class="form-control"
+                                                name="user[security_questions_two]">
+                                        <option value="" hidden="hidden">Please select one</option>
+                                            <option value="What is your pet’s name?" <?php echo ($details['user']->security_questions_two == "What is your pet’s name?" ? 'selected' : "");?>>What is your pet’s name?</option>
+                                            <option value="In what year was your father born?" <?php echo ($details['user']->security_questions_two == "In what year was your father born?" ? 'selected' : "");?>>In what year was your father born?</option>
+                                            <option value="What is your favorite color?" <?php echo ($details['user']->security_questions_two == "What is your favorite color?" ? 'selected' : "");?>>What is your favorite color?</option>
+                                            <option value="What is your favorite game?" <?php echo ($details['user']->security_questions_two == "What is your favorite game?" ? 'selected' : "");?>>What is your favorite game?</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Answer</label>
+                                        <input type="text" class="form-control"
+                                               value=""
+                                               name="user[security_questions_two_answer]" placeholder="Answer Two">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="text" value="********"
+                                               class="form-control" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="passwordHash">Password Hash</label>
+                                        <input type="text" value="********"
+                                               class="form-control" placeholder="Password Hash"
+                                        disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="passwordToken">Password Token</label>
+                                        <input type="text"
+                                               value="********"
+                                               class="form-control" placeholder="Password Token"
+                                        disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="passwordLastModified">Password Last Modified</label>
+                                        <input name="profile[general][password_last_modified]" type="date"
+                                               value=""
+                                        class="form-control" placeholder="Password Token"
+                                        disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="PasswordLastModifiedIP">Password Last Modified IP</label>
+                                        <input name="profile[general][password_last_modified_ip]" type="text"
+                                               value=""
+                                               class="form-control"
+                                               placeholder="Password Last ModifiedIP"
+                                        disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <input name="csrf_token" type="hidden" value="{{ csrf_token }}">
+                            <button type="submit" class="btn btn-success"
+                                    id="pu_btnUpdate">Update</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

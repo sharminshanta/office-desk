@@ -254,5 +254,19 @@ class Users extends CI_Controller
         var_dump($_POST); die();
     }
 
-
+    /**
+     * User's notes
+     */
+    public function notes()
+    {
+        $uuid = $this->uri->segment(3);
+        $userDetails['details'] = UsersModel::userDetails($uuid);
+        $userDetails['timezones'] = Utilities::getTimezones();
+        $userDetails['countries'] = Utilities::getCountries();
+        $content['header'] = $this->load->view('common/header', '', true);
+        $content['navbar'] = $this->load->view('common/navbar', '', true);
+        $content['placeholder'] = $this->load->view('users/notes', $userDetails, true);
+        $content['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $content);
+    }
 }
