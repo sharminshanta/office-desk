@@ -4,19 +4,19 @@
             <h3>USER DETAILS &raquo; <?php echo $details['user']->first_name . " " . $details['user']->last_name; ?></h3>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="<?php echo (($this->uri->segment(4)) == 'overview' ? 'active' : '')?>"><a
-                href="<?php echo base_url()?>users/details/<?php echo $details['user']->uuid; ?>/overview">Overview</a></li>
-            <li id="nav_generalInformation2" class="<?php echo (($this->uri->segment(3)) == 'profile' ? 'active' : '')?>"><a
-                href="<?php echo base_url()?>users/profile/<?php echo $details['user']->uuid; ?>">Profile</a>
-            </li>
-            <li id="nav_generalInformation3" class="<?php echo (($this->uri->segment(4)) == 'notes' ? 'active' : '')?>"><a
-                href="<?php echo base_url()?>users/details/<?php echo $details['user']->uuid; ?>/notes">Notes</a>
-            </li>
-        </ul>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="<?php echo (($this->uri->segment(4)) == 'overview' ? 'active' : '')?>"><a
+                        href="<?php echo base_url()?>users/details/<?php echo $details['user']->uuid; ?>/overview">Overview</a></li>
+                <li id="nav_generalInformation2" class="<?php echo (($this->uri->segment(3)) == 'profile' ? 'active' : '')?>"><a
+                        href="<?php echo base_url()?>users/profile/<?php echo $details['user']->uuid; ?>">Profile</a>
+                </li>
+                <li id="nav_generalInformation3" class="<?php echo (($this->uri->segment(4)) == 'notes' ? 'active' : '')?>"><a
+                        href="<?php echo base_url()?>users/details/<?php echo $details['user']->uuid; ?>/notes">Notes</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <?php
