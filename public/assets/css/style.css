@@ -103,6 +103,10 @@ body {
     border-left: 1px solid #d8d4d4;
 }
 
+.table-borderless>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    border-top: none !important;
+}
+
 .btn > a.anchor {
     color: white;
     text-decoration: none;
@@ -692,6 +696,15 @@ Developer Portal
     background: none !important;
     color: #333333;
 }
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: none;
+    border-bottom: 2px solid #114c69;
+}
+
 .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
     color: #a6a6a6;
 }

@@ -107,7 +107,7 @@ class Users extends CI_Controller
             $message['success'] = 'New user has been created successfully';
             $this->session->set_userdata($message);
             $user = UsersModel::userInfo($userID);
-            redirect('users/details/' . $user->uuid);
+            redirect('users/details/' . $user->uuid . '/overview');
         }
     }
 
@@ -189,7 +189,17 @@ class Users extends CI_Controller
         /**
          * Form validation with valitron that is so easy
          */
-        $formData = $_POST['profile'];
+
+        $uuid = $this->uri->segment(3);
+        $userDetails['details'] = UsersModel::userDetails($uuid);
+        $userDetails['timezones'] = Utilities::getTimezones();
+        $userDetails['countries'] = Utilities::getCountries();
+        $content['header'] = $this->load->view('common/header', '', true);
+        $content['navbar'] = $this->load->view('common/navbar', '', true);
+        $content['placeholder'] = $this->load->view('users/update', $userDetails, true);
+        $content['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $content);
+        /*$formData = $_POST['profile'];
         $validation = new Valitron\Validator($formData);
         $validation->rule('required', 'first_name')->message('First name is required');
         $validation->rule('required', 'last_name')->message('Last name is required');
@@ -233,7 +243,7 @@ class Users extends CI_Controller
             $this->session->set_userdata($message);
             $user = UsersModel::userInfo($formData['user_id']);
             redirect('users/details/' . $user->uuid);
-        }
+        }*/
     }
 
     /**
