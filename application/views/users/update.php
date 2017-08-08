@@ -136,6 +136,65 @@
         </form>
     </div>
 </div>
+
+<div class="widget">
+    <div class="widget-header">
+        <div class="pull-left">
+            <h2>Roles and Access Control</h2>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="widget-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form" method="post"
+                      action="/user-manager/user/{{ user.uuid }}/update_roles_access_control"
+                      id="pupdate_puForm">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="isVisible">Is Visible</label>
+                                <select name="role_access_control[is_visible]" class="form-control"
+                                        style="color: grey">
+                                <option value="" hidden>Choose one</option>
+                                <option value="0" >No</option>
+                                <option value="1" >Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select name="role_access_control[status]" class="form-control"
+                                        style="color: grey">
+                                <option value="" hidden="hidden">Choose one</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="status">Roles</label>
+                                <select multiple="multiple" name="role_access_control[roles][]" class="form-control"
+                                        style="color: grey">
+                                    <option value="" hidden="hidden">Choose one</option>
+                                    <option>General User</option>
+                                    <option>Super Administrator</option>
+                                    <option>Accountant</option>
+                                    <option>Manager</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success" id="pu_btnUpdate">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Address Area -->
 <div class="widget">
     <div class="widget-header">
