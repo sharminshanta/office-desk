@@ -10,7 +10,7 @@ class Users extends CI_Controller
     {
         parent::__construct();
 
-        $user = $this->session->userdata('details');
+        /*$user = $this->session->userdata('details');
 
         if($user == null) {
             $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
@@ -24,7 +24,7 @@ class Users extends CI_Controller
             $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
             $this->session->set_userdata($message);
             redirect('login','refresh');
-        }
+        }*/
 
 
     }
@@ -34,6 +34,20 @@ class Users extends CI_Controller
      */
     public function index()
     {
+        $content['header'] = $this->load->view('common/header', '', true);
+        $content['navbar'] = $this->load->view('common/navbar', '', true);
+        $content['placeholder'] = $this->load->view('errors/is_permit', '', true);
+        $content['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $content);
+    }
+
+    /**
+     * This is for user's add(user's add form).Firstly check the permission with each user's role
+     * if that user is permitted to add a user then he/she would add a new user.
+     */
+    public function home()
+    {
+        Utilities::is_permit();
         $roles['roles'] = Roles::getRoles();
         $data['header'] = $this->load->view('common/header', '', true);
         $data['navbar'] = $this->load->view('common/navbar', '', true);
@@ -43,12 +57,12 @@ class Users extends CI_Controller
     }
 
     /**
-     * This is user's add method
-     * Firstly check user's information with form input data
+     * This is for user's add.Firstly check user's information with form input data
      * If form validation occurs error then data is not permitted to database insert
      */
     public function create()
     {
+        Utilities::is_permit();
         //@TODO try to manage it with the best way
         /**
          * Form validation with valitron that is so easy
@@ -128,10 +142,13 @@ class Users extends CI_Controller
     }
 
     /**
+     * This is for fetching all users.Firstly check user's role
+     * if that user is permitted to see a user then he/she would add a new user.
      * Get all users
      */
     public function lists()
     {
+        Utilities::is_permit();
         $users['users'] = UsersModel::getUsers();
         $content['header'] = $this->load->view('common/header', '', true);
         $content['navbar'] = $this->load->view('common/navbar', '', true);
