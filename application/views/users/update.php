@@ -184,10 +184,10 @@ if($userRole->slug == 'super-administrator') { ?>
                                 <select multiple="multiple" name="roles[role_id][]" class="form-control"
                                         style="color: grey">
                                     <option value="" hidden="hidden">Choose one</option>
-                                    <option>General User</option>
-                                    <option>Super Administrator</option>
-                                    <option>Accountant</option>
-                                    <option>Manager</option>
+                                    <?php
+                                      foreach ($roles as $role) { ?>
+                                          <option value="<?php echo $role->id; ?>"><?php echo $role->name; ?></option>
+                                     <?php } ?>
                                 </select>
                             </div>
                         </div>

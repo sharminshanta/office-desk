@@ -211,6 +211,7 @@ class Users extends CI_Controller
         $userDetails['details'] = UsersModel::userDetails($uuid);
         $userDetails['timezones'] = Utilities::getTimezones();
         $userDetails['countries'] = Utilities::getCountries();
+        $userDetails['roles'] = Roles::getRoles();
         $content['header'] = $this->load->view('common/header', '', true);
         $content['navbar'] = $this->load->view('common/navbar', '', true);
         $content['placeholder'] = $this->load->view('users/update', $userDetails, true);
