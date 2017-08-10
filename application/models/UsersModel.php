@@ -248,23 +248,34 @@ class UsersModel extends CI_Model {
             return "This is not a valid user";
         }
 
-        $userData = [
+        $profileData = [
             'first_name' => $_POST['profile']['first_name'],
             'last_name' => $_POST['profile']['last_name'],
             'family_name' => $_POST['profile']['family_name'],
             'nick_name' => $_POST['profile']['family_name'],
             'title' => $_POST['profile']['title'],
             'gender' => $_POST['profile']['gender'],
-            'date_of_birth' => $_POST['profile']['date_of_birth'],
+            'date_of_birth' => date($_POST['profile']['date_of_birth']),
             'timezone' => $_POST['profile']['timezone'],
             'language' => $_POST['profile']['language'],
             'modified' => date('Y-m-d h:i:s'),
         ];
 
-        if ($userData) {
+        if ($profileData) {
             self::$db->where('user_id', $userID);
-            self::$db->update('users_profile', $userData);
+            self::$db->update('users_profile', $profileData);
         } else {
+            return false;
+        }
+
+        $userData = [
+            'modified' => date('Y-m-d h:i:s'),
+        ];
+
+        if ($userData) {
+            self::$db->where('id', $userID);
+            self::$db->update('users', $userData);
+        }else{
             return false;
         }
     }

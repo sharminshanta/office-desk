@@ -273,6 +273,71 @@ class Users extends CI_Controller
     }
 
     /**
+     * User's profile update post
+     */
+    public function profileInfo()
+    {
+        $formData = $_POST['profile'];
+        $validation = new Valitron\Validator($formData);
+        $validation->rule('required', 'first_name')->message('First name is required');
+        $validation->rule('required', 'last_name')->message('Last name is required');
+        $validation->rule('required', 'title')->message('Title is required');
+        $validation->rule('required', 'gender')->message('Gender is required');
+
+
+        if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
+            $validation->addInstanceRule('firstName', function () {
+                return false;
+            });
+            $validation->rule('firstName', 'first_name')->message('Alphabetic characters only');
+        }
+
+        if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['last_name'])) {
+            $validation->addInstanceRule('lastName', function () {
+                return false;
+            });
+            $validation->rule('lastName', 'last_name')->message('Alphabetic characters only');
+        }
+
+        if ($formData['date_of_birth'] == date("Y-m-d") or $formData['date_of_birth'] > date('Y-m-d')) {
+            $validation->addInstanceRule('dateOfBirth', function () {
+               return false;
+            });
+            $validation->rule('dateOfBirth', 'date_of_birth')->message('Invalid birth date');
+        }
+
+        //var_dump($_SERVER['HTTP_REFERER']); die();
+
+
+        if (!$validation->validate()) {
+            $errors['errors'] = $validation->errors();
+            $oldValue['oldValue'] = $validation->data();
+            $this->session->set_userdata($errors);
+            $this->session->set_userdata($oldValue);
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            redirect('users/profile/' . $formData['user_uuid']);
+        }
+
+        /*try{
+            UsersModel::updateProfile($formData['user_id']);
+            $success = true;
+        }catch (Exception $exception) {
+            $exception->getMessage('This is an error');
+            $success = false;
+        }
+
+        if($success == true) {
+            $message['success'] = 'User has been updated successfully';
+            $this->session->set_userdata($message);
+            $user = UsersModel::userInfo($formData['user_id']);
+            redirect('users/profile/' . $user->uuid);
+        }
+        $updateProfile = UsersModel::updateProfile($_POST['profile']['user_id']);
+        redirect('users/profile/' . $_POST['profile']['user_uuid']);*/
+    }
+
+    /**
      * User's notes
      */
     public function notes()
