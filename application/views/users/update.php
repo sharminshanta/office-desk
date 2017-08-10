@@ -1,3 +1,6 @@
+<?php
+$userRole = $this->session->userdata('role');
+?>
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
@@ -137,6 +140,8 @@
     </div>
 </div>
 <!-- Role and Accsess Settings -->
+<?php
+if($userRole->slug == 'super-administrator') { ?>
 <div class="widget">
     <div class="widget-header">
         <div class="pull-left">
@@ -193,6 +198,7 @@
         </div>
     </div>
 </div>
+
 <!-- Security Settings -->
 <div class="row">
     <div class="col-md-12">
@@ -305,6 +311,7 @@
         </div>
     </div>
 </div>
+<?php } ?>
 <!-- Address Area -->
 <div class="widget">
     <div class="widget-header">
