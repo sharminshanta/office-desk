@@ -14,7 +14,7 @@ if ($userRole->slug == 'super-administrator') { ?>
                        title="Add user"><i class="fa fa-info"></i>
                         Add User
                     </a>-->
-                    <a class="btn btn-primary" href="<?php echo base_url()?>users"
+                    <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
                        title="Add a new user">
                         <i class="fa fa-info"></i>
                         Add User
@@ -138,7 +138,7 @@ if ($userRole->slug == 'super-administrator') { ?>
                     </h3>
                 </div>
                 <div class="panel-body text-center" id="leftPanel">
-                    <a class="btn btn-primary" href="/profile/general/update"
+                    <a class="btn btn-primary" href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"
                        title="Update your profile"><i class="fa fa-info"></i>
                         Update Profile
                     </a>
