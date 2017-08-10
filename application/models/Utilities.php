@@ -3,11 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Utilities extends CI_Model
 {
     private static $db;
+    private static $session;
 
     function __construct()
     {
         parent::__construct();
         self::$db = &get_instance()->db;
+        self::$session = &get_instance()->session;
     }
 
     /**
@@ -726,6 +728,18 @@ class Utilities extends CI_Model
     public static function getCountries()
     {
         return self::$countries;
+    }
+
+    public static function is_permit()
+    {
+        $user = self::$session->userdata('details');
+        $role = Roles::getName($user['user']->role_id);
+
+        if($role->slug == 'general-user' or $role->slug == 'account-manager') {
+            $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
+            self::$session->set_userdata($message);
+            redirect('users','refresh');
+        }
     }
 
 }
