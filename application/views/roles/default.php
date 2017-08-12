@@ -32,8 +32,8 @@
                              */
                             foreach ($roles as $role) { ?>
                                 <tr>
-                                    <td><a href="<?php echo base_url()?>permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->id ?: '-'); ?></a></td>
-                                    <td><a href="<?php echo base_url()?>permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->name ?: '-') ?></a></td>
+                                    <td><a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->id ?: '-'); ?></a></td>
+                                    <td><a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->name ?: '-') ?></a></td>
                                     <td><?php echo ($role->created ?: '-'); ?></td>
                                     <td><?php echo ($role->modified ?: '-')?></td>
                                     <td><a class="btn btn-sm btn-success">Assign Permissions</a></td>
