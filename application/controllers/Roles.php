@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Permissions extends CI_Controller
+class Roles extends CI_Controller
 {
     /**
      * Permissions constructor.
@@ -12,15 +12,14 @@ class Permissions extends CI_Controller
     }
 
     /**
-     * Fetch all permissions
+     * Fetch all roles
      */
-    public function assign()
+    public function lists()
     {
-        $permissions['role'] = Roles_model::details($this->uri->segment(3));
-        $permissions['permissions'] = Permissions_model::getPermissions();
+        $roles['roles'] = Roles_model::getRoles();
         $content['header'] = $this->load->view('common/header', '', true);
         $content['navbar'] = $this->load->view('common/navbar', '', true);
-        $content['placeholder'] = $this->load->view('users/roles_permissions', $permissions, true);
+        $content['placeholder'] = $this->load->view('roles/default', $roles, true);
         $content['footer'] = $this->load->view('common/footer', '', true);
         $this->load->view('dashboard/dashboard', $content);
     }

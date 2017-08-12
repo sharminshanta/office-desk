@@ -27,7 +27,7 @@
             </a>
             <ul id="settings" class="submenu collapse" aria-expanded="false" style="height: 0px;">
                 <li>
-                    <a href="<?php echo base_url(); ?>roles">Roles</a>
+                    <a href="<?php echo base_url(); ?>roles/lists">Roles</a>
                 </li>
                 <li>
                     <a href="/profile/profile_picture">Departments</a>

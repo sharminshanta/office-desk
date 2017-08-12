@@ -48,6 +48,22 @@ class Roles_model extends CI_Model
         }else{
             return false;
         }
+    }
 
+    /**
+     * @param $roleUUID
+     * @return bool
+     */
+    public static function details($roleUUID)
+    {
+        $role = self::$db->where('uuid', $roleUUID)
+            ->get('roles')
+            ->row();
+
+        if($role) {
+            return $role;
+        }else{
+            return false;
+        }
     }
 }
