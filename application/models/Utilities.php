@@ -733,7 +733,7 @@ class Utilities extends CI_Model
     public static function is_permit()
     {
         $user = self::$session->userdata('details');
-        $role = Roles::getName($user['user']->role_id);
+        $role = Roles_model::getName($user['user']->role_id);
 
         if($role->slug == 'general-user' or $role->slug == 'account-manager') {
             $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';

@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 
         if ($user) {
             $userDetails['details'] = UsersModel::userDetails($user->uuid);
-            $userDetails['role'] = Roles::getName($userDetails['details']['user']->role_id);
+            $userDetails['role'] = Roles_model::getName($userDetails['details']['user']->role_id);
             $this->session->set_userdata($userDetails);
             $userDetails['user_id'] = $this->session->set_userdata($user->id);
             redirect('dashboard');

@@ -48,7 +48,7 @@ class Users extends CI_Controller
     public function home()
     {
         Utilities::is_permit();
-        $roles['roles'] = Roles::getRoles();
+        $roles['roles'] = Roles_model::getRoles();
         $data['header'] = $this->load->view('common/header', '', true);
         $data['navbar'] = $this->load->view('common/navbar', '', true);
         $data['placeholder'] = $this->load->view('users/add', $roles, true);
@@ -133,7 +133,7 @@ class Users extends CI_Controller
     {
         $uuid = $this->uri->segment(3);
         $userDetails['details'] = UsersModel::userDetails($uuid);
-        $userDetails['role'] = Roles::getName($userDetails['details']['user']->role_id);
+        $userDetails['role'] = Roles_model::getName($userDetails['details']['user']->role_id);
         $data['header'] = $this->load->view('common/header', '', true);
         $data['navbar'] = $this->load->view('common/navbar', '', true);
         $data['placeholder'] = $this->load->view('users/details', $userDetails, true);
@@ -211,7 +211,7 @@ class Users extends CI_Controller
         $userDetails['details'] = UsersModel::userDetails($uuid);
         $userDetails['timezones'] = Utilities::getTimezones();
         $userDetails['countries'] = Utilities::getCountries();
-        $userDetails['roles'] = Roles::getRoles();
+        $userDetails['roles'] = Roles_model::getRoles();
         $content['header'] = $this->load->view('common/header', '', true);
         $content['navbar'] = $this->load->view('common/navbar', '', true);
         $content['placeholder'] = $this->load->view('users/update', $userDetails, true);
