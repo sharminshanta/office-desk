@@ -19,9 +19,14 @@ $oldValue = $this->session->userdata('oldValue');
     </div>
     <div class="widget-body">
         <form action="<?php echo base_url()?>users/create" method="post" id="signup_signupForm">
-            <div class="form-group <?php echo(isset($error['last_name']) ? 'has-error' : ''); ?>">
-                <label for="exampleInputLastName" class="control-label">Permissions</label>
-            </div>
+                <?php
+                    foreach ($permissions as $permission) { ?>
+                        <p>
+                            <label for="exampleInputLastName" class="control-label"><?php echo $permission->description; ?></label><br>
+                            <input type="checkbox" id="subscribeNews" name="permission[id]" value="<?php echo $permission->id; ?>">
+                            <?php echo $permission->name; ?>
+                        </p>
+                    <?php } ?>
             <button type="submit" class="btn btn-success" id="signup_btnCreate">Assign Permission</button>
             <br>
         </form>
