@@ -10,7 +10,10 @@ class Permissions extends CI_Controller
 
     public function permissionsTest()
     {
-        var_dump("Permission Test");
+        $content['header'] = $this->load->view('common/header', '', true);
+        $content['navbar'] = $this->load->view('common/navbar', '', true);
+        $content['placeholder'] = $this->load->view('users/roles_permissions', '', true);
+        $content['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $content);
     }
-
 }
