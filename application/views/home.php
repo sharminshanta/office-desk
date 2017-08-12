@@ -29,7 +29,7 @@ if ($userRole->slug == 'super-administrator') { ?>
                         <i class="fa fa-shield"></i>
                         Review Security Settings
                     </a>
-                    <a class="btn btn-info" href="<?php echo base_url()?>permissions/permissionsTest"
+                    <a class="btn btn-info" href="<?php echo base_url()?>permissions/lists"
                        title="Check security settings">
                         <i class="fa fa-shield"></i>
                         Roles & Permissions
