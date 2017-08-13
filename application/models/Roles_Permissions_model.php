@@ -45,4 +45,29 @@ class Roles_Permissions_model extends CI_Model
             return false;
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public static function getAssignPermissions()
+    {
+        $permissions = self::$db->where('role_id', 2)
+            ->get('roles_permissions')
+            ->row();
+
+        return$permissions;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getAssignPermissionsName($id = [])
+    {
+        $permissions = self::$db->where('id', $id)
+            ->select('name')
+            ->get('permissions')
+            ->row();
+
+        return$permissions;
+    }
 }
