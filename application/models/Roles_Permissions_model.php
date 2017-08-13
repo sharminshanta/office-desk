@@ -22,19 +22,25 @@ class Roles_Permissions_model extends CI_Model
      */
     public static function add()
     {
-        //$permissionIDs = implode(',', $_POST['permission']['permission_id']);
-        //$mainIDs = explode(',', $permissionIDs);
+        $role = $_POST['permission']['role_id'];
+        $permissions = $_POST['permission']['permission_id'];
 
+        $permissionID = "";
+        $flag=0;
+        foreach($permissions as $permission){
+            $permissionID .= $permission.",";
+            $flag =1;
+        }
+        if($flag == 1){
+            $permissionID = rtrim($permissionID);
+        }
 
-        $formData = [
-            'role_id' => $_POST['permission']['role_id'],
-            'permission_id' => implode(',', $_POST['permission']['permission_id']),
-        ];
+        $entry = self::$db->set('role_id', $role)
+            ->set('permission_id', $permissionID)
+            ->insert('roles_permissions');
 
-        var_dump($formData); die();
-
-        if ($formData) {
-            self::$db->insert('roles_permissions', $formData);
+        if ($entry) {
+            return true;
         } else {
             return false;
         }

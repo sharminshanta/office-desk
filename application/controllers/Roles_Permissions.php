@@ -28,7 +28,6 @@ class Roles_Permissions extends CI_Controller
     public function assignPermission()
     {
         $rolePermission = Roles_Permissions_model::add();
-
         var_dump($rolePermission); die();
     }
 }
