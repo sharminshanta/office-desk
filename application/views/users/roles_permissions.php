@@ -16,14 +16,6 @@
     <div class="widget-body">
         <form action="<?php echo base_url()?>roles_Permissions/assignPermission" method="post" id="signup_signupForm">
             <input type="hidden" class="form-control" name="permission[role_id]" value="<?php echo $role->id; ?>">
-            <!--<div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="exampleInputLastName" class="control-label">Role Name</label><br>
-                        <input type="text" disabled="disabled" class="form-control" value="<?php /*echo $role->name; */?>">
-                    </div>
-                </div>
-            </div>-->
             <?php
             foreach ($permissions as $permission) { ?>
                 <p>
