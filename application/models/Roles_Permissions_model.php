@@ -52,10 +52,13 @@ class Roles_Permissions_model extends CI_Model
     public static function getAssignPermissions($roleID)
     {
         $permissions = self::$db->where('role_id', $roleID)
+            ->select('permission_id')
             ->get('roles_permissions')
             ->row();
 
-        return$permissions;
+        $permissions = explode(',', $permissions->permission_id);
+
+        return $permissions;
     }
 
     /**
@@ -68,6 +71,6 @@ class Roles_Permissions_model extends CI_Model
             ->get('permissions')
             ->row();
 
-        return$permissions;
+        return $permissions;
     }
 }
