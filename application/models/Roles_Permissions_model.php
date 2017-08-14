@@ -25,19 +25,11 @@ class Roles_Permissions_model extends CI_Model
         $role = $_POST['permission']['role_id'];
         $permissions = $_POST['permission']['permission_id'];
 
-        $permissionID = "";
-        $flag=0;
-        foreach($permissions as $permission){
-            $permissionID .= $permission.",";
-            $flag =1;
+        foreach($permissions as $permissionID){
+            $entry = self::$db->set('role_id', $role)
+                ->set('permission_id', $permissionID)
+                ->insert('roles_permissions');
         }
-        if($flag == 1){
-            $permissionID = rtrim($permissionID);
-        }
-
-        $entry = self::$db->set('role_id', $role)
-            ->set('permission_id', $permissionID)
-            ->insert('roles_permissions');
 
         if ($entry) {
             return true;
@@ -54,9 +46,9 @@ class Roles_Permissions_model extends CI_Model
         $permissions = self::$db->where('role_id', $roleID)
             ->select('permission_id')
             ->get('roles_permissions')
-            ->row();
+            ->result();
 
-        $permissions = explode(',', $permissions->permission_id);
+        //$permissions = explode(',', $permissions->permission_id);
 
         return $permissions;
     }

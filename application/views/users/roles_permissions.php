@@ -6,12 +6,6 @@
         </div>
     </div>
 </div>
-    <?php
-    foreach ($arrays as $names) {
-        //var_dump($names);
-    }
-    //var_dump($arrays);
-    ?>
 <div class="widget">
     <div class="widget-header">
         <div class="pull-left">
@@ -20,6 +14,15 @@
         <div class="clearfix"></div>
     </div>
     <div class="widget-body">
+        <?php
+            if (!isset($roles_permissions) or $roles_permissions != null) { ?>
+                <div class="well">
+                    <?php
+                    foreach ($roles_permissions as $assignPermissions) { ?>
+                        <p><?php echo (Roles_Permissions_model::getAssignPermissionsName($assignPermissions->permission_id)->name); ?></p>
+                    <?php } ?>
+                </div>
+           <?php } ?>
         <form action="<?php echo base_url()?>roles_Permissions/assignPermission" method="post" id="signup_signupForm">
             <input type="hidden" class="form-control" name="permission[role_id]" value="<?php echo $role->id; ?>">
             <?php
