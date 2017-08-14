@@ -6,6 +6,12 @@
         </div>
     </div>
 </div>
+    <?php
+    foreach ($arrays as $names) {
+        //var_dump($names);
+    }
+    //var_dump($arrays);
+    ?>
 <div class="widget">
     <div class="widget-header">
         <div class="pull-left">
