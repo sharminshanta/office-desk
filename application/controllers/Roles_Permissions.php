@@ -36,14 +36,12 @@ class Roles_Permissions extends CI_Controller
     }
 
     /**
-     * Fetch all assign permissions
+     * User's permission check
      */
-    public function getAssignPermissions()
+    public function testPermission()
     {
-        $permissions = Roles_Permissions_model::getAssignPermissions();
-        //var_dump(explode(',', $permissions->permission_id)); die();
-        //var_dump(Roles_Permissions_model::getAssignPermissionsName(explode(',', $permissions->permission_id)));
+        $permissions = Utilities::is_permitTest('users_add');
+        var_dump($permissions); die();
+
     }
-
-
 }

@@ -57,7 +57,6 @@ class Roles_Permissions_model extends CI_Model
     public static function getAssignPermissionsName($permissionsID = [])
     {
         $permissions = self::$db->where('id', $permissionsID)
-            ->select('name')
             ->get('permissions')
             ->row();
 
