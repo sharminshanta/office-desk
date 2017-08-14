@@ -48,17 +48,15 @@ class Roles_Permissions_model extends CI_Model
             ->get('roles_permissions')
             ->result();
 
-        //$permissions = explode(',', $permissions->permission_id);
-
         return $permissions;
     }
 
     /**
      * @return mixed
      */
-    public static function getAssignPermissionsName($id = [])
+    public static function getAssignPermissionsName($permissionsID = [])
     {
-        $permissions = self::$db->where('id', $id)
+        $permissions = self::$db->where('id', $permissionsID)
             ->select('name')
             ->get('permissions')
             ->row();
