@@ -12,7 +12,8 @@ class Roles_Permissions extends CI_Controller
     }
 
     /**
-     * Fetch all permissions
+     * Firstly fetch all permissions
+     * Fetch all assign permissions of a definite role
      */
     public function assign()
     {
@@ -31,8 +32,19 @@ class Roles_Permissions extends CI_Controller
      */
     public function assignPermission()
     {
-        $rolePermission = Roles_Permissions_model::add();
-        var_dump($rolePermission); die();
+        try {
+            Roles_Permissions_model::add();
+            $success = true;
+        } catch (Exception $exception) {
+            $exception->getMessage('This is an error');
+            $success = false;
+        }
+
+        if ($success == true) {
+            $message['success'] = 'Permission has been created successfully';
+            $this->session->set_userdata($message);
+            redirect('roles_Permissions/assign/' . $this->uri->segment(3));
+        }
     }
 
     /**
