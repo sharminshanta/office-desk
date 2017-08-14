@@ -40,8 +40,7 @@ class Roles_Permissions extends CI_Controller
      */
     public function testPermission()
     {
-        $permissions = Utilities::is_permitTest('users_add');
-        var_dump($permissions); die();
-
+        $data = Utilities::is_permitTest('users_add');
+        var_dump($data); die();
     }
 }

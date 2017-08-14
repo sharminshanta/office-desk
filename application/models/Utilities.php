@@ -748,22 +748,20 @@ class Utilities extends CI_Model
     /**
      * Permissions check for all users
      */
-    public static function is_permitTest($permission)
+    public static function is_permitTest($slug)
     {
         $user = self::$session->userdata('details');
         $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($user['user']->role_id);
 
-        foreach ($permissions['roles_permissions'] as $permissionID) {
-            $rolesPermissions = Roles_Permissions_model::getAssignPermissionsName($permissionID->permission_id);
-            $array =  (array)$rolesPermissions->slug;
-            $data = (array($array[0]));
+        $data = [];
+        $haystack['permissions'] = [];
 
-            if (in_array($permission, $data)) {
+        foreach ($permissions['roles_permissions'] as $assignPermissions) {
+            $data = Roles_Permissions_model::getAssignPermissionsName($assignPermissions->permission_id);
+
+            if (in_array($slug, array($data->slug))) {
                 return true;
-            } else {
-                return false;
             }
         }
     }
-
 }
