@@ -730,6 +730,9 @@ class Utilities extends CI_Model
         return self::$countries;
     }
 
+    /**
+     * Permissions check for all users
+     */
     public static function is_permit()
     {
         $user = self::$session->userdata('details');
@@ -740,6 +743,15 @@ class Utilities extends CI_Model
             self::$session->set_userdata($message);
             redirect('users','refresh');
         }
+    }
+
+    /**
+     * Permissions check for all users
+     */
+    public static function is_permitTest()
+    {
+        $user = self::$session->userdata('details');
+        var_dump($user); die();
     }
 
 }
