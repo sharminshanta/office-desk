@@ -6,6 +6,18 @@
         </div>
     </div>
 </div>
+<?php
+$message = $this->session->userdata('success');
+
+if (isset($message)) { ?>
+    <div class="notice notice-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $message;
+        $this->session->unset_userdata('success')
+        ?>
+    </div>
+<?php } ?>
 <div class="widget">
     <div class="widget-header">
         <div class="pull-left">
@@ -23,7 +35,7 @@
                     <?php } ?>
                 </div>
            <?php } ?>
-        <form action="<?php echo base_url()?>roles_Permissions/assignPermission" method="post" id="signup_signupForm">
+        <form action="<?php echo base_url()?>roles_Permissions/assignPermission/<?php echo $role->uuid; ?>" method="post" id="signup_signupForm">
             <input type="hidden" class="form-control" name="permission[role_id]" value="<?php echo $role->id; ?>">
             <?php
             foreach ($permissions as $permission) { ?>
