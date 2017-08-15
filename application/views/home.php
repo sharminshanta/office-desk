@@ -1,3 +1,4 @@
+
 <?php
 $userRole = $this->session->userdata('role');
 $userDetails = $this->session->userdata('details');
@@ -29,7 +30,7 @@ if ($userRole->slug == 'super-administrator') { ?>
                         <i class="fa fa-shield"></i>
                         Review Security Settings
                     </a>
-                    <a class="btn btn-info" href="<?php echo base_url()?>permissions/lists"
+                    <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
                        title="Check security settings">
                         <i class="fa fa-shield"></i>
                         Roles & Permissions
