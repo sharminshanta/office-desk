@@ -120,6 +120,7 @@ class UsersModel extends CI_Model {
           'created' => date('Y-m-d h:i:s'),
         ];
 
+
         /**
          *check user as if duplicate user is not permitted
          * to database
