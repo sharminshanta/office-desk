@@ -41,7 +41,7 @@ class Roles_Permissions extends CI_Controller
         }
 
         if ($success == true) {
-            $message['success'] = 'Permission has been created successfully';
+            $message['success'] = 'Permission has been assigned successfully';
             $this->session->set_userdata($message);
             redirect('roles_Permissions/assign/' . $this->uri->segment(3));
         }
