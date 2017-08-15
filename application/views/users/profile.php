@@ -22,17 +22,11 @@ $userRole = $this->session->userdata('role');
         </div>
     </div>
 </div>
-
-<!--<div class="row">
-    <div class="col-md-12">
-        <div class="jumbotron">
-            <h2>Update Profile</h2>
-            <p>Update our general information, addresses, timezone, language to personalized your experience with
-                our platform</p>
-        </div>
-    </div>
-</div>-->
 <!-- Profile Area -->
+<?php
+    $errors = $this->session->userdata('errors');
+    $oldValues = $this->session->userdata('oldValues');
+?>
 <div class="widget">
     <div class="widget-header">
         <div class="pull-left">
@@ -41,7 +35,7 @@ $userRole = $this->session->userdata('role');
         <div class="clearfix"></div>
     </div>
     <div class="widget-body">
-        <form class="form" method="post" action="<?php echo base_url()?>users/profileInfo" id="pupdate_puForm">
+        <form class="form" method="post" action="<?php echo base_url()?>users/updateProfile/<?php echo $details['user']->uuid; ?>" id="pupdate_puForm">
             <div class="row">
                 <div class="col-lg-6">
                     <input type="hidden" name="profile[user_id]" value="<?php echo (isset($details['user']->user_id) ? $details['user']->user_id : ''); ?>">
@@ -49,15 +43,17 @@ $userRole = $this->session->userdata('role');
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input name="profile[first_name]" type="text"
-                               value="<?php echo (isset($details['user']->first_name) ? $details['user']->first_name : ''); ?>" class="form-control" placeholder="First name">
+                               value="<?php echo (isset($details['user']->first_name) ? $details['user']->first_name : ''); ?>" class="form-control" placeholder="First name" required="required">
+                        <?php echo(isset($oldValues['first_name']) ? $oldValues['first_name'] : '');
+                        $this->session->unset_userdata('oldValues'); ?>
                         <?php
-                        if (isset($error['first_name'])) { ?>
-                            <span class="error-text">
-                        <?php
-                        echo $error['first_name'][0];
-                        $this->session->unset_userdata('error');
-                        ?>
-                </span>
+                            if (isset($errors['first_name'])) { ?>
+                                <span class="error-text">
+                                    <?php
+                                    echo $errors['first_name'][0];
+                                    $this->session->unset_userdata('errors');
+                                    ?>
+                                </span>
                         <?php } ?>
                     </div>
                 </div>
@@ -65,15 +61,17 @@ $userRole = $this->session->userdata('role');
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
                         <input name="profile[last_name]" type="text"
-                               value="<?php echo (isset($details['user']->last_name) ? $details['user']->last_name : ''); ?>" class="form-control" placeholder="Last name">
+                               value="<?php echo (isset($details['user']->last_name) ? $details['user']->last_name : ''); ?>" class="form-control" placeholder="Last name" required="required">
+                        <?php echo(isset($oldValues['last_name']) ? $oldValues['last_name'] : '');
+                        $this->session->unset_userdata('oldValues'); ?>
                         <?php
-                        if (isset($error['last_name'])) { ?>
+                        if (isset($errors['last_name'])) { ?>
                             <span class="error-text">
-                        <?php
-                        echo $error['last_name'][0];
-                        $this->session->unset_userdata('error');
-                        ?>
-                </span>
+                                    <?php
+                                    echo $errors['last_name'][0];
+                                    $this->session->unset_userdata('errors');
+                                    ?>
+                                </span>
                         <?php } ?>
                     </div>
                 </div>
@@ -106,21 +104,12 @@ $userRole = $this->session->userdata('role');
                             <option value="Ms" <?php echo $details['user']->title == 'Ms' ? 'selected' : ''; ?>>Ms</option>
                             <option value="Dr" <?php echo $details['user']->title == 'Dr' ? 'selected' : ''; ?>>Dr</option>
                         </select>
-                        <?php
-                        if (isset($error['title'])) { ?>
-                            <span class="error-text">
-                        <?php
-                        echo $error['title'][0];
-                        $this->session->unset_userdata('error');
-                        ?>
-                </span>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="timezone">Timezone</label>
-                        <select name="profile[timezone]" id="time" class="form-control">
+                        <select name="profile[timezone]" id="time" class="form-control" required="required">
                             <option value="" hidden>Choose one</option>
                             <?php
                                 foreach ($timezones as $timezone) { ?>
@@ -129,6 +118,15 @@ $userRole = $this->session->userdata('role');
                                     </option>
                                 <?php } ?>
                         </select>
+                        <?php
+                        if (isset($errors['timezone'])) { ?>
+                            <span class="error-text">
+                                <?php
+                                echo $errors['timezone'][0];
+                                $this->session->unset_userdata('errors');
+                                ?>
+                                </span>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -136,19 +134,19 @@ $userRole = $this->session->userdata('role');
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <select name="profile[gender]" class="form-control" style="color: grey">
+                        <select name="profile[gender]" class="form-control" style="color: grey" required="required">
                             <option value="" hidden>Choose one</option>
                             <option value="male" <?php echo ($details['user']->gender == 'male' ? 'selected' : '')?>>Male</option>
                             <option value="female" <?php echo ($details['user']->gender == 'female' ? 'selected' : '')?>>Female</option>
                         </select>
                         <?php
-                        if (isset($error['gender'])) { ?>
+                        if (isset($errors['gender'])) { ?>
                             <span class="error-text">
-                        <?php
-                        echo $error['gender'][0];
-                        $this->session->unset_userdata('error');
-                        ?>
-                </span>
+                                <?php
+                                echo $errors['gender'][0];
+                                $this->session->unset_userdata('errors');
+                                ?>
+                                </span>
                         <?php } ?>
                     </div>
                 </div>
@@ -157,13 +155,13 @@ $userRole = $this->session->userdata('role');
                         <label for="birthdate">Date of birth</label>
                         <input name="profile[date_of_birth]" type="date" value="<?php echo ($details['user']->date_of_birth ?: ''); ?>" class="form-control">
                         <?php
-                        if (isset($error['date_of_birth'])) { ?>
+                        if (isset($errors['date_of_birth'])) { ?>
                             <span class="error-text">
-                        <?php
-                        echo $error['date_of_birth'][0];
-                        $this->session->unset_userdata('error');
-                        ?>
-                </span>
+                                <?php
+                                echo $errors['date_of_birth'][0];
+                                $this->session->unset_userdata('errors');
+                                ?>
+                                </span>
                         <?php } ?>
                     </div>
                 </div>
