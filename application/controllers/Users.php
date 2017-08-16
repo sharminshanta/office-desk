@@ -250,7 +250,33 @@ class Users extends CI_Controller
      */
     public function address()
     {
-        var_dump($_POST); die();
+        $formData = $_POST['profile'];
+        $validation = new Valitron\Validator($formData);
+        $validation->rule('required', 'street')->message('Street is required');
+        $validation->rule('required', 'city')->message('City is required');
+        $validation->rule('required', 'country')->message('Country is required');
+        $validation->rule('required', 'phone')->message('Phone is required');
+
+
+        if (!$validation->validate()) {
+            $errors['errors'] = $validation->errors();
+            $this->session->set_userdata($errors);
+            redirect('users/profile/' . $this->uri->segment(3));
+        } else {
+            try {
+                UsersModel::updateAddress($this->uri->segment(3));
+                $success = true;
+            } catch (Exception $exception) {
+                $exception->getMessage();
+                $success = false;
+            }
+
+            if ($success == true) {
+                $message['success'] = 'Address has been updated successfully';
+                $this->session->set_userdata($message);
+                redirect('users/profile/' . $this->uri->segment(3));
+            }
+        }
     }
 
     /**

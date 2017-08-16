@@ -280,4 +280,68 @@ class UsersModel extends CI_Model {
             return false;
         }
     }
+
+    /**
+     * @param $uuid
+     */
+    public static function updateAddress($uuid)
+    {
+        $user = self::$db->where('uuid', $uuid)
+            ->get('users')
+            ->row();
+
+        if ($user) {
+            $isAddress = self::$db->where('user_id', $user->id)
+                ->get('users_addresses')
+                ->row();
+
+            if ($isAddress == null) {
+                $formData = $_POST['address'];
+
+                $addressData = [
+                    'user_id' => $user->id,
+                    'street' => $formData['street'],
+                    'street_secondary' => $formData['street_secondary'],
+                    'city' => $formData['city'],
+                    'state' => $formData['state'],
+                    'postal_code' => $formData['postal_code'],
+                    'country' => $formData['country'],
+                    'phone' => $formData['phone'],
+                    'fax' => $formData['fax'],
+                    'created' => date("Y-m-d h:i:s"),
+                ];
+
+                if ($addressData) {
+                    self::$db->insert('users_addresses', $addressData);
+                }
+            } else {
+                $formData = $_POST['address'];
+
+                $addressData = [
+                    'user_id' => $user->id,
+                    'street' => $formData['street'],
+                    'street_secondary' => $formData['street_secondary'],
+                    'city' => $formData['city'],
+                    'state' => $formData['state'],
+                    'postal_code' => $formData['postal_code'],
+                    'country' => $formData['country'],
+                    'phone' => $formData['phone'],
+                    'fax' => $formData['fax'],
+                    'modified' => date("Y-m-d h:i:s"),
+                ];
+
+                if ($addressData) {
+                    self::$db->where('user_id', $user->id)->update('users_addresses', $addressData);
+                    $userData = [
+                        'created' => date("Y-m-d h:i:s"),
+                    ];
+
+                    self::$db->where('id', $user->id)->update('users', $userData);
+                }
+            }
+        } else {
+            return false;
+        }
+
+    }
 }

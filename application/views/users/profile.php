@@ -26,6 +26,18 @@ $userRole = $this->session->userdata('role');
         </div>
     </div>
 </div>
+<?php
+$message = $this->session->userdata('success');
+
+if (isset($message)) { ?>
+    <div class="notice notice-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $message;
+        $this->session->unset_userdata('success')
+        ?>
+    </div>
+<?php } ?>
 <!-- Profile Area -->
 <?php
 $errors = $this->session->userdata('errors');
@@ -414,6 +426,9 @@ if ($userRole->slug == 'super-administrator') { ?>
     </div>
 <?php } ?>
 <!-- Address Area -->
+<?php
+$errors = $this->session->userdata('errors');
+?>
 <div class="widget">
     <div class="widget-header">
         <div class="pull-left">
@@ -423,7 +438,7 @@ if ($userRole->slug == 'super-administrator') { ?>
         <div class="clearfix"></div>
     </div>
     <div class="widget-body">
-        <form class="form" method="post" action="<?php echo base_url() ?>users/address" id="pu_puAddForm">
+        <form class="form" method="post" action="<?php echo base_url() ?>users/address/<?php echo $details['user']->uuid; ?>" id="pu_puAddForm">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
@@ -432,7 +447,16 @@ if ($userRole->slug == 'super-administrator') { ?>
                                value="<?php if (isset($details['address']) && $details['address']->street) {
                                    echo $details['address']->street;
                                } ?>" class="form-control"
-                               placeholder="Street" required="required">
+                               placeholder="Street" ">
+                        <?php
+                        if (isset($errors['street'])) { ?>
+                            <span class="error-text">
+                                    <?php
+                                    echo $errors['street'][0];
+                                    $this->session->unset_userdata('errors');
+                                    ?>
+                                </span>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -452,11 +476,20 @@ if ($userRole->slug == 'super-administrator') { ?>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="city">City *</label>
-                        <input required="required" name="address[city]" type="text"
+                        <input  name="address[city]" type="text"
                                value="<?php if (isset($details['address']) && $details['address']->city) {
                                    echo $details['address']->city;
                                } ?>"
                                class="form-control" placeholder="City name">
+                        <?php
+                        if (isset($errors['city'])) { ?>
+                            <span class="error-text">
+                                    <?php
+                                    echo $errors['city'][0];
+                                    $this->session->unset_userdata('errors');
+                                    ?>
+                                </span>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -483,7 +516,7 @@ if ($userRole->slug == 'super-administrator') { ?>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="country">Country *</label>
-                        <select required="required" name="address[country]" id="country" class="form-control">
+                        <select  name="address[country]" id="country" class="form-control">
                             <option value="" hidden>Choose one</option>
                             <?php
                             foreach ($countries as $country) { ?>
@@ -494,7 +527,15 @@ if ($userRole->slug == 'super-administrator') { ?>
                                 </option>
                             <?php } ?>
                         </select>
-
+                        <?php
+                        if (isset($errors['country'])) { ?>
+                            <span class="error-text">
+                                    <?php
+                                    echo $errors['country'][0];
+                                    $this->session->unset_userdata('errors');
+                                    ?>
+                                </span>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -502,10 +543,19 @@ if ($userRole->slug == 'super-administrator') { ?>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="phone">Phone *</label>
-                        <input required="required" name="address[phone]" type="text"
+                        <input  name="address[phone]" type="text"
                                value="<?php if (isset($details['address']) && $details['address']->phone) {
                                    echo $details['address']->phone;
                                } ?>" class="form-control" placeholder="Phone">
+                        <?php
+                        if (isset($errors['phone'])) { ?>
+                            <span class="error-text">
+                                    <?php
+                                    echo $errors['phone'][0];
+                                    $this->session->unset_userdata('errors');
+                                    ?>
+                                </span>
+                        <?php } ?>
                     </div>
                 </div>
 
