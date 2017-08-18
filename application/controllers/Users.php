@@ -32,7 +32,7 @@ class Users extends CI_Controller
         /**
          * Check the user's permission
          */
-        $isPermit = Utilities::is_permitTest('users_add');
+        $isPermit = Utilities::is_permit('users_add');
 
         if ($isPermit == null) {
             redirect('users');
@@ -55,7 +55,7 @@ class Users extends CI_Controller
         /**
          * Check the user's permission
          */
-        $isPermit = Utilities::is_permitTest('users_add');
+        $isPermit = Utilities::is_permit('users_add');
 
         if ($isPermit == null) {
             redirect('users');
@@ -134,7 +134,7 @@ class Users extends CI_Controller
         /**
          * Check the user's permission
          */
-        $isPermit = Utilities::is_permitTest('users_lists');
+        $isPermit = Utilities::is_permit('users_lists');
 
         if ($isPermit == null) {
             redirect('users');
@@ -169,21 +169,22 @@ class Users extends CI_Controller
      */
     public function profile()
     {
-        //@TODO try to manage it with the best way
-        /**
-         * Form validation with valitron that is so easy
-         */
+        $isPermit = Utilities::is_permit('profile_update');
 
-        $uuid = $this->uri->segment(3);
-        $userDetails['details'] = UsersModel::userDetails($uuid);
-        $userDetails['timezones'] = Utilities::getTimezones();
-        $userDetails['countries'] = Utilities::getCountries();
-        $userDetails['roles'] = Roles_model::getRoles();
-        $content['header'] = $this->load->view('common/header', '', true);
-        $content['navbar'] = $this->load->view('common/navbar', '', true);
-        $content['placeholder'] = $this->load->view('users/profile', $userDetails, true);
-        $content['footer'] = $this->load->view('common/footer', '', true);
-        $this->load->view('dashboard/dashboard', $content);
+        if ($isPermit == null) {
+            redirect('users');
+        } else {
+            $uuid = $this->uri->segment(3);
+            $userDetails['details'] = UsersModel::userDetails($uuid);
+            $userDetails['timezones'] = Utilities::getTimezones();
+            $userDetails['countries'] = Utilities::getCountries();
+            $userDetails['roles'] = Roles_model::getRoles();
+            $content['header'] = $this->load->view('common/header', '', true);
+            $content['navbar'] = $this->load->view('common/navbar', '', true);
+            $content['placeholder'] = $this->load->view('users/profile', $userDetails, true);
+            $content['footer'] = $this->load->view('common/footer', '', true);
+            $this->load->view('dashboard/dashboard', $content);
+        }
     }
 
     /**
@@ -191,56 +192,66 @@ class Users extends CI_Controller
      */
     public function updateProfile()
     {
-        $formData = $_POST['profile'];
-        $validation = new Valitron\Validator($formData);
-        $validation->rule('required', 'first_name')->message('First name is required');
-        $validation->rule('required', 'last_name')->message('Last name is required');
-        $validation->rule('required', 'gender')->message('Gender is required');
-        $validation->rule('required', 'timezone')->message('Timezone is required');
+        $isPermit = Utilities::is_permit('profile_update');
 
-
-        if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
-            $validation->addInstanceRule('firstName', function () {
-                return false;
-            });
-            $validation->rule('firstName', 'first_name')->message('Alphabetic characters only');
-        }
-
-        if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['last_name'])) {
-            $validation->addInstanceRule('lastName', function () {
-                return false;
-            });
-            $validation->rule('lastName', 'last_name')->message('Alphabetic characters only');
-        }
-
-        if ($formData['date_of_birth'] == date("Y-m-d") or $formData['date_of_birth'] > date('Y-m-d')) {
-            $validation->addInstanceRule('dateOfBirth', function () {
-                return false;
-            });
-            $validation->rule('dateOfBirth', 'date_of_birth')->message('Invalid birth date');
-        }
-
-
-        if (!$validation->validate()) {
-            $errors['errors'] = $validation->errors();
-            $oldValue['oldValues'] = $validation->data();
-            $this->session->set_userdata($errors);
-            $this->session->set_userdata($oldValue);
-            redirect('users/profile/' . $this->uri->segment(3));
+        if ($isPermit == null) {
+            redirect('users');
         } else {
-            try{
-                UsersModel::updateProfile($formData['user_id']);
-                $success = true;
-            }catch (Exception $exception) {
-                $exception->getMessage('This is an error');
-                $success = false;
+            //@TODO try to manage it with the best way
+            /**
+             * Form validation with valitron that is so easy
+             */
+            $formData = $_POST['profile'];
+            $validation = new Valitron\Validator($formData);
+            $validation->rule('required', 'first_name')->message('First name is required');
+            $validation->rule('required', 'last_name')->message('Last name is required');
+            $validation->rule('required', 'gender')->message('Gender is required');
+            $validation->rule('required', 'timezone')->message('Timezone is required');
+
+
+            if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
+                $validation->addInstanceRule('firstName', function () {
+                    return false;
+                });
+                $validation->rule('firstName', 'first_name')->message('Alphabetic characters only');
             }
 
-            if($success == true) {
-                $message['success'] = 'User has been updated successfully';
-                $this->session->set_userdata($message);
-                $user = UsersModel::userInfo($formData['user_id']);
-                redirect('users/details/' . $user->uuid);
+            if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['last_name'])) {
+                $validation->addInstanceRule('lastName', function () {
+                    return false;
+                });
+                $validation->rule('lastName', 'last_name')->message('Alphabetic characters only');
+            }
+
+            if ($formData['date_of_birth'] == date("Y-m-d") or $formData['date_of_birth'] > date('Y-m-d')) {
+                $validation->addInstanceRule('dateOfBirth', function () {
+                    return false;
+                });
+                $validation->rule('dateOfBirth', 'date_of_birth')->message('Invalid birth date');
+            }
+
+
+            if (!$validation->validate()) {
+                $errors['errors'] = $validation->errors();
+                $oldValue['oldValues'] = $validation->data();
+                $this->session->set_userdata($errors);
+                $this->session->set_userdata($oldValue);
+                redirect('users/profile/' . $this->uri->segment(3));
+            } else {
+                try {
+                    UsersModel::updateProfile($formData['user_id']);
+                    $success = true;
+                } catch (Exception $exception) {
+                    $exception->getMessage('This is an error');
+                    $success = false;
+                }
+
+                if ($success == true) {
+                    $message['success'] = 'User has been updated successfully';
+                    $this->session->set_userdata($message);
+                    $user = UsersModel::userInfo($formData['user_id']);
+                    redirect('users/details/' . $user->uuid);
+                }
             }
         }
     }
@@ -293,5 +304,31 @@ class Users extends CI_Controller
         $content['placeholder'] = $this->load->view('users/notes', $userDetails, true);
         $content['footer'] = $this->load->view('common/footer', '', true);
         $this->load->view('dashboard/dashboard', $content);
+    }
+
+    /**
+     * Assign role and access control to a user
+     */
+    public function roleAccessControll()
+    {
+        $isPermit = Utilities::is_permit('users_role_assign');
+
+        if ($isPermit == null) {
+            redirect('users');
+        } else {
+            try {
+                UsersModel::accessControll($this->uri->segment(3));
+                $success = true;
+            } catch (Exception $exception) {
+                $exception->getMessage();
+                $success = false;
+            }
+
+            if ($success == true) {
+                $message['success'] = 'Role and Access has been updated successfully';
+                $this->session->set_userdata($message);
+                redirect('users/profile/' . $this->uri->segment(3));
+            }
+        }
     }
 }

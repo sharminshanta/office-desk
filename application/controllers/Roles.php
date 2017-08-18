@@ -19,7 +19,7 @@ class Roles extends CI_Controller
         /**
          * Check the user's permission
          */
-        $isPermit = Utilities::is_permitTest('roles_lists');
+        $isPermit = Utilities::is_permit('roles_lists');
 
         if ($isPermit == null) {
             redirect('users');

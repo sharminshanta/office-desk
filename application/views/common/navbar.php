@@ -124,13 +124,13 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li>
-                                    <a href="/profile"><i class="fa fa-user"></i>
+                                    <a href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"><i class="fa fa-user"></i>
                                         <?php
                                             echo $userDetails['user']->first_name . " " .$userDetails['user']->last_name;
                                         ?>
                                     </a>
                                 </li>
-                                <li><a href="/settings"><i class="fa fa-wrench"></i> Setting</a></li>
+                                <li><a href="<?php echo base_url()?>settings"><i class="fa fa-wrench"></i> Setting</a></li>
                                 <li><a href="<?php echo base_url()?>logout/"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
                         </div>

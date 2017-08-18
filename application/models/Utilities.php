@@ -733,7 +733,7 @@ class Utilities extends CI_Model
     /**
      * Permissions check for all users
      */
-    public static function is_permit()
+    /*public static function is_permit()
     {
         $user = self::$session->userdata('details');
         $role = Roles_model::getName($user['user']->role_id);
@@ -743,12 +743,12 @@ class Utilities extends CI_Model
             self::$session->set_userdata($message);
             redirect('users','refresh');
         }
-    }
+    }*/
 
     /**
      * Permissions check for all users
      */
-    public static function is_permitTest($slug)
+    public static function is_permit($slug)
     {
         $user = self::$session->userdata('details');
         $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($user['user']->role_id);

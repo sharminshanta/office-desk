@@ -27,6 +27,7 @@ class UsersModel extends CI_Model {
         $user = self:: $db->where('email_address', $email)
             ->where('password', $password)
             ->where('status', 1)
+            ->where('is_visible', 1)
             ->get('users')
             ->row();
 
@@ -238,6 +239,10 @@ class UsersModel extends CI_Model {
         return false;
     }
 
+    /**
+     * @param $userID
+     * @return bool|string
+     */
     public static function updateProfile($userID)
     {
         $user = self::$db->where('user_id', $userID)
@@ -342,6 +347,41 @@ class UsersModel extends CI_Model {
         } else {
             return false;
         }
+    }
 
+    /**
+     * @param $uuid
+     */
+    public static function accessControll($uuid)
+    {
+
+        $userData = [
+            'status' => $_POST['users']['status'],
+            'is_visible' => $_POST['users']['is_visible'],
+            'modified' =>  date("Y-m-d h:i:s"),
+        ];
+
+        $roleData = [
+            'role_id' =>  $_POST['roles']['role_id'],
+            'modified' =>  date("Y-m-d h:i:s"),
+        ];
+
+        $isUser = self::$db->where('uuid', $uuid)
+            ->get('users')
+            ->row();
+
+        if ($isUser) {
+            try{
+                self::$db->where('id', $isUser->id)->update('users', $userData);
+            }catch (Exception $exception) {
+                throw $exception;
+            }
+
+            try{
+                self::$db->where('user_id', $isUser->id)->update('users_roles', $roleData);
+            }catch (Exception $exception) {
+                throw $exception;
+            }
+        }
     }
 }

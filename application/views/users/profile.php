@@ -241,7 +241,7 @@ if ($userRole->slug == 'super-administrator') { ?>
             <div class="row">
                 <div class="col-md-12">
                     <form class="form" method="post"
-                          action="/user-manager/user/{{ user.uuid }}/update_roles_access_control"
+                          action="<?php echo base_url(); ?>users/roleAccessControll/<?php echo $details['user']->uuid; ?>"
                           id="pupdate_puForm">
                         <div class="row">
                             <div class="col-lg-6">
@@ -277,12 +277,13 @@ if ($userRole->slug == 'super-administrator') { ?>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="status">Roles</label>
-                                    <select multiple="multiple" name="roles[role_id][]" class="form-control"
+                                    <select multiple="multiple" name="roles[role_id]" class="form-control"
                                             style="color: grey">
                                         <option value="" hidden="hidden">Choose one</option>
                                         <?php
+                                        $roleName = Roles_model::getName($details['user']->role_id);
                                         foreach ($roles as $role) { ?>
-                                            <option value="<?php echo $role->id; ?>"><?php echo $role->name; ?></option>
+                                            <option value="<?php echo $role->id; ?>" <?php echo($role->name == $roleName->name ? 'selected' : ''); ?>><?php echo $role->name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
