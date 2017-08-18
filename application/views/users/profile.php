@@ -447,7 +447,7 @@ $errors = $this->session->userdata('errors');
                                value="<?php if (isset($details['address']) && $details['address']->street) {
                                    echo $details['address']->street;
                                } ?>" class="form-control"
-                               placeholder="Street" ">
+                               placeholder="Street" required="required">
                         <?php
                         if (isset($errors['street'])) { ?>
                             <span class="error-text">
@@ -480,7 +480,7 @@ $errors = $this->session->userdata('errors');
                                value="<?php if (isset($details['address']) && $details['address']->city) {
                                    echo $details['address']->city;
                                } ?>"
-                               class="form-control" placeholder="City name">
+                               class="form-control" placeholder="City name" required="required">
                         <?php
                         if (isset($errors['city'])) { ?>
                             <span class="error-text">
@@ -516,7 +516,7 @@ $errors = $this->session->userdata('errors');
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="country">Country *</label>
-                        <select  name="address[country]" id="country" class="form-control">
+                        <select  name="address[country]" id="country" class="form-control" required="required">
                             <option value="" hidden>Choose one</option>
                             <?php
                             foreach ($countries as $country) { ?>
@@ -546,7 +546,7 @@ $errors = $this->session->userdata('errors');
                         <input  name="address[phone]" type="text"
                                value="<?php if (isset($details['address']) && $details['address']->phone) {
                                    echo $details['address']->phone;
-                               } ?>" class="form-control" placeholder="Phone">
+                               } ?>" class="form-control" placeholder="Phone" required="required">
                         <?php
                         if (isset($errors['phone'])) { ?>
                             <span class="error-text">
