@@ -261,7 +261,7 @@ class Users extends CI_Controller
      */
     public function address()
     {
-        $formData = $_POST['profile'];
+        $formData = $_POST['address'];
         $validation = new Valitron\Validator($formData);
         $validation->rule('required', 'street')->message('Street is required');
         $validation->rule('required', 'city')->message('City is required');
