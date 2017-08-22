@@ -1,3 +1,28 @@
+<?php
+$messageSuccess = $this->session->userdata('success');
+if (isset($messageSuccess)) { ?>
+    <div class="notice notice-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $messageSuccess;
+        $this->session->unset_userdata('success')
+        ?>
+    </div>
+<?php } ?>
+
+<?php
+$messageError = $this->session->userdata('error');
+
+if (isset($messageError)) { ?>
+    <div class="notice notice-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $messageError;
+        $this->session->unset_userdata('error')
+        ?>
+    </div>
+<?php } ?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="widget">

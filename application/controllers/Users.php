@@ -332,6 +332,30 @@ class Users extends CI_Controller
         }
     }
 
+    public function delete()
+    {
+        $loggedUser = $this->session->userdata('details');
+        $user = UsersModel::userDetails($this->uri->segment(3));
+
+        if ($user['user']->uuid == $loggedUser['user']->uuid) {
+            $message['error'] = 'You are not permitted to delete this user';
+            $this->session->set_userdata($message);
+            redirect('users/lists');
+        } else {
+            try {
+                $delete = UsersModel::deleteUser($this->uri->segment(3));
+
+                if ($delete) {
+                    $message['success'] = 'User has benn deleted successfully';
+                    $this->session->set_userdata($message);
+                    redirect('users/lists');
+                }
+            } catch (Exception $exception) {
+                $exception->getMessage();
+            }
+        }
+    }
+
     /**
      *
      */

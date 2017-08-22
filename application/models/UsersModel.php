@@ -7,6 +7,10 @@ class UsersModel extends CI_Model {
      * @var
      */
     private static $db;
+    /**
+     * @var
+     */
+    private static $session;
 
     /**
      * UsersModel constructor.
@@ -15,6 +19,7 @@ class UsersModel extends CI_Model {
     {
         parent::__construct();
         self::$db = &get_instance()->db;
+        self::$session = &get_instance()->session;
     }
 
     /**
@@ -383,5 +388,19 @@ class UsersModel extends CI_Model {
                 throw $exception;
             }
         }
+    }
+
+    /**
+     * @param $uuid
+     */
+    public static function deleteUser($uuid)
+    {
+        try {
+            $delete = self::$db->where('uuid', $uuid)->delete('users');
+            return $delete;
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
     }
 }
