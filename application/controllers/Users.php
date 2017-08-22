@@ -331,4 +331,27 @@ class Users extends CI_Controller
             }
         }
     }
+
+    /**
+     *
+     */
+    public function testLists()
+    {
+        $config = array();
+        $config["base_url"] = base_url() . "users/testLists";
+        $config["total_rows"] = UsersModel::record_count();
+        $config["per_page"] = 10;
+        $config["uri_segment"] = 3;
+
+        $this->pagination->initialize($config);
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data["users"] = UsersModel::getUsers1($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+        $content['header'] = $this->load->view('common/header', '', true);
+        $content['navbar'] = $this->load->view('common/navbar', '', true);
+        $content['placeholder'] = $this->load->view('users/test_pagination', $data, true);
+        $content['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $content);
+    }
 }

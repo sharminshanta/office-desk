@@ -38,9 +38,9 @@
                                     <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
                                     <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->email_address ?: '-'); ?></a></td>
                                     <td>
-                                        <?php echo ($user->status == 1 ? '<span class="label label-info">Active</span>': "-"); ?>
+                                        <?php echo ($user->status == 1 ? '<span class="label label-info">Active</span>': '<span class="label label-danger">Inactive</span>'); ?>
                                     </td>
-                                    <td><?php echo ($user->is_visible == 1 ? '<span class="label label-success">Visible</span>': "-"); ?></td>
+                                    <td><?php echo ($user->is_visible == 1 ? '<span class="label label-success">Visible</span>': '<span class="label label-warning">Disable</span>'); ?></td>
                                     <td><?php echo ($user->created ?: '-'); ?></td>
                                     <td><?php echo ($user->last_seen ?: '-')?></td>
                                 </tr>
