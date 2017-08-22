@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="wrapper">
     <form name="login-form" class="login-form" action="<?php echo base_url()?>login/authentication" method="post">
         <div class="header">
-            <img src="<?php echo base_url()?>assets/img/besofty.png" class="logo"><br><br>
+            <img src="<?php echo base_url()?>assets/img/favicon.png" class="logo"><br><br>
             <h4>Login - Besofty Software Ltd.</h4>
             <?php
             $error = $this->session->userdata('error');
