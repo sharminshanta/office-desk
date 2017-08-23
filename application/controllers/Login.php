@@ -44,7 +44,7 @@ class Login extends CI_Controller {
             $userDetails['user_id'] = $this->session->set_userdata($user->id);
             redirect('dashboard');
         } else {
-            $message['error'] = 'Your Email Or Password is Invalid !';
+            $message['error'] = 'Credentials miss matched !';
             $this->session->set_userdata($message);
             redirect('login');
         }
