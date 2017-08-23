@@ -153,7 +153,7 @@ if ($userRole->slug == 'super-administrator') { ?>
                         <i class="fa fa-user-secret"></i>
                         Change Password
                     </a>
-                    <a class="btn btn-info" href="/profile/security"
+                    <a class="btn btn-info" href="<?php echo base_url()?>settings/security_question"
                        title="Check security settings">
                         <i class="fa fa-shield"></i>
                         Review Security Settings

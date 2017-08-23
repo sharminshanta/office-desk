@@ -28,7 +28,11 @@ class Roles extends CI_Controller
      */
     public function index()
     {
-        var_dump(111); die();
+        $content['header'] = $this->load->view('common/header', '', true);
+        $content['navbar'] = $this->load->view('common/navbar', '', true);
+        $content['placeholder'] = $this->load->view('errors/is_permit', '', true);
+        $content['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $content);
     }
 
     /**

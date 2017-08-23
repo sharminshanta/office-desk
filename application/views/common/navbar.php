@@ -3,7 +3,7 @@
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
             <a href="#">
-                <a href="/"><img src="<?php echo base_url()?>assets/img/accounts_logo.png" class="logo" alt="Logo"/></a>
+                <a href="<?php echo base_url()?>dashboard"><img src="<?php echo base_url()?>assets/img/accounts_logo.png" class="logo" alt="Logo"/></a>
             </a>
         </li>
         <?php
