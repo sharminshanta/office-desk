@@ -66,8 +66,8 @@ if (isset($messageError)) { ?>
                                         <?php echo ($user->status == 1 ? '<span class="label label-info">Active</span>': '<span class="label label-danger">Inactive</span>'); ?>
                                     </td>
                                     <td><?php echo ($user->is_visible == 1 ? '<span class="label label-success">Visible</span>': '<span class="label label-warning">Disable</span>'); ?></td>
-                                    <td><?php echo ($user->created ?: '-'); ?></td>
-                                    <td><?php echo ($user->last_seen ?: '-')?></td>
+                                    <td><?php echo ((date("M d, Y", strtotime($user->created)) ?: '-')); ?></td>
+                                    <td><?php echo ((date("M d, Y", strtotime($user->last_seen)) ?: '-'));?></td>
                                 </tr>
                            <?php } ?>
                             </tbody>

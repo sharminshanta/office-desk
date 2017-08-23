@@ -9,6 +9,26 @@ class Roles_Permissions extends CI_Controller
     function __construct()
     {
         parent::__construct();
+
+        /**
+         * All data of a user is saved with session
+         * If all data is true then redirect to dashboard
+         */
+        $user = $this->session->userdata('details');
+
+        if($user == null) {
+            $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
+            $this->session->set_userdata($message);
+            redirect('login','refresh');
+        }
+    }
+
+    /**
+     * This is default method for this controller
+     */
+    public function index()
+    {
+        var_dump(111); die();
     }
 
     /**
