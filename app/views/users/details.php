@@ -4,7 +4,6 @@
             <h3>USER DETAILS &raquo; <?php echo $details['user']->first_name . " " . $details['user']->last_name; ?></h3>
         </div>
     </div>
-    <a title="Delete this user?" href="<?php echo base_url()?>users/delete/<?php echo $details['user']->uuid; ?>" class="btn btn-sm btn-danger pull-right">Delete</a>
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
