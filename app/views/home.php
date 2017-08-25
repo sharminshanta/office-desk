@@ -148,7 +148,7 @@ if ($userRole->slug == 'super-administrator') { ?>
                        title="Update your profile"><i class="fa fa-info"></i>
                         Update Profile
                     </a>
-                    <a class="btn btn-danger" href="/profile/security"
+                    <a class="btn btn-danger" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
                        title="Change account password">
                         <i class="fa fa-user-secret"></i>
                         Change Password
@@ -157,6 +157,11 @@ if ($userRole->slug == 'super-administrator') { ?>
                        title="Check security settings">
                         <i class="fa fa-shield"></i>
                         Review Security Settings
+                    </a>
+                    <a class="btn btn-success" style="margin-top: 5px" href="<?php echo base_url()?>settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
+                       title="Change Profile Picture">
+                        <i class="fa fa-user"></i>
+                        Change Profile Picture
                     </a>
                 </div>
             </div>

@@ -412,8 +412,6 @@ class UsersModel extends CI_Model {
      */
     public static function securityQuestion($postData, $uuid)
     {
-        $postData =  $_POST['user'];
-
         try{
             $user = self::$db->where('uuid', $uuid)
                 ->select('id')
@@ -442,6 +440,40 @@ class UsersModel extends CI_Model {
         } catch (Exception $exception) {
             throw  $exception;
         }
+    }
 
+    /**
+     * @param $postData
+     * @param $uuid
+     * @return bool
+     * @throws Exception
+     */
+    public static function changePassword($postData, $uuid)
+    {
+        try{
+            $user = self::$db->where('uuid', $uuid)
+                ->select('uuid')
+                ->get('users')
+                ->row();
+
+            if ($user) {
+                $postData = [
+                    'password' => md5($postData['new_password']),
+                ];
+
+                if ($postData) {
+                    try {
+                        self::$db->where('uuid', $user->uuid)->update('users', $postData);
+                        return true;
+                    } catch (Exception $exception) {
+                        throw $exception;
+                    }
+                }
+            }
+
+            return false;
+        } catch (Exception $exception) {
+            throw  $exception;
+        }
     }
 }
