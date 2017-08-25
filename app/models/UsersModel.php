@@ -403,4 +403,45 @@ class UsersModel extends CI_Model {
         }
 
     }
+
+    /**
+     * @param $postData
+     * @param $uuid
+     * @return bool
+     * @throws Exception
+     */
+    public static function securityQuestion($postData, $uuid)
+    {
+        $postData =  $_POST['user'];
+
+        try{
+            $user = self::$db->where('uuid', $uuid)
+                ->select('id')
+                ->get('users')
+                ->row();
+
+            if ($user) {
+                $postData = [
+                  'security_questions_one' => $postData['security_questions_one'],
+                  'security_questions_two' => $postData['security_questions_two'],
+                  'security_questions_one_answer' => $postData['security_questions_one_answer'],
+                  'security_questions_two_answer' => $postData['security_questions_two_answer']
+                ];
+
+                if ($postData) {
+                    try {
+                        self::$db->where('user_id', $user->id)->update('users_profile', $postData);
+                        return true;
+                    } catch (Exception $exception) {
+                        throw $exception;
+                    }
+                }
+            }
+
+            return false;
+        } catch (Exception $exception) {
+            throw  $exception;
+        }
+
+    }
 }
