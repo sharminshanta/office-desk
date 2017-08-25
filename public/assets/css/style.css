@@ -378,6 +378,10 @@ ul.sidebar-nav li {
     background-color: #ff3c3c;
 }
 
+.btnMargin {
+    margin-top: 5px;
+}
+
 /** Feedback modal */
 .feedbackmodal-container {
     padding: 30px;

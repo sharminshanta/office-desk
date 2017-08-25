@@ -144,21 +144,21 @@ if ($userRole->slug == 'super-administrator') { ?>
                     </h3>
                 </div>
                 <div class="panel-body text-center" id="leftPanel">
-                    <a class="btn btn-primary" href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"
+                    <a class="btn btn-primary btnMargin" href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"
                        title="Update your profile"><i class="fa fa-info"></i>
                         Update Profile
                     </a>
-                    <a class="btn btn-danger" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
+                    <a class="btn btn-danger btnMargin" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
                        title="Change account password">
                         <i class="fa fa-user-secret"></i>
                         Change Password
                     </a>
-                    <a class="btn btn-info" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
+                    <a class="btn btn-info btnMargin" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
                        title="Check security settings">
                         <i class="fa fa-shield"></i>
                         Review Security Settings
                     </a>
-                    <a class="btn btn-success" style="margin-top: 5px" href="<?php echo base_url()?>settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
+                    <a class="btn btn-success btnMargin"  href="<?php echo base_url()?>settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
                        title="Change Profile Picture">
                         <i class="fa fa-user"></i>
                         Change Profile Picture

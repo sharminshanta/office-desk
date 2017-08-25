@@ -76,6 +76,8 @@
         var leftPanel = $("#leftPanel").height();
         var rightList = $("#rightList").height();
         var leftList = $("#leftList").height();
+        var rightwidget = $("#rightwidget").height();
+        var leftwidget = $("#leftwidget").height();
 
         if(rightPanel > leftPanel){
             $("#leftPanel").css("min-height", rightPanel + 30);
@@ -91,6 +93,14 @@
 
         if(rightList < leftList){
             $("#rightList").css("min-height", leftList + 30);
+        }
+
+        if(rightwidget > leftwidget){
+            $("#leftwidget").css("min-height", rightwidget + 30);
+        }
+
+        if(rightwidget < leftwidget){
+            $("#rightwidget").css("min-height", leftwidget + 30);
         }
 
     });

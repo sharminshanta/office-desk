@@ -130,7 +130,12 @@
                                         ?>
                                     </a>
                                 </li>
-                                <li><a href="<?php echo base_url()?>settings"><i class="fa fa-wrench"></i> Setting</a></li>
+                                <?php
+                                if($userRole->slug == 'super-administrator'){ ?>
+                                    <li><a href="<?php echo base_url()?>settings"><i class="fa fa-wrench"></i> Setting</a></li>
+                                <?php } else {?>
+                                    <li><a href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"><i class="fa fa-wrench"></i> Setting</a></li>
+                                <?php } ?>
                                 <li><a href="<?php echo base_url()?>logout/"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
                         </div>
