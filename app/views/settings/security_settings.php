@@ -274,7 +274,7 @@ if (isset($message)) { ?>
                                 <h4 class="modal-title text-uppercase" id="changeProfilePhotoLabel">Change Profile Photo</h4>
                             </div>
                             <div class="modal-body">
-                                <form method="post" accept-charset="utf-8" controller="users" enctype="multipart/form-data" class="ng-pristine ng-valid" id="pcppicture_pcppForm">
+                                <form method="post" action="<?php echo base_url() ?>settings/profile_picture/<?php echo $userDetails['user']->uuid; ?>" accept-charset="utf-8" controller="users" enctype="multipart/form-data" class="ng-pristine ng-valid" id="pcppicture_pcppForm">
                                     <div style="display:none;">
                                         <input type="hidden" name="_method" value="POST">
                                     </div>

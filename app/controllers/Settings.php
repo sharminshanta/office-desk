@@ -149,7 +149,27 @@ class Settings extends CI_Controller
 
     public function profile_picture()
     {
-        var_dump(111); die();
+        $image = $_FILES['photo'];
+
+        $allowedExts = ["jpeg", "jpg", "png"];
+
+        //Get image extension
+        $extension = explode(".", $_FILES["photo"]["name"]);
+        $extension = $extension[1];
+
+
+        /**
+         * If the format is not allowed, show error message to user
+         */
+
+        if (!in_array($extension, $allowedExts)) {
+            var_dump('not permitted'); die();
+        }else {
+           $profilePic = Utilities::uploadImages($image['tmp_name'], $image['name'], 'assets/img/profiles/', uniqid());
+            $imagePath = $profilePic['path'];
+        }
+
+
     }
 
 }

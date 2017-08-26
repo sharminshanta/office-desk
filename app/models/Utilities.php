@@ -764,4 +764,32 @@ class Utilities extends CI_Model
             }
         }
     }
+
+    /**
+     * @param $tmp
+     * @param $name
+     * @param $path
+     * @param null $customName
+     * @return array|bool
+     */
+    public static function uploadImages($tmp, $name, $path, $customName = null)
+    {
+        $ext = explode(".", $name);
+        $ext = $ext[1];
+
+        $uploadFile = $path . $customName . '.' . $ext;
+
+        if ($ext && $ext != '') {
+            if (move_uploaded_file($tmp, $uploadFile)) {
+                $name = explode('/', $uploadFile);
+                $name = $name[3];
+                $data = array(
+                    'name' => $name,
+                    'path' => $uploadFile,
+                );
+                return $data;
+            }
+            return false;
+        }
+    }
 }
