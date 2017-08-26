@@ -10,6 +10,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <script src="<?php echo base_url()?>assets/js/jquery.js"></script>
+<script src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
 <!--<script src="assets/js/bootstrap.min.js"></script>-->
 <script src="<?php echo base_url()?>assets/datatables/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url()?>assets/datatables/js/dataTables.bootstrap.js"></script>
@@ -147,24 +148,20 @@
 
 </script>
 
+<! --Modal Script -->
 <script type="text/javascript">
     var save_method; //for save method string
-    var table;
 
-    function addUser()
+    function addRole()
     {
         save_method = 'add';
-        $('#form')[0].reset(); // reset form on modals
+        $('#roleAddForm')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
-        $('#modal_form').modal('show'); // show bootstrap modal
-        $('.modal-title').text('Add student'); // Set Title to Bootstrap modal title
+        $('#roleAddModal').modal('show'); // show bootstrap modal
+        $('.modal-title').text('Add New Role'); // Set Title to Bootstrap modal title
     }
 
-    function saveUser()
-    {
-        $('#modal_form').modal('hide'); // show bootstrap modal
-    }
 </script>
 </body>
 </html>
