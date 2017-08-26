@@ -113,8 +113,14 @@
                 <div class="pull-right">
                     <div class="profile-overview">
                         <div class="dropdown customm-dropdown">
-                            <img src="" class="profile-pic" onerror="this.onerror=null;this.src='<?php echo base_url()?>assets/img/profile.jpg'"/>
-                            <!--<img src="assets/img/profile_pic.jpg" class="profile-pic"/>-->
+                            <?php
+                                if($userDetails['user']->picture != null) { ?>
+                                    <img src="<?php echo  base_url() . $userDetails['user']->picture; ?>"
+                                         class="avatar img-thumbnail profile-pic"
+                                         onerror="this.onerror=null;this.src='<?php echo base_url() ?>assets/img/profile.jpg'" alt="Profile Photo">
+                                <?php } else { ?>
+                                <img src="<?php echo base_url() ?>assets/img/profile.jpg" class="avatar img-thumbnail profile-pic"  alt="Profile Photo">
+                            <?php } ?>
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenu1"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <?php
