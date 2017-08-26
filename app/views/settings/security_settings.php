@@ -5,6 +5,7 @@ $oldValue = $this->session->userdata('oldValue');
 ?>
 <?php
 $message = $this->session->userdata('success');
+$messageError = $this->session->userdata('error');
 
 if (isset($message)) { ?>
     <div class="notice notice-success">
@@ -15,6 +16,18 @@ if (isset($message)) { ?>
         ?>
     </div>
 <?php } ?>
+
+<?php
+if (isset($messageError)) { ?>
+<div class="notice notice-danger">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <?php
+    echo $messageError;
+    $this->session->unset_userdata('error')
+    ?>
+</div>
+<?php } ?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="widget">
@@ -244,8 +257,8 @@ if (isset($message)) { ?>
                     <a href="">
                         <?php
 
-                        if($userDetails['user']->picture == null) { ?>
-                            <img src="<?php echo $userDetails['user']->picture; ?>"
+                        if($userDetails['user']->picture != null) { ?>
+                            <img src="<?php echo  base_url() . $userDetails['user']->picture; ?>"
                              class="avatar img-thumbnail profile-pic"
                              onerror="this.onerror=null;this.src='<?php echo base_url() ?>assets/img/profile.jpg'" alt="Profile Photo">
                         <?php } else { ?>

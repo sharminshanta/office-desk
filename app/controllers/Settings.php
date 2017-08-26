@@ -157,19 +157,31 @@ class Settings extends CI_Controller
         $extension = explode(".", $_FILES["photo"]["name"]);
         $extension = $extension[1];
 
-
         /**
          * If the format is not allowed, show error message to user
          */
 
         if (!in_array($extension, $allowedExts)) {
-            var_dump('not permitted'); die();
+            $message['error'] = 'Sorry, only JPG, JPEG & PNG files are allowed.';
+            $this->session->set_userdata($message);
+            redirect('settings/security/' . $this->uri->segment(3));
         }else {
            $profilePic = Utilities::uploadImages($image['tmp_name'], $image['name'], 'assets/img/profiles/', uniqid());
             $imagePath = $profilePic['path'];
+            try {
+                UsersModel::profilePicChange($this->uri->segment(3), $imagePath);
+                $success = true;
+            } catch (Exception $exception) {
+                $exception->getMessage();
+                $success = false;
+            }
+
+            if ($success == true) {
+                $message['success'] = 'Profile picture has been updated successfully';
+                $this->session->set_userdata($message);
+                redirect('settings/security/' . $this->uri->segment(3));
+            }
         }
-
-
     }
 
 }

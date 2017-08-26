@@ -476,4 +476,38 @@ class UsersModel extends CI_Model {
             throw  $exception;
         }
     }
+
+    /**
+     * @param $uuid
+     * @param $imagePath
+     * @return bool
+     * @throws Exception
+     */
+    public static function profilePicChange($uuid, $imagePath)
+    {
+        try{
+            $user = self::$db->where('uuid', $uuid)
+                ->select('id')
+                ->get('users')
+                ->row();
+
+            if ($user) {
+                $postData = [
+                    'picture' => $imagePath,
+                ];
+
+                if ($postData) {
+                    try {
+                        self::$db->where('user_id', $user->id)->update('users_profile', $postData);
+                    } catch (Exception $exception) {
+                        throw $exception;
+                    }
+                }
+            }
+
+            return false;
+        } catch (Exception $exception) {
+            throw  $exception;
+        }
+    }
 }
