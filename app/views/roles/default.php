@@ -65,7 +65,7 @@ if (isset($message)) { ?>
                                 <th>Name</th>
                                 <th>Created</th>
                                 <th>Modified</th>
-                                <th>Action</th>
+                                <th class="text-right">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -81,7 +81,11 @@ if (isset($message)) { ?>
                                     <td><a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->name ?: '-') ?></a></td>
                                     <td><?php echo (date("M d, Y", strtotime($role->created)) ?: '-'); ?></td>
                                     <td><?php echo (date("M d, Y", strtotime($role->modified)) ?: '-')?></td>
-                                    <td><a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" class="btn btn-sm btn-success" title="Assign Permissions">Assign Permissions</a></td>
+                                    <td class="text-right">
+                                        <a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" class="btn btn-sm btn-success fa fa-pencil" title="Assign Permissions">Assign Permissions</a>
+                                        <a href="" class="btn btn-danger fa fa-trash" title="Delete this role ?"> Delete</a>
+                                        <a href="" class="btn btn-primary fa fa-edit" title="Update this role ?"> Update</a>
+                                    </td>
                                 </tr>
                             <?php } ?>
                             </tbody>
