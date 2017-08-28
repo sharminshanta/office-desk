@@ -117,4 +117,48 @@ class Roles_model extends CI_Model
 
         return false;
     }
+
+    /**
+     * @param $uuid
+     * @return bool
+     * @throws Exception
+     */
+    public static function isRoleExist($uuid)
+    {
+        try {
+            $roleDetails = Roles_model::details($uuid);
+            $isExistuserRole = self::$db->where('users_roles.role_id', $roleDetails->id)
+                ->where('roles_permissions.role_id', $roleDetails->id)
+                ->join('roles_permissions', 'users_roles.role_id = roles_permissions.role_id')
+                ->get('users_roles')
+                ->row();
+            if ($isExistuserRole) {
+                return true;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $uuid
+     * @return bool
+     * @throws Exception
+     */
+    public static function delete($uuid)
+    {
+        try {
+            $deleted = self::$db->where('uuid', $uuid)
+                ->delete('roles');
+            if ($deleted) {
+                return true;
+            }
+        } catch (Exception $exception) {
+            throw  $exception;
+        }
+
+        return false;
+    }
 }

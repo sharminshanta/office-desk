@@ -57,6 +57,9 @@ class Roles extends CI_Controller
         }
     }
 
+    /**
+     * Role's add route
+     */
     public function addRole()
     {
         /**
@@ -117,5 +120,34 @@ class Roles extends CI_Controller
 
             redirect('roles/lists');
         }
+    }
+
+    /**
+     * Role's delete route
+     */
+    public function delete()
+    {
+        try {
+            $role = Roles_model::isRoleExist($this->uri->segment(3));
+
+            if ($role == false) {
+                $deleted = Roles_model::delete($this->uri->segment(3));
+                if ($deleted == true) {
+                    $message['success'] = 'Role has been deleted successfully';
+                    $this->session->set_userdata($message);
+                    redirect('roles/lists');
+                }
+            } else {
+                $message['error'] = 'This role is used in role\'s permissions and user\'s role';
+                $this->session->set_userdata($message);
+                redirect('roles/lists');
+            }
+        } catch (Exception $exception) {
+            $message['error'] = $exception->getMessage();
+            $message['error'] = $exception->getTraceAsString();
+            $this->session->set_userdata($message);
+        }
+
+        redirect('roles/lists');
     }
 }

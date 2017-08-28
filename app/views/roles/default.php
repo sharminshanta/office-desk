@@ -1,5 +1,6 @@
 <?php
 $message = $this->session->userdata('success');
+$errorMessage = $this->session->userdata('error');
 
 if (isset($message)) { ?>
     <div class="notice notice-success">
@@ -7,6 +8,16 @@ if (isset($message)) { ?>
         <?php
         echo $message;
         $this->session->unset_userdata('success')
+        ?>
+    </div>
+<?php } ?>
+<?php
+    if (isset($errorMessage)) { ?>
+    <div class="notice notice-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $errorMessage;
+        $this->session->unset_userdata('error')
         ?>
     </div>
 <?php } ?>
@@ -83,7 +94,7 @@ if (isset($message)) { ?>
                                     <td><?php echo (date("M d, Y", strtotime($role->modified)) ?: '-')?></td>
                                     <td class="text-right">
                                         <a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" class="btn btn-sm btn-success fa fa-pencil" title="Assign Permissions">Assign Permissions</a>
-                                        <a href="" class="btn btn-danger fa fa-trash" title="Delete this role ?"> Delete</a>
+                                        <a href="<?php echo base_url()?>roles/delete/<?php echo $role->uuid; ?>" class="btn btn-danger fa fa-trash" title="Delete this role ?" id="deleteBtn"> Delete</a>
                                         <a href="" class="btn btn-primary fa fa-edit" title="Update this role ?"> Update</a>
                                     </td>
                                 </tr>

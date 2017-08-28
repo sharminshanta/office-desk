@@ -147,5 +147,12 @@
     });
 
 </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#deleteBtn').click(function () {
+            alert('Are you sure to delete this role ?');
+        });
+    });
+</script>
 </body>
 </html>
