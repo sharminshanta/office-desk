@@ -792,4 +792,20 @@ class Utilities extends CI_Model
             return false;
         }
     }
+
+    /**
+     * @param $title
+     * @return string
+     */
+    public static function generateSlugText($name)
+    {
+        $countName = self::$db->where('name', $name)->select('name')->count();
+
+        if($countName == 0){
+            return $name;
+        }
+
+        $countName++;
+        return $name . ' ' . $countName;
+    }
 }
