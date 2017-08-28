@@ -1,3 +1,25 @@
+<?php
+$message = $this->session->userdata('success');
+
+if (isset($message)) { ?>
+    <div class="notice notice-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $message;
+        $this->session->unset_userdata('success')
+        ?>
+    </div>
+<?php } ?>
+<?php
+    $errors = $this->session->userdata('errors');
+    $insert_error = $this->session->userdata('insert_error');
+        if (isset($errors) || $errors['name']) { ?>
+            <?php
+                foreach ($errors as $error) { ?>
+                  <li class="text-danger"><?php echo $error[0]?><li>
+           <?php } ?>
+         <?php $this->session->unset_userdata('errors'); ?>
+    <?php } ?>
 <div class="row">
     <div class="col-md-12">
         <div class="widget">
@@ -13,7 +35,7 @@
             <div class="widget-body">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-4">
-                        <a class="btn btn-success" onclick="addRole()"><i class="glyphicon glyphicon-plus"></i>Add Role</a>
+                        <a class="btn btn-success changeRole" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i>Add Role</a>
                     </div>
                 </div>
             </div>
@@ -70,44 +92,37 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="roleAddModal" role="dialog">
-    <div class="modal-dialog">
+
+
+<!-- Role Modal -->
+<div class="modal fade" id="changeRole" tabindex="-1" role="dialog" aria-labelledby="searchUser">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Form Role</h3>
+            <div class="modal-header panel-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="searchUser">Add New Role</h4>
             </div>
-            <div class="modal-body form">
-                <form action="#" id="roleAddForm" class="form-horizontal">
-                    <input type="hidden" value="" name="id"/>
-                    <div class="form-body">
-                        <div class="form-group">
-                            <div class="col-md-9">
-                                <input name="estu_id" class="form-control" type="hidden">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Name</label>
-                            <div class="col-md-9">
-                                <input name="role_name" placeholder="Role name" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Description</label>
-                            <div class="col-md-9">
-                                <textarea name="estu_apellido" rows="3" placeholder="Description" class="form-control" type="text"></textarea>
-                                <span class="help-block"></span>
+            <div class="modal-body">
+                <form action="<?php echo base_url() ?>roles/addRole" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="form-type">Name</label>
+                                <input id="roleName" name="role[name]" type="text" placeholder="Name" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="form-type">Description</label>
+                                <textarea class="form-control" name="role[description]" placeholder="Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-success">Submit</button>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

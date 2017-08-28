@@ -213,6 +213,7 @@ class UsersModel extends CI_Model {
     public static function getUsers()
     {
         $users = self::$db
+            ->order_by('id', 'desc')
             ->get('users')
             ->result();
 

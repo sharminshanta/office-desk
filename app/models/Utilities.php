@@ -799,7 +799,8 @@ class Utilities extends CI_Model
      */
     public static function generateSlugText($name)
     {
-        $countName = self::$db->where('name', $name)->select('name')->count();
+        $countName = self::$db->where('name', $name)->select('name')->get('roles')->row();
+        $countName = count($countName);
 
         if($countName == 0){
             return $name;

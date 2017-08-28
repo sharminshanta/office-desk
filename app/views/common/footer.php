@@ -147,21 +147,5 @@
     });
 
 </script>
-
-<! --Modal Script -->
-<script type="text/javascript">
-    var save_method; //for save method string
-
-    function addRole()
-    {
-        save_method = 'add';
-        $('#roleAddForm')[0].reset(); // reset form on modals
-        $('.form-group').removeClass('has-error'); // clear error class
-        $('.help-block').empty(); // clear error string
-        $('#roleAddModal').modal('show'); // show bootstrap modal
-        $('.modal-title').text('Add New Role'); // Set Title to Bootstrap modal title
-    }
-
-</script>
 </body>
 </html>

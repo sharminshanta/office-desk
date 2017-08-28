@@ -40,6 +40,7 @@ class Roles_model extends CI_Model
     public static function getRoles()
     {
         $roles = self::$db
+            ->order_by('id', 'desc')
             ->get('roles')
             ->result();
 
@@ -65,5 +66,50 @@ class Roles_model extends CI_Model
         }else{
             return false;
         }
+    }
+
+    /**
+     * @param $roleName
+     * @return array
+     * @throws Exception
+     */
+    public static function checkRoleName($roleName)
+    {
+        try {
+            $result = self::$db->where('name', $roleName)
+                ->get('roles')
+                ->row();
+            if ($result) {
+                return true;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
+    }
+
+    public static function create($postData, $userID)
+    {
+        $data = [];
+        try {
+            $data = [
+                'uuid' => Utilities::v4(),
+                'name' => $postData['name'],
+                'slug' => strtolower(str_replace(' ', '-', Utilities::generateSlugText((trim($postData['name']))))),
+                'description' => $postData['description'],
+                'user_id' => $userID,
+                'created' => date('Y-m-d h:i:s'),
+            ];
+
+            $data = self::$db->insert('roles', $data);
+            if ($data) {
+                return $data;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return $data;
     }
 }
