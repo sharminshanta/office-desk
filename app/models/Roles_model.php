@@ -89,9 +89,14 @@ class Roles_model extends CI_Model
         return false;
     }
 
+    /**
+     * @param $postData
+     * @param $userID
+     * @return array
+     * @throws Exception
+     */
     public static function create($postData, $userID)
     {
-        $data = [];
         try {
             $data = [
                 'uuid' => Utilities::v4(),
@@ -104,12 +109,12 @@ class Roles_model extends CI_Model
 
             $data = self::$db->insert('roles', $data);
             if ($data) {
-                return $data;
+                return true;
             }
         } catch (Exception $exception) {
             throw $exception;
         }
 
-        return $data;
+        return false;
     }
 }
