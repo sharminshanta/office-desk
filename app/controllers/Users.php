@@ -115,7 +115,7 @@ class Users extends CI_Controller
                 $oldValue['oldValue'] = $validation->data();
                 $this->session->set_userdata($error);
                 $this->session->set_userdata($oldValue);
-                redirect('users');
+                redirect('users/home');
             }
 
             try {
