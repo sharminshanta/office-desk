@@ -1,4 +1,23 @@
 {
+	"name": "sharminex81/besofty-desk",
+	"description": "A CodeIgniter Framework skeleton application for rapid development",
+	"keywords": [
+		"framework",
+		"controllers",
+		"models",
+		"psr7",
+		"skeleton",
+		"Besoftysoftware"
+	],
+	"homepage": "https://github.com/sharminex81",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "sharminex81",
+			"email": "shantaex81@gmail.com",
+			"homepage": "https://github.com/sharminex81"
+		}
+	],
 	"description" : "This is a office management system",
 	"require": {
 		"php": ">=5.3.2",
