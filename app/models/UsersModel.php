@@ -55,7 +55,7 @@ class UsersModel extends CI_Model {
             ->get('users')
             ->row();
 
-        $user['address'] = self::$db->where('user_id', $user['user']->user_id)
+        $user['address'] = self::$db->where('user_id', $user['user']->id)
             ->get('users_addresses')
             ->row();
 
