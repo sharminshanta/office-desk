@@ -810,6 +810,12 @@ class Utilities extends CI_Model
         return $name . ' ' . $countName;
     }
 
+    /**
+     * @param $controllerName
+     * @param $folder
+     * @param $level
+     * @param $message
+     */
     public static function logger($controllerName, $folder, $level, $message)
     {
         $log = new \Monolog\Logger($controllerName);
