@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class Users extends CI_Controller
 {
@@ -152,6 +154,7 @@ class Users extends CI_Controller
             redirect('users');
         } else {
             $users['users'] = UsersModel::getUsers();
+            Utilities::logger('Users/list','../logs/app.log','info','User List Fetched Successfully');
             $content['header'] = $this->load->view('common/header', '', true);
             $content['navbar'] = $this->load->view('common/navbar', '', true);
             $content['placeholder'] = $this->load->view('users/list', $users, true);
@@ -390,4 +393,6 @@ class Users extends CI_Controller
         $content['footer'] = $this->load->view('common/footer', '', true);
         $this->load->view('dashboard/dashboard', $content);
     }
+
+
 }
