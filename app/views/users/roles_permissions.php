@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="jumbotron">
             <h3>Roles And Permissions</h3>
-            <p>Add a new role and permission of that our platform</p>
+            <p>Assign a new permission to <?php echo $role->name; ?></p>
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@ if (isset($message)) { ?>
                 <div class="well">
                     <?php
                     foreach ($roles_permissions as $assignPermissions) { ?>
-                        <p><?php echo (Roles_Permissions_model::getAssignPermissionsName($assignPermissions->permission_id)->name); ?></p>
+                        <li style="list-style: none"><?php echo (Roles_Permissions_model::getAssignPermissionsName($assignPermissions->permission_id)->name); ?></li>
                     <?php } ?>
                 </div>
            <?php } ?>
