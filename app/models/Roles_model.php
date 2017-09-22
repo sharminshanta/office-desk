@@ -104,10 +104,40 @@ class Roles_model extends CI_Model
                 'slug' => strtolower(str_replace(' ', '-', Utilities::generateSlugText((trim($postData['name']))))),
                 'description' => $postData['description'],
                 'user_id' => $userID,
+                'is_locked' => 1,
                 'created' => date('Y-m-d h:i:s'),
             ];
 
             $data = self::$db->insert('roles', $data);
+            if ($data) {
+                return true;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $postData
+     * @param $userID
+     * @return array
+     * @throws Exception
+     */
+    public static function update($postData, $userID, $roleID)
+    {
+        try {
+            $data = [
+                'uuid' => Utilities::v4(),
+                'name' => $postData['name'],
+                'slug' => strtolower(str_replace(' ', '-', Utilities::generateSlugText((trim($postData['name']))))),
+                'description' => $postData['description'],
+                'user_id' => $userID,
+                'modified' => date('Y-m-d h:i:s'),
+            ];
+
+            $data = self::$db->where('id', $roleID)->update('roles', $data);
             if ($data) {
                 return true;
             }
