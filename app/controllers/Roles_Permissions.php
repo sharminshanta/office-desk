@@ -40,6 +40,7 @@ class Roles_Permissions extends CI_Controller
         $permissions['role'] = Roles_model::details($this->uri->segment(3));
         $permissions['permissions'] = Permissions_model::getPermissions();
         $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($permissions['role']->id);
+        var_dump($permissions['roles_permissions']);
         $content['header'] = $this->load->view('common/header', '', true);
         $content['navbar'] = $this->load->view('common/navbar', '', true);
         $content['placeholder'] = $this->load->view('users/roles_permissions', $permissions, true);
