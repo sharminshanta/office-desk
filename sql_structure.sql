@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 23, 2017 at 10:43 PM
+-- Generation Time: Sep 24, 2017 at 12:55 AM
 -- Server version: 5.7.18-0ubuntu0.16.04.1
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -33,6 +33,35 @@ CREATE TABLE `permissions` (
   `slug` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `description`, `slug`) VALUES
+(1, 'Add User', 'Add new user', 'users_add'),
+(2, 'Search users', 'Search all user', 'users_search'),
+(3, 'List users', 'View list of users', 'users_lists'),
+(4, 'Modify user profile', 'Modify user profile', 'users_profile_modify'),
+(5, 'Delete user', 'Delete specifc user', 'users_delete'),
+(6, 'Assign role to user', 'Assign user role', 'users_role_assign'),
+(7, 'Remove user role', 'Remove role from user', 'users_role_remove'),
+(8, 'Create role', 'Create role', 'roles_create'),
+(9, 'Delete role', 'Delete role', 'roles_delete'),
+(10, 'Update role', 'Update role', 'roles_update'),
+(11, 'Role permission change', 'Role permission change', 'roles_permission_change'),
+(12, 'Chanage Username', 'Change username', 'users_username_change'),
+(13, 'Change Email Address', 'Change email address', 'users_email_change'),
+(14, 'Change User\'s Security Questions', 'Change security questions of an user', 'users_security_question_changed'),
+(15, 'Change User\'s Security Answers', 'Change security answers of an user', 'users_security_answer_changed'),
+(16, 'Change User\'s Password', 'Change password of an user', 'users_password_changed'),
+(17, 'Add Permission', 'Add new Permission', 'permissions_add'),
+(18, 'Update Permission', 'Update Permission', 'permissions_update'),
+(19, 'Delete Permission', 'Delete Permission', 'permissions_delete'),
+(20, 'List Permissions', 'View list of Permissions', 'permissions_lists'),
+(21, 'List Roles', 'View list of roles', 'roles_lists'),
+(22, 'Update Profile', 'Update Profile', 'profile_update'),
+(23, 'settings', 'settings', 'office-settings');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +80,19 @@ CREATE TABLE `roles` (
   `is_locked` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `uuid`, `user_id`, `name`, `slug`, `description`, `created`, `modified`, `is_locked`) VALUES
+(1, 'd5ec932d-3555-4dc1-bdd2-514993b4e89b', 1, 'General User', 'general-user', 'General User', '2017-09-22 04:10:57', '2017-09-23 08:54:28', 1),
+(2, 'e8ec82c5-a6a4-4f83-84b4-57b254d83c6n', 0, 'Administrator', 'administrator', 'Administrator', '2017-07-09 11:43:01', '2017-07-09 11:43:01', 1),
+(3, 'e8ec82c5-a6a4-4f88-84c4-57b253f8367d', 0, 'Super Administrator', 'super-administrator', 'Super Administrator', '2017-07-09 11:43:01', '2017-07-09 11:43:01', 1),
+(4, 'e8fc82c5-a6a4-2f83-84b4-57b253f83c31', 0, 'Account Manager', 'account-manager', 'Account manager for individual user or client', '2017-07-17 13:27:34', '2017-07-17 13:27:34', 1),
+(5, 'e8fw82a5-a6a4-2f62-84b4-57b253f83c50', 0, 'Billing Manager', 'billing-manager', 'Billing manager to manage billing', '2017-07-17 13:27:34', '2017-07-17 13:27:34', 1),
+(7, 'f8fw82c5-a6a4-2f62-84b4-57b253f12c91', 0, 'Sales Manager', 'sales-manager', 'Sales Executive', '2017-07-17 13:27:34', '2017-07-17 13:27:34', 1),
+(8, 'e43dca48-42da-4cbe-8b0f-a6d1bf8c9eba', 1, 'Support Manager', 'support-manager', 'Support Manager', '2017-07-17 13:27:34', '2017-09-22 04:25:27', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -63,30 +105,34 @@ CREATE TABLE `roles_permissions` (
   `permission_id` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `tbl_carrera`
+-- Dumping data for table `roles_permissions`
 --
 
-CREATE TABLE `tbl_carrera` (
-  `carr_id` int(11) NOT NULL,
-  `carr_nombre` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=big5;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_estudiante`
---
-
-CREATE TABLE `tbl_estudiante` (
-  `estu_id` int(11) NOT NULL,
-  `estu_nombre` varchar(45) NOT NULL,
-  `estu_apellido` varchar(45) NOT NULL,
-  `estu_cedula` int(11) NOT NULL,
-  `carr_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=big5;
+INSERT INTO `roles_permissions` (`id`, `role_id`, `permission_id`) VALUES
+(20, 3, '1'),
+(21, 3, '2'),
+(22, 3, '3'),
+(23, 3, '4'),
+(24, 3, '5'),
+(25, 3, '6'),
+(26, 3, '7'),
+(27, 3, '8'),
+(28, 3, '9'),
+(29, 3, '10'),
+(30, 3, '11'),
+(31, 3, '12'),
+(32, 3, '13'),
+(33, 3, '14'),
+(34, 3, '15'),
+(35, 3, '16'),
+(36, 3, '17'),
+(37, 3, '18'),
+(38, 3, '19'),
+(39, 3, '20'),
+(40, 3, '21'),
+(41, 3, '22'),
+(53, 3, '23');
 
 -- --------------------------------------------------------
 
@@ -119,7 +165,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `uuid`, `username`, `password`, `password_hash`, `password_token`, `password_last_modified`, `password_last_modified_ip`, `email_address`, `email_address_verified`, `last_seen`, `last_seen_ip`, `last_loggedin`, `status`, `is_visible`, `created`, `modified`) VALUES
-(1, '1122334455667788', 'admin@besofty.com', '96e79218965eb72c92a549dd5a330112', NULL, NULL, NULL, NULL, 'info@besofty.com', 0, NULL, NULL, NULL, 1, 1, NULL, '2017-09-23 10:13:48');
+(1, '1122334455667788', 'admin@besofty.com', '96e79218965eb72c92a549dd5a330112', NULL, NULL, NULL, NULL, 'admin@besofty.com', 0, NULL, NULL, NULL, 1, 1, NULL, '2017-09-23 10:13:48');
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +189,13 @@ CREATE TABLE `users_addresses` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users_addresses`
+--
+
+INSERT INTO `users_addresses` (`id`, `uuid`, `user_id`, `street`, `street_secondary`, `city`, `state`, `postal_code`, `country`, `phone`, `fax`, `type`, `created`, `modified`) VALUES
+(1, '2w4r5t6y7uqs1180', 1, '17/3, Mirpur Road, Dhaka', NULL, 'Dhaka', NULL, 1205, 'Bangladesh', NULL, NULL, 'primary', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -170,6 +224,13 @@ CREATE TABLE `users_profile` (
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `users_profile`
+--
+
+INSERT INTO `users_profile` (`id`, `user_id`, `first_name`, `last_name`, `family_name`, `nick_name`, `title`, `gender`, `picture`, `date_of_birth`, `timezone`, `language`, `security_questions_one`, `security_questions_one_answer`, `security_questions_two`, `security_questions_two_answer`, `created`, `modified`) VALUES
+(1, 1, 'Besofty', 'Software Limited', 'Info', 'Info', 'Ms', 'female', NULL, '0000-00-00', 'UTC', 'en_US', NULL, NULL, NULL, NULL, NULL, '2017-09-23 10:13:48');
+
 -- --------------------------------------------------------
 
 --
@@ -184,6 +245,13 @@ CREATE TABLE `users_roles` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users_roles`
+--
+
+INSERT INTO `users_roles` (`id`, `user_id`, `role_id`, `is_active`, `created`, `modified`) VALUES
+(1, 1, 3, 1, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -211,19 +279,6 @@ ALTER TABLE `roles`
 ALTER TABLE `roles_permissions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_id` (`role_id`);
-
---
--- Indexes for table `tbl_carrera`
---
-ALTER TABLE `tbl_carrera`
-  ADD PRIMARY KEY (`carr_id`);
-
---
--- Indexes for table `tbl_estudiante`
---
-ALTER TABLE `tbl_estudiante`
-  ADD PRIMARY KEY (`estu_id`),
-  ADD KEY `carr_id` (`carr_id`);
 
 --
 -- Indexes for table `users`
@@ -278,35 +333,25 @@ ALTER TABLE `roles`
 ALTER TABLE `roles_permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
--- AUTO_INCREMENT for table `tbl_carrera`
---
-ALTER TABLE `tbl_carrera`
-  MODIFY `carr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `tbl_estudiante`
---
-ALTER TABLE `tbl_estudiante`
-  MODIFY `estu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `users_addresses`
 --
 ALTER TABLE `users_addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users_profile`
 --
 ALTER TABLE `users_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `users_roles`
 --
 ALTER TABLE `users_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- Constraints for dumped tables
 --
@@ -316,12 +361,6 @@ ALTER TABLE `users_roles`
 --
 ALTER TABLE `roles_permissions`
   ADD CONSTRAINT `roles_permissions_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `tbl_estudiante`
---
-ALTER TABLE `tbl_estudiante`
-  ADD CONSTRAINT `tbl_estudiante_ibfk_1` FOREIGN KEY (`carr_id`) REFERENCES `tbl_carrera` (`carr_id`);
 
 --
 -- Constraints for table `users_addresses`
