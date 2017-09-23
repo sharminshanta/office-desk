@@ -26,6 +26,7 @@ class Login extends CI_Controller {
     public function index()	{
         $this->load->view('auth/login');
     }
+
     /**
      * user email & password post by form
      * user check with database
