@@ -22,14 +22,20 @@ class Permissions_model extends CI_Model
      */
     public static function getPermissions()
     {
-        $permissions = self::$db
-            ->get('permissions')
-            ->result();
+        $result = [];
 
-        if ($permissions) {
-            return $permissions;
-        } else {
-            return false;
+        try {
+            $result = self::$db
+                ->get('permissions')
+                ->result();
+
+            if ($result) {
+                return $result;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
         }
+
+        return false;
     }
 }

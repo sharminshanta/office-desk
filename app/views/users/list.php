@@ -22,7 +22,27 @@ if (isset($messageError)) { ?>
         ?>
     </div>
 <?php } ?>
-
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h2>User List Of Company</h2>
+            <p>Manage your company. Manage your credentials. All in one place to integrate platform
+                with third party tools and libraries.</p>
+            <p>
+                <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
+                   title="Add a new user">
+                    <i class="fa fa-plus"></i>
+                    Add User
+                </a>
+                <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+                   title="Check security settings">
+                    <i class="fa fa-user-secret"></i>
+                    Roles & Permissions
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <div class="widget">

@@ -43,12 +43,23 @@ class Roles_Permissions_model extends CI_Model
      */
     public static function getAssignPermissions($roleID)
     {
-        $permissions = self::$db->where('role_id', $roleID)
-            ->select('permission_id')
-            ->get('roles_permissions')
-            ->result();
+        $result = [];
 
-        return $permissions;
+        try {
+            $result = self::$db->where('role_id', $roleID)
+                ->select('permission_id')
+                ->get('roles_permissions')
+                ->result();
+
+            if ($result) {
+                return $result;
+            }
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
     }
 
     /**
@@ -56,10 +67,20 @@ class Roles_Permissions_model extends CI_Model
      */
     public static function getAssignPermissionsName($permissionsID = [])
     {
-        $permissions = self::$db->where('id', $permissionsID)
-            ->get('permissions')
-            ->row();
+        $result = [];
 
-        return $permissions;
+        try {
+            $result = self::$db->where('id', $permissionsID)
+                ->get('permissions')
+                ->row();
+
+            if ($result) {
+                return $result;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
     }
 }

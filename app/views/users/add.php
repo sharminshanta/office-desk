@@ -9,6 +9,18 @@ $oldValue = $this->session->userdata('oldValue');
             <p>Add a new user with general information, addresses, timezone, language to personalized your experience
                 with
                 our platform</p>
+            <p>
+                <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+                   title="Users List">
+                    <i class="fa fa-list"></i>
+                    Users List
+                </a>
+                <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+                   title="Check security settings">
+                    <i class="fa fa-user-secret"></i>
+                    Roles & Permissions
+                </a>
+            </p>
         </div>
     </div>
 </div>

@@ -4,6 +4,23 @@
             <h3>USER DETAILS &raquo; <?php echo $details['user']->first_name . " " . $details['user']->last_name; ?></h3>
         </div>
     </div>
+    <p class="pull-right">
+        <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
+           title="Add a new user">
+            <i class="fa fa-plus"></i>
+            Add User
+        </a>
+        <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+           title="Users List">
+            <i class="fa fa-list"></i>
+            Users List
+        </a>
+        <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+           title="Check security settings">
+            <i class="fa fa-user-secret"></i>
+            Roles & Permissions
+        </a>
+    </p>
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
@@ -114,7 +131,7 @@ if (isset($message)) { ?>
            class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
         <span class="pull-right">
             <a href="<?php echo base_url()?>users/profile/<?php echo($details['user']->uuid); ?>" title="Edit this user" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-            <a title="Remove this user" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+            <a title="Remove this user" href="<?php echo base_url()?>users/delete/<?php echo($details['user']->uuid); ?>" class="btn btn-sm btn-danger deleteUserBtn"><i class="glyphicon glyphicon-remove"></i></a>
         </span>
     </div>
 

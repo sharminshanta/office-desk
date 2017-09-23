@@ -31,6 +31,18 @@ if (isset($message)) { ?>
            <?php } ?>
          <?php $this->session->unset_userdata('errors'); ?>
     <?php } ?>
+    <p class="pull-right">
+        <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
+           title="Add a new user">
+            <i class="fa fa-plus"></i>
+            Add User
+        </a>
+        <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+           title="Users List">
+            <i class="fa fa-list"></i>
+            Users List
+        </a>
+    </p>
 <div class="row">
     <div class="col-md-12">
         <div class="widget">
@@ -46,7 +58,7 @@ if (isset($message)) { ?>
             <div class="widget-body">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-4">
-                        <a class="btn btn-success changeRole" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i>Add Role</a>
+                        <a class="btn btn-success addNewRole" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i>Add Role</a>
                     </div>
                 </div>
             </div>
@@ -95,7 +107,12 @@ if (isset($message)) { ?>
                                     <td class="text-right">
                                         <a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" class="btn btn-sm btn-success fa fa-pencil" title="Assign Permissions">Assign Permissions</a>
                                         <a href="<?php echo base_url()?>roles/delete/<?php echo $role->uuid; ?>" class="btn btn-danger fa fa-trash" title="Delete this role ?" id="deleteBtn"> Delete</a>
-                                        <a href="" class="btn btn-primary fa fa-edit" title="Update this role ?"> Update</a>
+                                        <a class="btn btn-primary fa fa-edit updateRole" title="Update this role ?" data-toggle="modal"
+                                           data-name="<?php echo $role->name; ?>"
+                                           data-description="<?php echo $role->description; ?>"
+                                           data-id="<?php echo $role->id; ?>">
+                                            Update
+                                        </a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -110,7 +127,7 @@ if (isset($message)) { ?>
 
 
 <!-- Role Modal -->
-<div class="modal fade" id="changeRole" tabindex="-1" role="dialog" aria-labelledby="searchUser">
+<div class="modal fade" id="addNewRole" tabindex="-1" role="dialog" aria-labelledby="addNewRole">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header panel-primary">
@@ -119,12 +136,12 @@ if (isset($message)) { ?>
                 <h4 class="modal-title" id="searchUser">Add New Role</h4>
             </div>
             <div class="modal-body">
-                <form action="<?php echo base_url() ?>roles/addRole" method="post">
+                <form action="<?php echo base_url() ?>roles/create" method="post">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="form-type">Name</label>
-                                <input id="roleName" name="role[name]" type="text" placeholder="Name" class="form-control" required="required">
+                                <input name="role[name]" type="text" placeholder="Name" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -137,6 +154,41 @@ if (isset($message)) { ?>
                         </div>
                     </div>
                     <button class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Role Update Modal -->
+<div class="modal fade" id="updateRole" tabindex="-1" role="dialog" aria-labelledby="updateRole">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header panel-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="searchUser">Update Role</h4>
+            </div>
+            <div class="modal-body">
+                <form action="<?php echo base_url() ?>roles/update" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="form-type">Name</label>
+                                <input id="roleName" name="name" type="text" placeholder="Name" class="form-control" required="required">
+                                <input id="roleId" name="id" type="hidden">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="form-type">Description</label>
+                                <textarea class="form-control" id="roleDescription" name="description" placeholder="Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-success">Update</button>
                 </form>
             </div>
         </div>

@@ -809,4 +809,17 @@ class Utilities extends CI_Model
         $countName++;
         return $name . ' ' . $countName;
     }
+
+    /**
+     * @param $controllerName
+     * @param $folder
+     * @param $level
+     * @param $message
+     */
+    public static function logger($controllerName, $folder, $level, $message)
+    {
+        $log = new \Monolog\Logger($controllerName);
+        $log->pushHandler(new \Monolog\Handler\StreamHandler($folder));
+        $log->$level($message);
+    }
 }

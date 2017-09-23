@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class Users extends CI_Controller
 {
@@ -90,7 +92,7 @@ class Users extends CI_Controller
             $userMail = UsersModel::getEmailAddress($formData['email_address']);
             $validation->rule('equals', 'password', 'confirm_password')->message('Password does not matched');
 
-            if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
+            if (!preg_match('/^[a-zA-Z. ][a-zA-Z. ]*$/', $formData['first_name'])) {
                 $validation->addInstanceRule('firstName', function () {
                     return false;
                 });
@@ -153,6 +155,7 @@ class Users extends CI_Controller
             redirect('users');
         } else {
             $users['users'] = UsersModel::getUsers();
+            Utilities::logger('Users/list','../logs/app.log','info','User List Fetched Successfully');
             $content['header'] = $this->load->view('common/header', '', true);
             $content['navbar'] = $this->load->view('common/navbar', '', true);
             $content['placeholder'] = $this->load->view('users/list', $users, true);
@@ -222,7 +225,7 @@ class Users extends CI_Controller
             $validation->rule('required', 'timezone')->message('Timezone is required');
 
 
-            if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
+            if (!preg_match('/^[a-zA-Z. ][a-zA-Z. ]*$/', $formData['first_name'])) {
                 $validation->addInstanceRule('firstName', function () {
                     return false;
                 });
@@ -345,6 +348,9 @@ class Users extends CI_Controller
         }
     }
 
+    /**
+     * User delete route
+     */
     public function delete()
     {
         $loggedUser = $this->session->userdata('details');
@@ -370,7 +376,7 @@ class Users extends CI_Controller
     }
 
     /**
-     *
+     * This is users list with pagination
      */
     public function testLists()
     {
@@ -390,5 +396,20 @@ class Users extends CI_Controller
         $content['placeholder'] = $this->load->view('users/test_pagination', $data, true);
         $content['footer'] = $this->load->view('common/footer', '', true);
         $this->load->view('dashboard/dashboard', $content);
+    }
+
+    /**
+     * Admin Profile Page
+     */
+    public function admin_profile()
+    {
+        $userDetails = $this->session->userdata('details');
+        $user['userDetails'] = UsersModel::userDetails($userDetails['user']->uuid);
+        $data['header'] = $this->load->view('common/header', '', true);
+        $data['navbar'] = $this->load->view('common/navbar', '', true);
+        $data['placeholder'] = $this->load->view('admin/default', $user, true);
+        $data['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $data);
+
     }
 }

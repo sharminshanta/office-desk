@@ -106,13 +106,23 @@
 
     });
 
+    // Role Modal show
     $(document).ready(function () {
-        $(".changeRole").click(function () {
-            $("#dataName").val($(this).data('name'));//database table field
-            $("#dataId").val($(this).data('id'));//database table field
-            $('#changeRole').modal('show');
+        $(".addNewRole").click(function () {
+            $('#addNewRole').modal('show');
         });
     });
+
+    // Update Role Modal
+    $(document).ready(function () {
+        $(".updateRole").click(function () {
+            $("#roleName").val($(this).data('name'));//database table field
+            $("#roleDescription").val($(this).data('description'));//database table field
+            $("#roleId").val($(this).data('id'));//database table field
+            $('#updateRole').modal('show');
+        });
+    });
+
 
     var ctxAPIUsageMonthly = document.getElementById("apiUsageChartMonthly").getContext('2d');
     var apiUsageChartMonthly = new Chart(ctxAPIUsageMonthly, {
@@ -151,6 +161,12 @@
     $(document).ready(function () {
         $('#deleteBtn').click(function () {
             alert('Are you sure to delete this role ?');
+        });
+    });
+
+    $(document).ready(function () {
+        $('.deleteUserBtn').click(function () {
+            alert('Are you sure to delete this user ?');
         });
     });
 </script>
