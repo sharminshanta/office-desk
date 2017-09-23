@@ -114,7 +114,7 @@ if (isset($message)) { ?>
            class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
         <span class="pull-right">
             <a href="<?php echo base_url()?>users/profile/<?php echo($details['user']->uuid); ?>" title="Edit this user" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-            <a title="Remove this user" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+            <a title="Remove this user" href="<?php echo base_url()?>users/delete/<?php echo($details['user']->uuid); ?>" class="btn btn-sm btn-danger deleteUserBtn"><i class="glyphicon glyphicon-remove"></i></a>
         </span>
     </div>
 

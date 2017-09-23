@@ -163,6 +163,12 @@
             alert('Are you sure to delete this role ?');
         });
     });
+
+    $(document).ready(function () {
+        $('.deleteUserBtn').click(function () {
+            alert('Are you sure to delete this user ?');
+        });
+    });
 </script>
 </body>
 </html>
