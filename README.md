@@ -1,4 +1,4 @@
-Accounts Web Portal - Preview Technologies
+Accounts Web Portal - Besofty Software Limited
 
 ####Installation
 
