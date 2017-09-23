@@ -29,9 +29,7 @@
                 <li>
                     <a href="<?php echo base_url(); ?>roles/lists">Roles</a>
                 </li>
-                <li>
-                    <a href="/profile/profile_picture">Departments</a>
-                </li>
+
                 <li>
                     <a href="/profile/profile_picture">Office Time</a>
                 </li>
@@ -46,10 +44,10 @@
             </a>
             <ul id="manage_profile" class="submenu collapse" aria-expanded="false" style="height: 0px;">
                 <li>
-                    <a href="/profile/update">Update Profile</a>
+                    <a href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>">Update Profile</a>
                 </li>
                 <li>
-                    <a href="/profile/profile_picture">Change Profile Picture</a>
+                    <a href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>">Change Profile Picture</a>
                 </li>
             </ul>
         </li>
@@ -62,10 +60,10 @@
             </a>
             <ul id="security_settings" class="submenu collapse" aria-expanded="false" style="height: 0px;">
                 <li>
-                    <a href="/settings/security_question">Security Questions</a>
+                    <a href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>">Security Questions</a>
                 </li>
                 <li>
-                    <a href="/settings/change_password">Change Password</a>
+                    <a href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>">Change Password</a>
                 </li>
             </ul>
         </li>
