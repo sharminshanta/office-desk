@@ -396,19 +396,4 @@ class Users extends CI_Controller
         $content['footer'] = $this->load->view('common/footer', '', true);
         $this->load->view('dashboard/dashboard', $content);
     }
-
-    /**
-     * Admin Profile Page
-     */
-    public function admin_profile()
-    {
-        $userDetails = $this->session->userdata('details');
-        $user['userDetails'] = UsersModel::userDetails($userDetails['user']->uuid);
-        $data['header'] = $this->load->view('common/header', '', true);
-        $data['navbar'] = $this->load->view('common/navbar', '', true);
-        $data['placeholder'] = $this->load->view('admin/default', $user, true);
-        $data['footer'] = $this->load->view('common/footer', '', true);
-        $this->load->view('dashboard/dashboard', $data);
-
-    }
 }
