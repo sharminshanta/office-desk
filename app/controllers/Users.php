@@ -91,7 +91,7 @@ class Users extends CI_Controller
             $userMail = UsersModel::getEmailAddress($formData['email_address']);
             $validation->rule('equals', 'password', 'confirm_password')->message('Password does not matched');
 
-            if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
+            if (!preg_match('/^[a-zA-Z. ][a-zA-Z. ]*$/', $formData['first_name'])) {
                 $validation->addInstanceRule('firstName', function () {
                     return false;
                 });
@@ -224,7 +224,7 @@ class Users extends CI_Controller
             $validation->rule('required', 'timezone')->message('Timezone is required');
 
 
-            if (!preg_match('/^[a-zA-Z][a-zA-Z ]*$/', $formData['first_name'])) {
+            if (!preg_match('/^[a-zA-Z. ][a-zA-Z. ]*$/', $formData['first_name'])) {
                 $validation->addInstanceRule('firstName', function () {
                     return false;
                 });
