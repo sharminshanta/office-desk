@@ -1,3 +1,15 @@
+<?php
+$message = $this->session->userdata('success');
+
+if (isset($message)) { ?>
+    <div class="notice notice-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php
+        echo $message;
+        $this->session->unset_userdata('success')
+        ?>
+    </div>
+<?php } ?>
 <div class="row">
     <div class="col-md-12">
         <div class="jumbotron">
@@ -40,7 +52,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="widget-body">
-                    <form class="form" method="post" action="/settings/setOfficeTime">
+                    <form class="form" method="post" action="/settings/setOffice">
                         <div class="form-group">
                             <label>Start From</label>
                             <input name="office_starting_time" type="time" class="form-control" required>

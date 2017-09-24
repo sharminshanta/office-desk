@@ -220,9 +220,31 @@ class Settings extends CI_Controller
     /**
      * Set office time post route
      */
-    public function setOfficeTime()
+    public function setOffice()
     {
-        var_dump($_POST); die();
+        $isPermit = Utilities::is_permit('office-settings');
+
+        if ($isPermit == null) {
+            redirect('Settings');
+        } else {
+            try {
+                $settings = Utilities::registerMetaData($_POST);
+                $success = true;
+                Utilities::logger('Settings/setOffice','../logs/app.log','info','Office meta has been set Successfully');
+            } catch (Exception $exception) {
+                $exception->getMessage();
+                $success = false;
+                Utilities::logger('Settings/setOffice','../logs/app.log','error','Office meta doesn\'t set');
+            }
+
+            if ($success == true) {
+                $message['success'] = 'Office meta has been set Successfully';
+                $this->session->set_userdata($message);
+                redirect('settings/office');
+            }
+
+            redirect('settings/office');
+        }
     }
 
 }

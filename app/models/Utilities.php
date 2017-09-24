@@ -823,6 +823,7 @@ class Utilities extends CI_Model
         $log->$level($message);
     }
 
+
     /**
      * @param $data
      * @return mixed
@@ -831,21 +832,16 @@ class Utilities extends CI_Model
     {
         $i = 0;
         $return = [];
+
         foreach ($data as $key => $value) {
             $i = $i + 1;
-            $count = Settings::where('key', $key)->count();
+            $count = Meta_model::metaCount($key);
             if ($count == 0) {
-                $newSetting = new Settings();
-                $newSetting->key = $key;
-                $newSetting->value = $value;
-                $submit = $newSetting->save();
+               $result =  Meta_model::create($key, $value);
             } else {
-                $oldKey = Settings::where('key', $key)->first();
-                $flight = Settings::find($oldKey->id);
-                $flight->value = $value;
-                $submit = $flight->save();
+                $result = Meta_model::update($key, $value);
             }
         }
-        return $submit;
+        return $result;
     }
 }
