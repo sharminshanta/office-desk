@@ -822,4 +822,30 @@ class Utilities extends CI_Model
         $log->pushHandler(new \Monolog\Handler\StreamHandler($folder));
         $log->$level($message);
     }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public static function registerMetaData($data)
+    {
+        $i = 0;
+        $return = [];
+        foreach ($data as $key => $value) {
+            $i = $i + 1;
+            $count = Settings::where('key', $key)->count();
+            if ($count == 0) {
+                $newSetting = new Settings();
+                $newSetting->key = $key;
+                $newSetting->value = $value;
+                $submit = $newSetting->save();
+            } else {
+                $oldKey = Settings::where('key', $key)->first();
+                $flight = Settings::find($oldKey->id);
+                $flight->value = $value;
+                $submit = $flight->save();
+            }
+        }
+        return $submit;
+    }
 }

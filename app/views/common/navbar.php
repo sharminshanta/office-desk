@@ -31,7 +31,7 @@
                 </li>
 
                 <li>
-                    <a href="/profile/profile_picture">Office Time</a>
+                    <a href="<?php echo base_url();?>settings/office">Office</a>
                 </li>
             </ul>
         </li>

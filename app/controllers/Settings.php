@@ -63,37 +63,43 @@ class Settings extends CI_Controller
      */
     public function changeSecurityQuestion()
     {
-        $postData = $_POST['user'];
-        $validation = new Valitron\Validator($postData);
-        $validation->rule('required', 'security_questions_one')->message('Question is required');
-        $validation->rule('required', 'security_questions_two')->message('Question is required');
-        $validation->rule('required', 'security_questions_one_answer')->message('Answer is required');
-        $validation->rule('required', 'security_questions_two_answer')->message('Answer is required');
+        $isPermit = Utilities::is_permit('users_security_question_changed');
 
-        if ($postData['security_questions_one'] == $postData['security_questions_two']) {
-            $validation->addInstanceRule('questionCheck', function () {
-                return false;
-            });
-            $validation->rule('questionCheck', 'security_questions_one')->message('Questions are same. Choose the different question');
-        }
-
-        if (!$validation->validate()) {
-            $errors['errors'] = $validation->errors();
-            $this->session->set_userdata($errors);
-            redirect('settings/security/' . $this->uri->segment(3));
+        if ($isPermit == null) {
+            redirect('users');
         } else {
-            try {
-                UsersModel::securityQuestion($postData, $this->uri->segment(3));
-                $success = true;
-            } catch (Exception $exception) {
-                $exception->getMessage();
-                $success = false;
+            $postData = $_POST['user'];
+            $validation = new Valitron\Validator($postData);
+            $validation->rule('required', 'security_questions_one')->message('Question is required');
+            $validation->rule('required', 'security_questions_two')->message('Question is required');
+            $validation->rule('required', 'security_questions_one_answer')->message('Answer is required');
+            $validation->rule('required', 'security_questions_two_answer')->message('Answer is required');
+
+            if ($postData['security_questions_one'] == $postData['security_questions_two']) {
+                $validation->addInstanceRule('questionCheck', function () {
+                    return false;
+                });
+                $validation->rule('questionCheck', 'security_questions_one')->message('Questions are same. Choose the different question');
             }
 
-            if ($success == true) {
-                $message['success'] = 'Security has been updated successfully';
-                $this->session->set_userdata($message);
+            if (!$validation->validate()) {
+                $errors['errors'] = $validation->errors();
+                $this->session->set_userdata($errors);
                 redirect('settings/security/' . $this->uri->segment(3));
+            } else {
+                try {
+                    UsersModel::securityQuestion($postData, $this->uri->segment(3));
+                    $success = true;
+                } catch (Exception $exception) {
+                    $exception->getMessage();
+                    $success = false;
+                }
+
+                if ($success == true) {
+                    $message['success'] = 'Security has been updated successfully';
+                    $this->session->set_userdata($message);
+                    redirect('settings/security/' . $this->uri->segment(3));
+                }
             }
         }
     }
@@ -104,7 +110,12 @@ class Settings extends CI_Controller
      */
     public function changePassword()
     {
-        $postData = $_POST['user'];
+        $isPermit = Utilities::is_permit('users_security_question_changed');
+
+        if ($isPermit == null) {
+            redirect('users');
+        } else {
+            $postData = $_POST['user'];
         $user = UsersModel::userDetails($this->uri->segment(3));
         $validation = new Valitron\Validator($postData);
         $validation->rule('required', 'current_password')->message('Current password is required');
@@ -145,8 +156,12 @@ class Settings extends CI_Controller
                 redirect('settings/security/' . $this->uri->segment(3));
             }
         }
+        }
     }
 
+    /**
+     * Profile Picture post data
+     */
     public function profile_picture()
     {
         $image = $_FILES['photo'];
@@ -182,6 +197,32 @@ class Settings extends CI_Controller
                 redirect('settings/security/' . $this->uri->segment(3));
             }
         }
+    }
+
+    /**
+     * Office management route
+     */
+    public function office()
+    {
+        $isPermit = Utilities::is_permit('office-settings');
+
+        if ($isPermit == null) {
+            redirect('Settings');
+        } else {
+            $content['header'] = $this->load->view('common/header', '', true);
+            $content['navbar'] = $this->load->view('common/navbar', '', true);
+            $content['placeholder'] = $this->load->view('settings/default_settings', '', true);
+            $content['footer'] = $this->load->view('common/footer', '', true);
+            $this->load->view('dashboard/dashboard', $content);
+        }
+    }
+
+    /**
+     * Set office time post route
+     */
+    public function setOfficeTime()
+    {
+        var_dump($_POST); die();
     }
 
 }

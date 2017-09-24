@@ -28,7 +28,11 @@ class Roles_Permissions extends CI_Controller
      */
     public function index()
     {
-        var_dump(111); die();
+        $content['header'] = $this->load->view('common/header', '', true);
+        $content['navbar'] = $this->load->view('common/navbar', '', true);
+        $content['placeholder'] = $this->load->view('errors/is_permit', '', true);
+        $content['footer'] = $this->load->view('common/footer', '', true);
+        $this->load->view('dashboard/dashboard', $content);
     }
 
     /**
@@ -37,14 +41,23 @@ class Roles_Permissions extends CI_Controller
      */
     public function assign()
     {
-        $permissions['role'] = Roles_model::details($this->uri->segment(3));
-        $permissions['permissions'] = Permissions_model::getPermissions();
-        $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($permissions['role']->id);
-        $content['header'] = $this->load->view('common/header', '', true);
-        $content['navbar'] = $this->load->view('common/navbar', '', true);
-        $content['placeholder'] = $this->load->view('users/roles_permissions', $permissions, true);
-        $content['footer'] = $this->load->view('common/footer', '', true);
-        $this->load->view('dashboard/dashboard', $content);
+        /**
+         * Check the user's permission
+         */
+        $isPermit = Utilities::is_permit('permissions_add');
+
+        if ($isPermit == null) {
+            redirect('roles_Permissions');
+        } else {
+            $permissions['role'] = Roles_model::details($this->uri->segment(3));
+            $permissions['permissions'] = Permissions_model::getPermissions();
+            $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($permissions['role']->id);
+            $content['header'] = $this->load->view('common/header', '', true);
+            $content['navbar'] = $this->load->view('common/navbar', '', true);
+            $content['placeholder'] = $this->load->view('users/roles_permissions', $permissions, true);
+            $content['footer'] = $this->load->view('common/footer', '', true);
+            $this->load->view('dashboard/dashboard', $content);
+        }
     }
 
     /**
@@ -52,27 +65,27 @@ class Roles_Permissions extends CI_Controller
      */
     public function assignPermission()
     {
-        try {
-            Roles_Permissions_model::add();
-            $success = true;
-        } catch (Exception $exception) {
-            $exception->getMessage('This is an error');
-            $success = false;
-        }
+        /**
+         * Check the user's permission
+         */
+        $isPermit = Utilities::is_permit('permissions_add');
 
-        if ($success == true) {
-            $message['success'] = 'Permission has been assigned successfully';
-            $this->session->set_userdata($message);
-            redirect('roles_Permissions/assign/' . $this->uri->segment(3));
-        }
-    }
+        if ($isPermit == null) {
+            redirect('roles_Permissions');
+        } else {
+            try {
+                Roles_Permissions_model::add();
+                $success = true;
+            } catch (Exception $exception) {
+                $exception->getMessage('This is an error');
+                $success = false;
+            }
 
-    /**
-     * User's permission check
-     */
-    public function testPermission()
-    {
-        $data = Utilities::is_permitTest('users_add');
-        var_dump($data); die();
+            if ($success == true) {
+                $message['success'] = 'Permission has been assigned successfully';
+                $this->session->set_userdata($message);
+                redirect('roles_Permissions/assign/' . $this->uri->segment(3));
+            }
+        }
     }
 }
