@@ -39,18 +39,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <div class="content">
-            <input name="email_address" type="email" autofocus class="input username" placeholder="Email" required="required" onfocus="this.value=''" />
+            <input name="email_address" type="email" autofocus class="input username" placeholder="example@besofty.com" required="required" onfocus="this.value=''" />
             <input name="password" type="password" class="input password" placeholder="Password" required="required" onfocus="this.value=''" />
         </div>
 
         <div class="footer">
             <input type="submit" name="btnsubmit" id='btn' onclick="move()" value="Login" class="button animate-me" />
            <div class="formFooter">
-               <a href="">haven't account?</a>
+               <div class="pull-left"><a href="">Haven't account?</a></div>
+               <div class="pull-right"><a href="<?php echo base_url()?>security">Forgot password?</a></div>
            </div>
             <script>
                 $('.animate-me').on('click',function(){
-
                     $('.login-form').addClass('animated fadeOutLeft');
                 });
             </script>
