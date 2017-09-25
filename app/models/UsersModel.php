@@ -511,4 +511,71 @@ class UsersModel extends CI_Model {
             throw  $exception;
         }
     }
+
+    /**
+     * @param $email
+     * @return array
+     * @throws Exception
+     */
+    public static function getUserByEmail($email)
+    {
+        $result = [];
+
+        try {
+            $result = self::$db->where('email_address', $email)
+                ->get('users')
+                ->row();
+            if ($result) {
+                return $result;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $pwdToken
+     * @return array|bool
+     * @throws Exception
+     */
+    public static function getUserByPasswordToken($pwdToken)
+    {
+        $result = [];
+
+        try {
+            $result = self::$db->where('password_token', $pwdToken)
+                ->get('users')
+                ->row();
+            if ($result) {
+                return $result;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $email
+     * @return array
+     * @throws Exception
+     */
+    public static function updateUserByEmail($uuid, $data)
+    {
+        $result = [];
+
+        try {
+            $result = self::$db->where('uuid', $uuid)->update('users', $data);
+            if ($result) {
+                return true;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
+    }
 }
