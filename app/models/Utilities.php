@@ -830,11 +830,9 @@ class Utilities extends CI_Model
      */
     public static function registerMetaData($data)
     {
-        $i = 0;
         $return = [];
 
         foreach ($data as $key => $value) {
-            $i = $i + 1;
             $count = Meta_model::metaCount($key);
             if ($count == 0) {
                $result =  Meta_model::create($key, $value);
