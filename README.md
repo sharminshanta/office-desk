@@ -1,4 +1,4 @@
-```php
+```html
  <h1>Accounts Web Portal - Besofty Software Limited</h1>
  <b>####Installation</b>
  <ul>
