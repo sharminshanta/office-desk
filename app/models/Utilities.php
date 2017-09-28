@@ -750,8 +750,8 @@ class Utilities extends CI_Model
      */
     public static function is_permit($slug)
     {
-        $user = self::$session->userdata('details');
-        $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($user['user']->role_id);
+        $user = self::$session->userdata('authinfo');
+        $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($user['profile']->role_id);
 
         $data = [];
         $haystack['permissions'] = [];

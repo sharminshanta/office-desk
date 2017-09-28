@@ -16,7 +16,7 @@ class Users extends CI_Controller
          * All data of a user is saved with session
          * If all data is true then redirect to dashboard
          */
-        $user = $this->session->userdata('details');
+        $user = $this->session->userdata('authinfo', 'role');
 
         if($user == null) {
             $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
@@ -30,11 +30,7 @@ class Users extends CI_Controller
      */
     public function index()
     {
-        $content['header'] = $this->load->view('common/header', '', true);
-        $content['navbar'] = $this->load->view('common/navbar', '', true);
-        $content['placeholder'] = $this->load->view('errors/is_permit', '', true);
-        $content['footer'] = $this->load->view('common/footer', '', true);
-        $this->load->view('dashboard/dashboard', $content);
+        $this->twig->display('/errors/no-permission');
     }
 
     /**
@@ -52,11 +48,7 @@ class Users extends CI_Controller
             redirect('users');
         } else {
             $roles['roles'] = Roles_model::getRoles();
-            $data['header'] = $this->load->view('common/header', '', true);
-            $data['navbar'] = $this->load->view('common/navbar', '', true);
-            $data['placeholder'] = $this->load->view('users/add', $roles, true);
-            $data['footer'] = $this->load->view('common/footer', '', true);
-            $this->load->view('dashboard/dashboard', $data);
+            $this->twig->display('/users/add', $roles);
         }
     }
 
