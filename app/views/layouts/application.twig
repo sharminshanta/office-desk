@@ -7,44 +7,25 @@
     <meta name="description" content="Preview Technologies">
     <meta name="author" content="Preview Technologies Limited">
     <link href="/assets/img/logo.png" rel="icon">
-    <title>{% block title %}Dashboard{% endblock %} | Preview Technologies Desk</title>
-
+    <title>{% block title %}Dashboard{% endblock %} | Besofty Software Limited</title>
     <!-- CSS libraries-->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/assets/css/linearicons/style.css" rel="stylesheet">
-
     <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-
     <!-- Custom stylesheet -->
     <link href="/assets/css/main.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
-    <link href="/assets/flat-checkin/flaticon.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-
-    <link href="/assest/css/morris.css" rel="stylesheet">
-
     <!-- Inject css/js into top of the layout from another place -->
     {% block cssTop %} {% endblock %}
     {% block jsTop %} {% endblock %}
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.css"/>
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]>
-    <script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/assets/js/ie8-responsive-file-warning.js"></script>
+    <![endif]-->
     <script src="/assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
     <script src="/assets/js/html5shiv.min.js"></script>
     <script src="/assets/js/respond.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <!--wrapper -->
@@ -96,7 +77,8 @@
                         <a href="/users/profile/<?php echo $userDetails['user']->uuid; ?>">Update Profile</a>
                     </li>
                     <li>
-                        <a href="/settings/security/<?php echo $userDetails['user']->uuid;''?>">Change Profile Picture</a>
+                        <a href="/settings/security/<?php echo $userDetails['user']->uuid;''?>">Change Profile
+                            Picture</a>
                     </li>
                 </ul>
             </li>
@@ -165,9 +147,11 @@
                                 {% if session.authinfo.profile.picture is not null %}
                                     <img src="{{ session.authinfo.profile.picture }}"
                                          class="avatar img-thumbnail profile-pic"
-                                         onerror="this.onerror=null;this.src='/assets/img/profile.jpg'" alt="Profile Photo">
+                                         onerror="this.onerror=null;this.src='/assets/img/profile.jpg'"
+                                         alt="Profile Photo">
                                 {% else %}
-                                    <img src="/assets/img/profile.jpg" class="avatar img-thumbnail profile-pic"  alt="Profile Photo">
+                                    <img src="/assets/img/profile.jpg" class="avatar img-thumbnail profile-pic"
+                                         alt="Profile Photo">
                                 {% endif %}
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenu1"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -176,11 +160,13 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <li>
-                                        <a href="/users/profile/<?php echo $userDetails['user']->uuid; ?>"><i class="fa fa-user"></i>
-                                          {{ session.authinfo.profile.first_name }}  {{ session.authinfo.profile.last_name }}
+                                        <a href="/users/profile/<?php echo $userDetails['user']->uuid; ?>"><i
+                                                    class="fa fa-user"></i>
+                                            {{ session.authinfo.profile.first_name }}  {{ session.authinfo.profile.last_name }}
                                         </a>
                                     </li>
-                                    <li><a href="/settings/security/{{ session.authinfo.profile.uuid }}"><i class="fa fa-wrench"></i> Setting</a></li>
+                                    <li><a href="/settings/security/{{ session.authinfo.profile.uuid }}"><i
+                                                    class="fa fa-wrench"></i> Setting</a></li>
                                     <li><a href="/logout/"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
                             </div>
@@ -199,33 +185,24 @@
         </div>
         <!--End Placeholder-->
         <footer class="footer">
-        <div class="container-fluid">
-            <p class="copy-text">Copyright &copy; {{ 'now' | date('Y') }} All Rights Reserved by <a
-                        href="https://www.besofty.com" target="_blank">Besofty Software Limited</a></p>
-        </div>
-    </footer>
+            <div class="container-fluid">
+                <p class="copy-text">Copyright &copy; {{ 'now' | date('Y') }} All Rights Reserved by <a
+                            href="https://www.besofty.com" target="_blank">Besofty Software Limited</a></p>
+            </div>
+        </footer>
+    </div>
 </div>
 <!--End wrapper -->
 
-    <script src="/assets/js/jquery-2.2.0.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <!-- Custom javascript -->
-    <script src="/assets/js/theme.js"></script>
-    <script src="/assets/js/custom.js"></script>
-    <script src="/assets/js/moment.js"></script>
-    <script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="/assets/js/raphael.min.js"></script>
-    <script src="/assets/js/morris.js"></script>
-    {#<script src="/assest/js/morris-data.js"></script>#}
-
-    <!-- Inject css/js into bottom of the layout from another place -->
-    {% block cssBottom %} {% endblock %}
-    {% block jsBottom %}
-    {% endblock %}
-
+<script src="/assets/js/jquery-2.2.0.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+<!-- Custom javascript -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/moment.js"></script>
+<!-- Inject css/js into bottom of the layout from another place -->
+{% block cssBottom %} {% endblock %}
+{% block jsBottom %} {% endblock %}
 </body>
 </html>

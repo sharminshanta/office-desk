@@ -9,11 +9,6 @@
                     <p>Manage your company. Manage your credentials. All in one place to integrate platform
                         with third party tools and libraries.</p>
                     <p>
-                        <a class="btn btn-success" onclick="addUser()"><i class="fa fa-plus"></i> Add User</a>
-                        <!--<a href="#" data-toggle="modal" data-target="#createUserModal" class="btn btn-primary" href="/profile/general/update"
-                           title="Add user"><i class="fa fa-info"></i>
-                            Add User
-                        </a>-->
                         <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
                            title="Add a new user">
                             <i class="fa fa-plus"></i>
@@ -33,16 +28,6 @@
                 </div>
             </div>
         </div>
-        {#<div class="row">
-            <div class="col-md-6">
-                <h3>Users Attendance History (Monthly)</h3>
-                <canvas id="apiUsageChartMonthly"></canvas>
-            </div>
-            <div class="col-md-6">
-                <h3>Users Attendance History (Daily)</h3>
-                <canvas id="apiUsageChartDaily"></canvas>
-            </div>
-        </div>#}
     {% else %}
         <div class="row">
             <div class="col-lg-6">
@@ -53,21 +38,25 @@
                         </h3>
                     </div>
                     <div class="panel-body text-center" id="leftPanel">
-                        <a class="btn btn-primary btnMargin" href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"
+                        <a class="btn btn-primary btnMargin"
+                           href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"
                            title="Update your profile"><i class="fa fa-info"></i>
                             Update Profile
                         </a>
-                        <a class="btn btn-danger btnMargin" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
+                        <a class="btn btn-danger btnMargin"
+                           href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
                            title="Change account password">
                             <i class="fa fa-user-secret"></i>
                             Change Password
                         </a>
-                        <a class="btn btn-info btnMargin" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
+                        <a class="btn btn-info btnMargin"
+                           href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
                            title="Check security settings">
                             <i class="fa fa-shield"></i>
                             Review Security Settings
                         </a>
-                        <a class="btn btn-success btnMargin"  href="<?php echo base_url()?>settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
+                        <a class="btn btn-success btnMargin"
+                           href="<?php echo base_url()?>settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
                            title="Change Profile Picture">
                             <i class="fa fa-user"></i>
                             Change Profile Picture
