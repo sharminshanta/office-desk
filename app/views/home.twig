@@ -9,17 +9,17 @@
                     <p>Manage your company. Manage your credentials. All in one place to integrate platform
                         with third party tools and libraries.</p>
                     <p>
-                        <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
+                        <a class="btn btn-primary" href="/users/home"
                            title="Add a new user">
                             <i class="fa fa-plus"></i>
                             Add User
                         </a>
-                        <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+                        <a class="btn btn-warning" href="/users/lists"
                            title="Users List">
                             <i class="fa fa-list"></i>
                             Users List
                         </a>
-                        <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+                        <a class="btn btn-info" href="/roles/lists"
                            title="Check security settings">
                             <i class="fa fa-user-secret"></i>
                             Roles & Permissions
@@ -39,24 +39,24 @@
                     </div>
                     <div class="panel-body text-center" id="leftPanel">
                         <a class="btn btn-primary btnMargin"
-                           href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"
+                           href="/users/profile/<?php echo $userDetails['user']->uuid; ?>"
                            title="Update your profile"><i class="fa fa-info"></i>
                             Update Profile
                         </a>
                         <a class="btn btn-danger btnMargin"
-                           href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
+                           href="/settings/security/<?php echo $userDetails['user']->uuid;''?>"
                            title="Change account password">
                             <i class="fa fa-user-secret"></i>
                             Change Password
                         </a>
                         <a class="btn btn-info btnMargin"
-                           href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
+                           href="/settings/security/<?php echo $userDetails['user']->uuid;''?>"
                            title="Check security settings">
                             <i class="fa fa-shield"></i>
                             Review Security Settings
                         </a>
                         <a class="btn btn-success btnMargin"
-                           href="<?php echo base_url()?>settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
+                           href="/settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
                            title="Change Profile Picture">
                             <i class="fa fa-user"></i>
                             Change Profile Picture
