@@ -3,14 +3,17 @@
         <img src="<?php echo base_url()?>assets/img/favicon.png" class="logo"><br><br>
         <h5>Security - Besofty Software Ltd.</h5>
         <?php
-        $error = $this->session->userdata('error');
-        if (isset($error)) {
-            echo "<span style='color:red; font-size: 13px'>$error</span>";
-            $this->session->unset_userdata('error');
-        }
+            $error = $this->session->userdata('error');
+            $success = $this->session->userdata('success');
+            if (isset($error)) {
+                echo "<span style='color:red; font-size: 13px'>$error</span>";
+                $this->session->unset_userdata('error');
+            } elseif(isset($success)) {
+                echo "<span style='color:green; font-size: 13px'>$success</span>";
+                $this->session->unset_userdata('success');
+            }
         ?>
     </div>
-
     <div class="content">
         <input name="password" type="password" autofocus class="input password" placeholder="New password" required="required" onfocus="this.value=''" />
         <input name="confirm_password" type="password" autofocus class="input password" placeholder="Confirm password" required="required" onfocus="this.value=''" />

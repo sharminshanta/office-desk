@@ -43,7 +43,7 @@ class Security extends CI_Controller
                     var_dump($link); die();
                 }
             }else {
-                $message['error'] = 'Sorry, Email address does not registered';
+                $message['error'] = 'Email address hasn\'t yet registered';
                 $this->session->set_userdata($message);
                 redirect('security');
             }
@@ -63,19 +63,20 @@ class Security extends CI_Controller
             if(isset($token)) {
                 $user = UsersModel::getUserByPasswordToken($token);
                 if(isset($user) && $user) {
-                    $content['header'] = $this->load->view('emails/header', '', true);
-                    $content['placeholder'] = $this->load->view('emails/reset_pwd', '', true);
-                    $this->load->view('emails/default', $content);
+                    $message['success'] = 'You can reset your password here';
+                    $this->session->set_userdata($message);
                 } else {
                     $message['error'] = 'Sorry, Unauthorised access';
                     $this->session->set_userdata($message);
-                    $content['header'] = $this->load->view('emails/header', '', true);
-                    $content['placeholder'] = $this->load->view('emails/reset_pwd', '', true);
-                    $this->load->view('emails/default', $content);
+                    //redirect($this->uri->uri_string());
                 }
             }
         } catch (Exception $exception) {
             $exception->getMessage();
         }
+
+        $content['header'] = $this->load->view('emails/header', '', true);
+        $content['placeholder'] = $this->load->view('emails/reset_pwd', '', true);
+        $this->load->view('emails/default', $content);
     }
 }

@@ -7,6 +7,8 @@
             if (isset($error)) {
                 echo "<span style='color:red; font-size: 13px'>$error</span>";
                 $this->session->unset_userdata('error');
+            } else {
+                echo "<span>Authorized Users Only</span>";
             }
         ?>
     </div>

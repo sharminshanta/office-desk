@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
     <title>Login - Besofty Software Limited</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="<?php echo base_url()?>assets/img/besofty.png" rel="icon"/>
+    <link href="<?php echo base_url()?>assets/img/favicon.png" rel="icon"/>
     <!--SCRIPTS-->
     <link href="<?php echo base_url()?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo base_url()?>assets/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
