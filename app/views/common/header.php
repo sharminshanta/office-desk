@@ -7,7 +7,7 @@
     <meta name="description" content="Preview Technologies">
     <meta name="author" content="Preview Technologies Limited">
     <link rel="icon" href="<?php echo base_url()?>assets/img/favicon.png">
-    <title><?php echo $this->uri->segment(1) . " | " . $this->uri->segment(2) ?></title>
+    <title><?php echo $this->uri->segment(1) . " | " . ($this->uri->segment(2) ?: 'Besofty Software Limited') ?></title>
     <!-- CSS libraries-->
     <link href="<?php echo base_url()?>assets/css/bootstrap.min.css" rel="stylesheet">
     <!--<link href="assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet">-->
