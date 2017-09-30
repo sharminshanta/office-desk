@@ -43,8 +43,7 @@ class Security extends CI_Controller
                     var_dump($link); die();
                 }
             }else {
-                $message['error'] = 'Email address hasn\'t yet registered';
-                $this->session->set_userdata($message);
+                $this->session->set_flashdata('error', 'Email address hasn\'t yet registered');
                 redirect('security');
             }
         } catch (Exception $exception) {
