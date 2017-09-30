@@ -101,7 +101,9 @@ class Security extends CI_Controller
             $validation->rule('checkPassword', 'new_password')->message('New password doesn\'t match with confirm password');
         }
 
-
+        /**
+         * If post data is not valid then redirect to referrer link
+         */
         if (!$validation->validate()) {
             $errors['errors'] = $validation->errors();
             $this->session->set_userdata($errors);
