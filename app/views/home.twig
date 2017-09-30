@@ -1,6 +1,5 @@
 {% extends 'layouts/application.twig' %}
 {% block content %}
-    {{ dump(sessionsss) }}
     {% if session.role.slug == 'super-administrator' %}
         <div class="row">
             <div class="col-md-12">
