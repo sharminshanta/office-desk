@@ -546,7 +546,6 @@ class UsersModel extends CI_Model {
 
         try {
             $result = self::$db->where('password_token', $pwdToken)
-                ->select('password_token')
                 ->get('users')
                 ->row();
             if ($result) {
@@ -578,5 +577,38 @@ class UsersModel extends CI_Model {
         }
 
         return false;
+    }
+
+    /**
+     * @param $data
+     * @return bool
+     * @throws Exception
+     */
+    public static function resetPassword($data)
+    {
+        try{
+            $user = self::$db->where('password_token', $data['password_token'])
+                ->get('users')
+                ->row();
+
+            if ($user) {
+                $data = [
+                    'password' => md5($data['new_password'])
+                ];
+
+                if ($data) {
+                    try {
+                        self::$db->where('password_token', $user->password_token)->update('users', $data);
+                        return true;
+                    } catch (Exception $exception) {
+                        throw $exception;
+                    }
+                }
+            }
+
+            return false;
+        } catch (Exception $exception) {
+            throw  $exception;
+        }
     }
 }
