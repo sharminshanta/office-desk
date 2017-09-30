@@ -546,6 +546,7 @@ class UsersModel extends CI_Model {
 
         try {
             $result = self::$db->where('password_token', $pwdToken)
+                ->select('password_token')
                 ->get('users')
                 ->row();
             if ($result) {
