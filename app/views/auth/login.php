@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Login - Besofty Software Limited</title>
+    <title><?php echo $this->uri->segment(1) . " | " ; ?>Besofty Software Limited</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?php echo base_url()?>assets/img/favicon.png" rel="icon"/>
     <!--SCRIPTS-->
