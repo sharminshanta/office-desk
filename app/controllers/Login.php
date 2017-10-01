@@ -13,9 +13,13 @@ class Login extends CI_Controller {
          * All data of a user is saved with session
          * If all data is true then redirect to dashboard
          */
-        $user = $this->session->userdata('authinfo', 'role');
 
-        if($user != null) {
+        $authinfo = [
+            'auth' => $this->session->userdata('authinfo'),
+            'role' => $this->session->userdata('role')
+        ];
+
+        if($authinfo['auth'] != null & $authinfo['role'] != null) {
             redirect('dashboard','refresh');
         }
     }

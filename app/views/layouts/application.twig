@@ -42,13 +42,13 @@
             <li>
                 <a href="/dashboard">
                     <i class="col-md-4"></i>
-                    Hi, {{ session.role.name }}
+                    Hi, {{ authinfo.role.name }}
                 </a>
             </li>
             <li>
                 <a href="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
             </li>
-            {% if session.role.slug == 'super-administrator' %}
+            {% if authinfo.role.slug == 'super-administrator' %}
                 <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#settings" class="collapsed"
                        aria-expanded="false">
@@ -144,8 +144,8 @@
                     <div class="pull-right">
                         <div class="profile-overview">
                             <div class="dropdown customm-dropdown">
-                                {% if session.authinfo.profile.picture is not null %}
-                                    <img src="{{ session.authinfo.profile.picture }}"
+                                {% if authinfo.auth.profile.picture is not null %}
+                                    <img src="{{ authinfo.auth.profile.picture }}"
                                          class="avatar img-thumbnail profile-pic"
                                          onerror="this.onerror=null;this.src='/assets/img/profile.jpg'"
                                          alt="Profile Photo">
@@ -155,17 +155,17 @@
                                 {% endif %}
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenu1"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    {{ session.authinfo.profile.first_name }}  {{ session.authinfo.profile.last_name }}
+                                    {{ authinfo.auth.profile.first_name }}  {{ authinfo.auth.profile.last_name }}
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <li>
                                         <a href="/users/profile/<?php echo $userDetails['user']->uuid; ?>"><i
                                                     class="fa fa-user"></i>
-                                            {{ session.authinfo.profile.first_name }}  {{ session.authinfo.profile.last_name }}
+                                            {{ authinfo.auth.profile.first_name }}  {{ authinfo.auth.profile.last_name }}
                                         </a>
                                     </li>
-                                    <li><a href="/settings/security/{{ session.authinfo.profile.uuid }}"><i
+                                    <li><a href="/settings/security/{{ authinfo.auth.profile.uuid }}"><i
                                                     class="fa fa-wrench"></i> Setting</a></li>
                                     <li><a href="/logout/"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
