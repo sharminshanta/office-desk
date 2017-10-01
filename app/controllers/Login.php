@@ -19,7 +19,7 @@ class Login extends CI_Controller {
             'role' => $this->session->userdata('role')
         ];
 
-        if($authinfo['auth'] != null & $authinfo['role'] != null) {
+        if($authinfo['auth'] != null && $authinfo['role'] != null) {
             redirect('dashboard','refresh');
         }
     }
