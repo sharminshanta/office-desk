@@ -19,6 +19,7 @@ class Dashboard extends CI_Controller
         ];
 
         if($authinfo['auth'] == null && $authinfo['role'] == null) {
+            $this->session->set_flashdata('error', 'Sorry! Access Denied. You haven\'t permission to do.');
             redirect('login','refresh');
         }
     }

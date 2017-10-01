@@ -23,15 +23,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <img src="/assets/img/favicon.png" class="logo"><br><br>
             <h4>Login - Besofty Software Ltd.</h4>
             <?php
-            $error = $this->session->userdata('error');
-            $success = $this->session->userdata('success');
+            $error = $this->session->flashdata('error');
+            $success = $this->session->flashdata('success');
 
             if (isset($error)) {
                 echo "<span style='color:red; font-size: 13px'>$error</span>";
-                $this->session->unset_userdata('error');
             } elseif (isset($success)) {
                 echo "<span style='color:green; font-size: 13px'>$success</span>";
-                $this->session->unset_userdata('success');
             } else {
                 echo '<span>Authorized User Only</span>';
             }
