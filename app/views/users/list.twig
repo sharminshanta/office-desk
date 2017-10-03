@@ -7,7 +7,7 @@
                 <p>Manage your company. Manage your credentials. All in one place to integrate platform
                     with third party tools and libraries.</p>
                 <p>
-                    <a class="btn btn-primary" href=""
+                    <a class="btn btn-primary" href="/users/create"
                        title="Add a new user">
                         <i class="fa fa-plus"></i>
                         Add User
@@ -51,7 +51,7 @@
                                 <tbody>
                                     {% for user in users %}
                                         <tr>
-                                            <td>{{ user.id }}</td>
+                                            <td>{{ user.user_id }}</td>
                                             <td>{{ user.first_name }} {{ user.last_name }}</td>
                                             <td>{{ user.email_address }}</td>
                                             <td>

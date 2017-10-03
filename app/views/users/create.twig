@@ -9,12 +9,12 @@
                     with
                     our platform</p>
                 <p>
-                    <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+                    <a class="btn btn-warning" href=""
                        title="Users List">
                         <i class="fa fa-list"></i>
                         Users List
                     </a>
-                    <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+                    <a class="btn btn-info" href=""
                        title="Check security settings">
                         <i class="fa fa-user-secret"></i>
                         Roles & Permissions
@@ -31,7 +31,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="widget-body">
-            <form action="" method="post" id="signup_signupForm">
+            <form action="/users/store" method="post" id="signup_signupForm">
                 <div class="form-group <?php echo(isset($error['first_name']) ? 'has-error' : ''); ?>">
                     <label for="exampleInputFirstName" class="control-label">First Name</label>
                     <input required="required" type="text" name="user[first_name]" class="form-control" placeholder="First Name">
@@ -47,7 +47,10 @@
                 <div class="form-group">
                     <label for="exampleInputRole" class="control-label">Role</label>
                     <select required="required" class="form-control" name="user[role_id]">
-                        <option value="">Choose One</option>
+                        <option value="" hidden="hidden">Choose One</option>
+                        {% for role in roles %}
+                            <option value="{{ role.id }}">{{ role.name }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">

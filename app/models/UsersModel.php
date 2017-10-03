@@ -88,7 +88,7 @@ class UsersModel extends CI_Model {
      * @param array $data
      * @return array
      */
-    public static function addUser()
+    public static function create()
     {
         $CI = &get_instance();
         $CI->load->model('Utilities');

@@ -4,12 +4,22 @@ class Utilities extends CI_Model
 {
     private static $db;
     private static $session;
+    private static $authinfo;
 
     function __construct()
     {
         parent::__construct();
+
+        //Sessionn User Data
+        $authinfo = [
+            'auth' => $this->session->userdata('authinfo'),
+            'role' => $this->session->userdata('role')
+        ];
+
         self::$db = &get_instance()->db;
         self::$session = &get_instance()->session;
+        //Session user data is stored in authinfo variable
+        self::$authinfo = $authinfo;
     }
 
     /**
@@ -731,27 +741,13 @@ class Utilities extends CI_Model
     }
 
     /**
-     * Permissions check for all users
-     */
-    /*public static function is_permit()
-    {
-        $user = self::$session->userdata('details');
-        $role = Roles_model::getName($user['user']->role_id);
-
-        if($role->slug == 'general-user' or $role->slug == 'account-manager') {
-            $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
-            self::$session->set_userdata($message);
-            redirect('users','refresh');
-        }
-    }*/
-
-    /**
-     * Permissions check for all users
+     * @param $slug
+     * @return bool
      */
     public static function is_permit($slug)
     {
-        $user = self::$session->userdata('authinfo');
-        $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($user['profile']->role_id);
+        $user = self::$authinfo;
+        $permissions['roles_permissions'] = Roles_Permissions_model::getAssignPermissions($user['auth']['profile']->role_id);
 
         $data = [];
         $haystack['permissions'] = [];

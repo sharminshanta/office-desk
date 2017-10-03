@@ -36,11 +36,16 @@ class Users extends CI_Controller
     }
 
     /**
-     * This is for user's add(user's add form).Firstly check the permission with each user's role
-     * if that user is permitted to add a user then he/she would add a new user.
+     * This is users list
      */
     public function home()
     {
+        $isPermit = Utilities::is_permit('users_lists');
+
+        if ($isPermit == null) {
+            redirect('users');
+        }
+
         try {
             $users = UsersModel::getUsers();
 
@@ -57,25 +62,42 @@ class Users extends CI_Controller
                 'role' => $this->session->userdata('role')
             ],
         ]);
+    }
 
-        /**
-         * Check the user's permission
-         */
-       /* $isPermit = Utilities::is_permit('users_add');
+    /**
+     * This is users create view page
+     */
+    public function create()
+    {
+        $isPermit = Utilities::is_permit('users_add');
 
         if ($isPermit == null) {
             redirect('users');
-        } else {
-            $roles['roles'] = Roles_model::getRoles();
-            $this->twig->display('/users/add', $roles);
-        }*/
+        }
+
+        try {
+            $roles = Roles_model::getRoles();
+
+            if (!$roles) {
+                $this->session->set_flashdata('error', 'There has no role. Click here to add role for this user');
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+        $this->twig->display('/users/create', [
+            'roles' => $roles,
+            'authinfo' => [
+                'auth' => $this->session->userdata('authinfo'),
+                'role' => $this->session->userdata('role')
+            ],
+        ]);
     }
 
     /**
      * This is for user's add.Firstly check user's information with form input data
      * If form validation occurs error then data is not permitted to database insert
      */
-    public function create1()
+    public function store()
     {
         /**
          * Check the user's permission
@@ -128,11 +150,11 @@ class Users extends CI_Controller
                 $oldValue['oldValue'] = $validation->data();
                 $this->session->set_userdata($error);
                 $this->session->set_userdata($oldValue);
-                redirect('users/home');
+                redirect('users/create');
             }
 
             try {
-                $userID = UsersModel::addUser();
+                $userID = UsersModel::create();
                 $success = true;
             } catch (Exception $exception) {
                 $exception->getMessage('This is an error');
@@ -140,10 +162,10 @@ class Users extends CI_Controller
             }
 
             if ($success == true) {
-                $message['success'] = 'New user has been created successfully';
-                $this->session->set_userdata($message);
-                $user = UsersModel::userInfo($userID);
-                redirect('users/details/' . $user->uuid . '/overview');
+                redirect('users/home');
+                //$this->session->set_flashdata('success', 'User has created successfully');
+                //$user = UsersModel::userInfo($userID);
+                //redirect('users/details/' . $user->uuid . '/overview');
             }
 
         }

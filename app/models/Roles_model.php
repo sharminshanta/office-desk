@@ -39,16 +39,20 @@ class Roles_model extends CI_Model
      */
     public static function getRoles()
     {
-        $roles = self::$db
-            ->order_by('id', 'desc')
-            ->get('roles')
-            ->result();
+        $result = [];
+        try {
+            $result = self::$db
+                ->order_by('id', 'desc')
+                ->get('roles')
+                ->result();
 
-        if($roles) {
-            return $roles;
-        }else{
-            return false;
+            if ($result) {
+                return $result;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
         }
+        return false;
     }
 
     /**
