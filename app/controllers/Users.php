@@ -8,6 +8,7 @@ class Users extends CI_Controller
     /**
      * This is Users Controller
      * Users constructor.
+     * Added office time
      */
     function __construct()
     {
