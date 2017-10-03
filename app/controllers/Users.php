@@ -16,11 +16,13 @@ class Users extends CI_Controller
          * All data of a user is saved with session
          * If all data is true then redirect to dashboard
          */
-        $user = $this->session->userdata('authinfo', 'role');
+        $authinfo = [
+            'auth' => $this->session->userdata('authinfo'),
+            'role' => $this->session->userdata('role')
+        ];
 
-        if($user == null) {
-            $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
-            $this->session->set_userdata($message);
+        if($authinfo['auth'] == null && $authinfo['role'] == null) {
+            $this->session->set_flashdata('error', 'Sorry! Access Denied. You haven\'t permission to do.');
             redirect('login','refresh');
         }
     }
@@ -39,24 +41,41 @@ class Users extends CI_Controller
      */
     public function home()
     {
+        try {
+            $users = UsersModel::getUsers();
+
+            if (!$users) {
+                $this->session->set_flashdata('error', 'User doesn\'t fetch');
+            }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+        $this->twig->display('/users/list', [
+            'users' => $users,
+            'authinfo' => [
+                'auth' => $this->session->userdata('authinfo'),
+                'role' => $this->session->userdata('role')
+            ],
+        ]);
+
         /**
          * Check the user's permission
          */
-        $isPermit = Utilities::is_permit('users_add');
+       /* $isPermit = Utilities::is_permit('users_add');
 
         if ($isPermit == null) {
             redirect('users');
         } else {
             $roles['roles'] = Roles_model::getRoles();
             $this->twig->display('/users/add', $roles);
-        }
+        }*/
     }
 
     /**
      * This is for user's add.Firstly check user's information with form input data
      * If form validation occurs error then data is not permitted to database insert
      */
-    public function create()
+    public function create1()
     {
         /**
          * Check the user's permission

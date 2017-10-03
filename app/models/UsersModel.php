@@ -208,20 +208,26 @@ class UsersModel extends CI_Model {
     }
 
     /**
-     * Fetching all users
+     * @return array|bool
+     * @throws Exception
      */
     public static function getUsers()
     {
-        $users = self::$db
-            ->order_by('id', 'desc')
-            ->get('users')
-            ->result();
+        $result = [];
+        try {
+            $result = self::$db
+                ->join('users_profile', 'users.id = users_profile.user_id')
+                ->order_by('users.id', 'desc')
+                ->get('users')
+                ->result();
 
-        if($users) {
-            return $users;
-        }else {
-            return false;
+            if ($result) {
+                return $result;
+            }
+        } catch (Exception $exception) {
+            throw $exception;
         }
+        return false;
     }
 
     /**
