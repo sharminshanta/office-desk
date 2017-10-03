@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!--SCRIPTS-->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <script src="/assets/js/jquery-2.2.0.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <link href="/assets/css/custom_login.css" rel="stylesheet" type="text/css" />
 
