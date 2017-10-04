@@ -184,4 +184,50 @@ class Settings extends CI_Controller
         }
     }
 
+    /**
+     * Office management route
+     */
+    public function office()
+    {
+        $isPermit = Utilities::is_permit('office-settings');
+
+        if ($isPermit == null) {
+            redirect('Settings');
+        } else {
+            $content['header'] = $this->load->view('common/header', '', true);
+            $content['navbar'] = $this->load->view('common/navbar', '', true);
+            $content['placeholder'] = $this->load->view('settings/default_settings', '', true);
+            $content['footer'] = $this->load->view('common/footer', '', true);
+            $this->load->view('dashboard/dashboard', $content);
+        }
+    }
+
+    /**
+     * Set office time post route
+     */
+    public function setOffice()
+    {
+        $isPermit = Utilities::is_permit('office-settings');
+
+        if ($isPermit == null) {
+            redirect('Settings');
+        } else {
+            try {
+                $settings = Utilities::registerMetaData($_POST);
+                $success = true;
+                Utilities::logger('Settings/setOffice','../logs/app.log','info','Office time has been set Successfully');
+            } catch (Exception $exception) {
+                $success = false;
+                Utilities::logger('Settings/setOffice','../logs/app.log','error', $exception->getMessage());
+            }
+
+            if ($success == true) {
+                $message['success'] = 'Office time has been set Successfully';
+                $this->session->set_userdata($message);
+                redirect('settings/office');
+            }
+
+            redirect('settings/office');
+        }
+    }
 }
