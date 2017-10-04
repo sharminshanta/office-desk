@@ -195,7 +195,7 @@ class Settings extends CI_Controller
             redirect('Settings');
         } else {
             try {
-                $metaData = Meta_model::getMeta('office_startings_time');
+                $metaData = Meta_model::getMeta('office_starting_time');
                 if ($metaData) {
                     Utilities::logger('settings/office',
                         '../logs/app.log',
@@ -236,10 +236,18 @@ class Settings extends CI_Controller
             try {
                 $settings = Utilities::registerMetaData($_POST);
                 $success = true;
-                Utilities::logger('Settings/setOffice','../logs/app.log','info','Office time has been set Successfully');
+                Utilities::logger('Settings/setOffice',
+                    '../logs/app.log',
+                    'INFO',
+                    'Office time has been set Successfully. ' . 'meta_data[ ' . $_POST . ' ]'
+                );
             } catch (Exception $exception) {
                 $success = false;
-                Utilities::logger('Settings/setOffice','../logs/app.log','error', $exception->getMessage());
+                Utilities::logger('Settings/setOffice',
+                    '../logs/app.log',
+                    'error',
+                    $exception->getMessage()
+                );
             }
 
             if ($success == true) {
