@@ -822,4 +822,23 @@ class Utilities extends CI_Model
         $log->pushHandler(new \Monolog\Handler\StreamHandler($folder));
         $log->$level($message);
     }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    public static function registerMetaData($data)
+    {
+        $return = [];
+
+        foreach ($data as $key => $value) {
+            $count = Meta_model::metaCount($key);
+            if ($count == 0) {
+                $result =  Meta_model::create($key, $value);
+            } else {
+                $result = Meta_model::update($key, $value);
+            }
+        }
+        return $result;
+    }
 }
