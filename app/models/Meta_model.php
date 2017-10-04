@@ -13,6 +13,9 @@ class Meta_model extends CI_Model {
      */
     private static $session;
 
+    /**
+     * @var string
+     */
     private static $table;
 
     /**
@@ -99,5 +102,30 @@ class Meta_model extends CI_Model {
         }
 
         return $result;
+    }
+
+    /**
+     * @param $key
+     * @return bool
+     * @throws Exception
+     */
+    public static function getMeta($key)
+    {
+        $metaData = [];
+
+        try {
+           $metaData = self::$db
+               ->where('key', $key)
+               ->get(self::$table)
+                ->row();
+
+           if ($metaData) {
+               return $metaData->value;
+           }
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+        return false;
     }
 }

@@ -55,7 +55,7 @@ if (isset($message)) { ?>
                     <form class="form" method="post" action="/settings/setOffice">
                         <div class="form-group">
                             <label>Start From</label>
-                            <input name="office_starting_time" type="time" class="form-control" required>
+                            <input name="office_starting_time" value="<?php echo $metaData ;?>" type="time" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>
                     </form>

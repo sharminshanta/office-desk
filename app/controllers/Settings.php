@@ -194,9 +194,30 @@ class Settings extends CI_Controller
         if ($isPermit == null) {
             redirect('Settings');
         } else {
+            try {
+                $metaData = Meta_model::getMeta('office_startings_time');
+                if ($metaData) {
+                    Utilities::logger('settings/office',
+                        '../logs/app.log',
+                        'INFO',
+                        'Meta Data Has Been Fetched Successfully.' . 'meta_data[ ' . $metaData . ' ]'
+                    );
+                } else {
+                    Utilities::logger('settings/office',
+                        '../logs/app.log',
+                        'ERROR',
+                        'Meta Data Doesn\'t Fetch'
+                    );
+                }
+            } catch (Exception $exception) {
+                echo $exception->getMessage();
+            }
+
             $content['header'] = $this->load->view('common/header', '', true);
             $content['navbar'] = $this->load->view('common/navbar', '', true);
-            $content['placeholder'] = $this->load->view('settings/default_settings', '', true);
+            $content['placeholder'] = $this->load->view('settings/default_settings', [
+                'metaData' => $metaData,
+            ], true);
             $content['footer'] = $this->load->view('common/footer', '', true);
             $this->load->view('dashboard/dashboard', $content);
         }
