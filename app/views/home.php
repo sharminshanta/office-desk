@@ -68,29 +68,40 @@ if ($userRole->slug == 'super-administrator') { ?>
                             <div class="tab-content">
                                 <?php if(sizeof($users) > 0) { ?>
                                     <div class="tab-pane active" id="usersList">
-                                        <h3>This is Users List</h3>
-                                        <!--<table class="table table-hover">
+                                        <table class="table">
                                             <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th>Name</th>
-                                                <th>Api Key</th>
+                                                <th>Email</th>
                                                 <th>Status</th>
+                                                <th>Visibility</th>
                                                 <th>Created</th>
+                                                <th>Last Seen</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {% for apikey in api_keys %}
-                                            <tr>
-                                                <td>
-                                                    <a href="/developers/api_keys/{{ apikey.uuid }}">{{ apikey.name }}</a>
-                                                </td>
-                                                <td>{{ apikey.api_keys }}</td>
-                                                <td>{{ apikey.is_active == 1 ? "Enabled" : "Disabled" }}</td>
-                                                <td>{{ apikey.created | date("Y-m-d h:i A", currentUser.timezone ?: "UTC") }}</td>
-                                            </tr>
-                                            {% endfor %}
+                                            <?php
+                                            /**
+                                             * Get all users with their details
+                                             * Firstly fetch all user then call a userDetails method from UsersModel
+                                             * and put the $uuid parameter
+                                             */
+                                            foreach ($users as $user) { $userDetails = UsersModel::userDetails($user->uuid); ?>
+                                                <tr>
+                                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->id ?: '-'); ?></a></td>
+                                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
+                                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->email_address ?: '-'); ?></a></td>
+                                                    <td>
+                                                        <?php echo ($user->status == 1 ? '<span class="label label-info">Active</span>': '<span class="label label-danger">Inactive</span>'); ?>
+                                                    </td>
+                                                    <td><?php echo ($user->is_visible == 1 ? '<span class="label label-success">Visible</span>': '<span class="label label-warning">Disable</span>'); ?></td>
+                                                    <td><?php echo ((date("M d, Y", strtotime($user->created)) ?: '-')); ?></td>
+                                                    <td><?php echo ((date("M d, Y", strtotime($user->last_seen)) ?: '-'));?></td>
+                                                </tr>
+                                            <?php } ?>
                                             </tbody>
-                                        </table>-->
+                                        </table>
                                     </div>
                                 <?php } ?>
                                 <?php if(sizeof($attendance) > 0) { ?>
