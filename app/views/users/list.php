@@ -39,6 +39,7 @@ if (isset($messageError)) { ?>
                     <i class="fa fa-user-secret"></i>
                     Roles & Permissions
                 </a>
+                <a href="" class="btn btn-success" data-toggle="modal" data-target="#searchUser" title="Search Job">Search User</a>
             </p>
         </div>
     </div>
@@ -124,6 +125,80 @@ if (isset($messageError)) { ?>
                         </nav>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Search Modal -->
+<div class="modal fade" id="searchUser" tabindex="-1" role="dialog" aria-labelledby="searchUser">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title text-uppercase" id="searchUser">Search User</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="get" action="/users/lists">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="title">Name</label>
+                                <input name="title" type="text" class="form-control" placeholder="title" value="{{ query.title }}" {{ query.title != '' ? query.title}} >
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="position">Email</label>
+                                <input name="position" type="text" class="form-control" placeholder="Position" value="{{ query.position }}" {{ query.position != '' ? query.position }}>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select name="status" class="form-control" style="color: grey">
+                                    <option value="">Select one</option>
+                                    <option value="1" {{ query.status == 1 ? 'selected' : '' }}>Open</option>
+                                    <option value="2" {{ query.status == 2 ? 'selected' : ''}}>Close</option>
+                                    <option value="3" {{ query.status == 3 ? 'selected' : ''}}>Draft</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="department">Status</label>
+                                <select name="type" class="form-control" style="color: grey">
+                                    <option value="">Select one</option>
+                                    <option value="1" {{ query.type == 1 ? 'selected' : '' }}>Office</option>
+                                    <option value="2" {{ query.type == 2 ? 'selected' : ''}}>Remote</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="createdAt">Visibility</label>
+                                <select name="type" class="form-control" style="color: grey">
+                                    <option value="">Select one</option>
+                                    <option value="1" {{ query.type == 1 ? 'selected' : '' }}>Visible</option>
+                                    <option value="2" {{ query.type == 2 ? 'selected' : ''}}>Disable</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="createdAt">Created Date</label>
+                                <input name="created_at" type="date" id="createdID" class="form-control" value="{{ query.created_at }}" {{ query.created_at != '' ? 'selected' : '' }}>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
             </div>
         </div>
     </div>
