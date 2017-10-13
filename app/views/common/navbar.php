@@ -31,7 +31,7 @@
                 </li>
 
                 <li>
-                    <a href="/profile/profile_picture">Office Time</a>
+                    <a href="/settings/office">Office Time</a>
                 </li>
             </ul>
         </li>
@@ -109,6 +109,16 @@
                         <input type="text" class="form-control" placeholder="Search...">
                     </div>
                 </div>-->
+                <div class="search_bar">
+                    <div class="input-group search_bar_input">
+                        <!--<a href="/attendance/checkout" title="Checkout" class="check out pull-right">
+                            <i class="fa fa-sign-out"></i>
+                        </a>-->
+                        <a href="/attendance/checkin" title="Checkin" class="check in">
+                            <i class="fa fa-sign-in"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="pull-right">

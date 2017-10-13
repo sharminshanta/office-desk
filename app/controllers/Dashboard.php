@@ -24,12 +24,16 @@ class Dashboard extends CI_Controller {
 
     public function index()
     {
-        $user['users'] = UsersModel::getUsers();
-        $user['RolesModel'] = Roles_model::getRoles();
-        $user['attendance'] = [1 => 'There has no attendance', 2 => 'Please put attendance list'];
+        $officeTime = Meta_model::getMeta('office_starting_time');
+        $users = UsersModel::getUsers();
+        $attendance = [1 => 'There has no attendance', 2 => 'Please put attendance list'];
         $data['header'] = $this->load->view('common/header', '', true);
         $data['navbar'] = $this->load->view('common/navbar', '', true);
-        $data['placeholder'] = $this->load->view('home', $user, true);
+        $data['placeholder'] = $this->load->view('home', [
+            'users' => $users,
+            'attendance' => $attendance,
+            'officeTime' => $officeTime
+        ], true);
         $data['footer'] = $this->load->view('common/footer', '', true);
         $this->load->view('dashboard/dashboard', $data);
     }

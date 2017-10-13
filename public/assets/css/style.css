@@ -75,6 +75,21 @@ body {
     color: #3c763d;
 }
 
+.check{
+    position: relative;
+    top: 4px;
+    right: 10px;
+    font-size: 32px;
+
+}
+.in{
+    color: green;
+}
+
+.out{
+    color: red;
+}
+
 /*.btn {
     padding: 10px 12px !important;
 }*/

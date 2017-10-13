@@ -2,6 +2,19 @@
 <?php
 $userRole = $this->session->userdata('role');
 $userDetails = $this->session->userdata('details');
+if ($userRole->slug == 'super-administrator' and $officeTime == false) { ?>
+    <div class="notice notice-info" style="background-color: lightblue ">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span class="text-info">Office Time is not set. <span style="font-weight: 600"><a href="/settings/office">Click Here</a></span> to set office time. </span>
+    </div>
+<?php } else { ?>
+    <div class="notice notice-info" style="background-color: lightblue ">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <span class="text-info">Office Time is not set. <span style="font-weight: 600"><a href="">Click Here</a></span> to contact with admin. </span>
+</div>
+<?php } ?>
+
+<?php
 if ($userRole->slug == 'super-administrator') { ?>
     <div class="row">
         <div class="col-md-12">
