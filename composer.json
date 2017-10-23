@@ -23,7 +23,6 @@
 		"codeigniter/framework": "3.1.*",
 		"vlucas/valitron": "^1.4",
 		"monolog/monolog": "^1.23",
-		"sharminex81/besofty-desk": "*v1.0.0-rfc1*v1.0.0"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
