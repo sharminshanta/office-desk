@@ -18,6 +18,7 @@
 			"homepage": "https://github.com/sharminex81"
 		}
 	],
+	"minimum-stability": "stable",
 	"require": {
 		"php": ">=5.3.2",
 		"codeigniter/framework": "3.1.*",
