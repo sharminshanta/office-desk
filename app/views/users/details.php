@@ -55,9 +55,10 @@ if (isset($message)) { ?>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3 col-lg-3 " align="center">
+
                 <?php
                 if ($details['user']->picture != null) { ?>
-                    <img src="<?php echo $details['user']->picture; ?>" class="profile-pic"
+                    <img src="<?php echo base_url() . $details['user']->picture; ?>" class="profile-pic"
                          onerror="this.onerror=null;this.src='<?php echo base_url() ?>assets/img/profile.jpg'"/>
                 <?php } else { ?>
                     <img src="<?php echo base_url() ?>assets/img/profile.jpg" class="profile-pic"/>
