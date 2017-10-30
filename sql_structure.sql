@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2017 at 12:55 AM
--- Server version: 5.7.18-0ubuntu0.16.04.1
--- PHP Version: 7.0.15-0ubuntu0.16.04.4
+-- Generation Time: Oct 30, 2017 at 01:33 PM
+-- Server version: 5.7.19-0ubuntu0.16.04.1
+-- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,58 @@ SET time_zone = "+00:00";
 --
 -- Database: `besofty-desk`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `check_in` time DEFAULT NULL,
+  `check_out` time DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `total_hour` time NOT NULL,
+  `working_hour` time DEFAULT NULL,
+  `leisure_time` time NOT NULL,
+  `status` tinyint(4) NOT NULL COMMENT '1 = Regular, 2 = Late,  3 = absent, 4 = Leave',
+  `office_time` time NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance_record`
+--
+
+CREATE TABLE `attendance_record` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `check_in` time DEFAULT NULL,
+  `check_out` time DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `working_hour` time DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meta`
+--
+
+CREATE TABLE `meta` (
+  `id` int(10) NOT NULL,
+  `key` varchar(100) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -58,9 +110,9 @@ INSERT INTO `permissions` (`id`, `name`, `description`, `slug`) VALUES
 (18, 'Update Permission', 'Update Permission', 'permissions_update'),
 (19, 'Delete Permission', 'Delete Permission', 'permissions_delete'),
 (20, 'List Permissions', 'View list of Permissions', 'permissions_lists'),
-(21, 'List Roles', 'View list of roles', 'roles_lists'),
-(22, 'Update Profile', 'Update Profile', 'profile_update'),
-(23, 'settings', 'settings', 'office-settings');
+(21, 'List roles', 'View list of roles', 'roles_lists'),
+(22, 'Office Settings', 'Office Settings', 'office-settings'),
+(23, 'Update Profile', 'Update Profile', 'profile_update');
 
 -- --------------------------------------------------------
 
@@ -85,13 +137,14 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `uuid`, `user_id`, `name`, `slug`, `description`, `created`, `modified`, `is_locked`) VALUES
-(1, 'd5ec932d-3555-4dc1-bdd2-514993b4e89b', 1, 'General User', 'general-user', 'General User', '2017-09-22 04:10:57', '2017-09-23 08:54:28', 1),
+(1, 'e8ec82c5-a6a4-4f83-84b4-57b253f83c6d', 0, 'General User', 'general-user', 'General User', '2017-07-09 11:43:01', '2017-07-09 11:43:01', 1),
 (2, 'e8ec82c5-a6a4-4f83-84b4-57b254d83c6n', 0, 'Administrator', 'administrator', 'Administrator', '2017-07-09 11:43:01', '2017-07-09 11:43:01', 1),
 (3, 'e8ec82c5-a6a4-4f88-84c4-57b253f8367d', 0, 'Super Administrator', 'super-administrator', 'Super Administrator', '2017-07-09 11:43:01', '2017-07-09 11:43:01', 1),
 (4, 'e8fc82c5-a6a4-2f83-84b4-57b253f83c31', 0, 'Account Manager', 'account-manager', 'Account manager for individual user or client', '2017-07-17 13:27:34', '2017-07-17 13:27:34', 1),
 (5, 'e8fw82a5-a6a4-2f62-84b4-57b253f83c50', 0, 'Billing Manager', 'billing-manager', 'Billing manager to manage billing', '2017-07-17 13:27:34', '2017-07-17 13:27:34', 1),
+(6, 'f8fw82c5-a6a4-2f62-84b4-57b253rf3c38', 0, 'DevOPS Engineer', 'devops-engineer', 'DevOPS engineer to manage all platform backend architecture', '2017-07-17 13:27:34', '2017-07-17 13:27:34', 1),
 (7, 'f8fw82c5-a6a4-2f62-84b4-57b253f12c91', 0, 'Sales Manager', 'sales-manager', 'Sales Executive', '2017-07-17 13:27:34', '2017-07-17 13:27:34', 1),
-(8, 'e43dca48-42da-4cbe-8b0f-a6d1bf8c9eba', 1, 'Support Manager', 'support-manager', 'Support Manager', '2017-07-17 13:27:34', '2017-09-22 04:25:27', 1);
+(8, 'f8fw82c5-a6a4-2f62-66b4-57b222f02d91', 0, 'Support Manager', 'support-manager', 'Support Manager', '2017-07-17 13:27:34', '2017-07-17 13:27:34', 1);
 
 -- --------------------------------------------------------
 
@@ -110,29 +163,29 @@ CREATE TABLE `roles_permissions` (
 --
 
 INSERT INTO `roles_permissions` (`id`, `role_id`, `permission_id`) VALUES
-(20, 3, '1'),
-(21, 3, '2'),
-(22, 3, '3'),
-(23, 3, '4'),
-(24, 3, '5'),
-(25, 3, '6'),
-(26, 3, '7'),
-(27, 3, '8'),
-(28, 3, '9'),
-(29, 3, '10'),
-(30, 3, '11'),
-(31, 3, '12'),
-(32, 3, '13'),
-(33, 3, '14'),
-(34, 3, '15'),
-(35, 3, '16'),
-(36, 3, '17'),
-(37, 3, '18'),
-(38, 3, '19'),
-(39, 3, '20'),
-(40, 3, '21'),
-(41, 3, '22'),
-(53, 3, '23');
+(1, 3, '1'),
+(2, 3, '2'),
+(3, 3, '3'),
+(4, 3, '4'),
+(5, 3, '5'),
+(6, 3, '6'),
+(7, 3, '7'),
+(8, 3, '8'),
+(9, 3, '9'),
+(10, 3, '10'),
+(11, 3, '11'),
+(12, 3, '12'),
+(13, 3, '13'),
+(14, 3, '14'),
+(15, 3, '15'),
+(16, 3, '16'),
+(17, 3, '17'),
+(18, 3, '18'),
+(19, 3, '19'),
+(20, 3, '20'),
+(21, 3, '21'),
+(22, 3, '22'),
+(23, 3, '23'),
 
 -- --------------------------------------------------------
 
@@ -165,8 +218,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `uuid`, `username`, `password`, `password_hash`, `password_token`, `password_last_modified`, `password_last_modified_ip`, `email_address`, `email_address_verified`, `last_seen`, `last_seen_ip`, `last_loggedin`, `status`, `is_visible`, `created`, `modified`) VALUES
-(1, '1122334455667788', 'admin@besofty.com', '96e79218965eb72c92a549dd5a330112', NULL, NULL, NULL, NULL, 'admin@besofty.com', 0, NULL, NULL, NULL, 1, 1, NULL, '2017-09-23 10:13:48');
-
+(1, '1122334455667788', 'info@besofty.com', '96e79218965eb72c92a549dd5a330112', NULL, NULL, NULL, NULL, 'info@besofty.com', 0, NULL, NULL, NULL, 1, 1, NULL, NULL);
 -- --------------------------------------------------------
 
 --
@@ -229,8 +281,7 @@ CREATE TABLE `users_profile` (
 --
 
 INSERT INTO `users_profile` (`id`, `user_id`, `first_name`, `last_name`, `family_name`, `nick_name`, `title`, `gender`, `picture`, `date_of_birth`, `timezone`, `language`, `security_questions_one`, `security_questions_one_answer`, `security_questions_two`, `security_questions_two_answer`, `created`, `modified`) VALUES
-(1, 1, 'Besofty', 'Software Limited', 'Info', 'Info', 'Ms', 'female', NULL, '0000-00-00', 'UTC', 'en_US', NULL, NULL, NULL, NULL, NULL, '2017-09-23 10:13:48');
-
+(1, 1, 'Besofty', 'Software Limited', 'Info', 'Info', 'Miss', 'female', NULL, '0000-00-00', 'UTC', 'en_US', NULL, NULL, NULL, NULL, NULL, '2017-08-08 11:49:18');
 -- --------------------------------------------------------
 
 --
@@ -258,11 +309,30 @@ INSERT INTO `users_roles` (`id`, `user_id`, `role_id`, `is_active`, `created`, `
 --
 
 --
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `attendance_record`
+--
+ALTER TABLE `attendance_record`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `meta`
+--
+ALTER TABLE `meta`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`);
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `roles`
@@ -278,7 +348,9 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `roles_permissions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `role_id` (`role_id`);
+  ADD KEY `role_id` (`role_id`),
+  ADD KEY `permission_id` (`permission_id`),
+  ADD KEY `permission_id_2` (`permission_id`);
 
 --
 -- Indexes for table `users`
@@ -301,27 +373,40 @@ ALTER TABLE `users_addresses`
 --
 ALTER TABLE `users_profile`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `user_id_2` (`user_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users_roles`
 --
 ALTER TABLE `users_roles`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `role_id` (`role_id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `role_id_2` (`role_id`);
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `attendance_record`
+--
+ALTER TABLE `attendance_record`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `meta`
+--
+ALTER TABLE `meta`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -331,27 +416,27 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `roles_permissions`
 --
 ALTER TABLE `roles_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `users_addresses`
 --
 ALTER TABLE `users_addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users_profile`
 --
 ALTER TABLE `users_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `users_roles`
 --
 ALTER TABLE `users_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- Constraints for dumped tables
 --
@@ -378,8 +463,8 @@ ALTER TABLE `users_profile`
 -- Constraints for table `users_roles`
 --
 ALTER TABLE `users_roles`
-  ADD CONSTRAINT `users_roles_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `users_roles_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `users_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `users_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
