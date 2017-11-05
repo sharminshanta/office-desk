@@ -5,17 +5,17 @@
             <h3>Roles And Permissions</h3>
             <p>Assign a new permission to <?php echo $role->name; ?></p>
             <p>
-                <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
+                <a class="btn btn-primary" href="/users/home"
                    title="Add a new user">
                     <i class="fa fa-plus"></i>
                     Add User
                 </a>
-                <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+                <a class="btn btn-warning" href="/users/lists"
                    title="Users List">
                     <i class="fa fa-list"></i>
                     Users List
                 </a>
-                <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+                <a class="btn btn-info" href="/roles/lists"
                    title="Check security settings">
                     <i class="fa fa-user-secret"></i>
                     Roles & Permissions
@@ -53,7 +53,7 @@ if (isset($message)) { ?>
                     <?php } ?>
                 </div>
            <?php } ?>
-        <form action="<?php echo base_url()?>roles_Permissions/assignPermission/<?php echo $role->uuid; ?>" method="post" id="signup_signupForm">
+        <form action="/roles_Permissions/assignPermission/<?php echo $role->uuid; ?>" method="post" id="signup_signupForm">
             <input type="hidden" class="form-control" name="permission[role_id]" value="<?php echo $role->id; ?>">
             <?php
             foreach ($permissions as $permission) { ?>

@@ -29,12 +29,12 @@ if (isset($messageError)) { ?>
             <p>Manage your company. Manage your credentials. All in one place to integrate platform
                 with third party tools and libraries.</p>
             <p>
-                <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
+                <a class="btn btn-primary" href="/users/home"
                    title="Add a new user">
                     <i class="fa fa-plus"></i>
                     Add User
                 </a>
-                <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+                <a class="btn btn-info" href="/roles/lists"
                    title="Check security settings">
                     <i class="fa fa-user-secret"></i>
                     Roles & Permissions
@@ -80,9 +80,9 @@ if (isset($messageError)) { ?>
                              */
                                 foreach ($users as $user) { $userDetails = UsersModel::userDetails($user->uuid); ?>
                                 <tr>
-                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->id ?: '-'); ?></a></td>
-                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
-                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->email_address ?: '-'); ?></a></td>
+                                    <td><a href="/users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->id ?: '-'); ?></a></td>
+                                    <td><a href="/users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
+                                    <td><a href="/users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->email_address ?: '-'); ?></a></td>
                                     <td>
                                         <?php echo ($user->status == 1 ? '<span class="label label-info">Active</span>': '<span class="label label-danger">Inactive</span>'); ?>
                                     </td>

@@ -43,11 +43,11 @@ class Login extends CI_Controller {
             $userDetails['role'] = Roles_model::getName($userDetails['details']['user']->role_id);
             $this->session->set_userdata($userDetails);
             $userDetails['user_id'] = $this->session->set_userdata($user->id);
-            redirect('dashboard');
+            redirect('/dashboard');
         } else {
             $message['error'] = 'Credentials miss matched !';
             $this->session->set_userdata($message);
-            redirect('login');
+            redirect('/login');
         }
     }
 }

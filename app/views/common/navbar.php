@@ -3,7 +3,7 @@
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
             <a href="#">
-                <a href="<?php echo base_url()?>dashboard"><img src="<?php echo base_url()?>assets/img/accounts_logo.png" class="logo" alt="Logo"/></a>
+                <a href="/dashboard"><img src="/assets/img/accounts_logo.png" class="logo" alt="Logo"/></a>
             </a>
         </li>
         <?php
@@ -11,10 +11,10 @@
             $userRole = $this->session->userdata('role');
         ?>
         <li>
-            <a href="<?php echo base_url()?>dashboard"><i class="col-md-4"></i> Hi, <?php echo $userRole->name; ?></a>
+            <a href="/dashboard"><i class="col-md-4"></i> Hi, <?php echo $userRole->name; ?></a>
         </li>
         <li>
-            <a href="<?php echo base_url()?>dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+            <a href="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
         </li>
 
         <?php
@@ -44,10 +44,10 @@
             </a>
             <ul id="manage_profile" class="submenu collapse" aria-expanded="false" style="height: 0px;">
                 <li>
-                    <a href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>">Update Profile</a>
+                    <a href="/users/profile/<?php echo $userDetails['user']->uuid; ?>">Update Profile</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>">Change Profile Picture</a>
+                    <a href="/settings/security/<?php echo $userDetails['user']->uuid;''?>">Change Profile Picture</a>
                 </li>
             </ul>
         </li>
@@ -60,10 +60,10 @@
             </a>
             <ul id="security_settings" class="submenu collapse" aria-expanded="false" style="height: 0px;">
                 <li>
-                    <a href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>">Security Questions</a>
+                    <a href="/settings/security/<?php echo $userDetails['user']->uuid;''?>">Security Questions</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>">Change Password</a>
+                    <a href="/settings/security/<?php echo $userDetails['user']->uuid;''?>">Change Password</a>
                 </li>
             </ul>
         </li>
@@ -81,7 +81,7 @@
             </ul>
         </li>
         <li>
-            <a href="<?php echo base_url()?>logout"><i class="fa fa-sign-out"></i> Logout</a>
+            <a href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
         </li>
     </ul>
 </div>
@@ -141,7 +141,7 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li>
-                                    <a href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"><i class="fa fa-user"></i>
+                                    <a href="/users/profile/<?php echo $userDetails['user']->uuid; ?>"><i class="fa fa-user"></i>
                                         <?php
                                             echo $userDetails['user']->first_name . " " .$userDetails['user']->last_name;
                                         ?>
@@ -149,11 +149,11 @@
                                 </li>
                                 <?php
                                 if($userRole->slug == 'super-administrator'){ ?>
-                                    <li><a href="<?php echo base_url()?>settings"><i class="fa fa-wrench"></i> Setting</a></li>
+                                    <li><a href="/settings"><i class="fa fa-wrench"></i> Setting</a></li>
                                 <?php } else {?>
-                                    <li><a href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"><i class="fa fa-wrench"></i> Setting</a></li>
+                                    <li><a href="/settings/security/<?php echo $userDetails['user']->uuid;''?>"><i class="fa fa-wrench"></i> Setting</a></li>
                                 <?php } ?>
-                                <li><a href="<?php echo base_url()?>logout/"><i class="fa fa-power-off"></i> Logout</a></li>
+                                <li><a href="/logout/"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
                         </div>
                     </div>

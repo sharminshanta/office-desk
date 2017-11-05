@@ -51,7 +51,7 @@ $oldValues = $this->session->userdata('oldValues');
         <?php
         if ($userRole->slug == 'super-administrator') { ?>
             <div class="pull-right">
-                <a title="Delete this user?" href="<?php echo base_url()?>users/delete/<?php echo $details['user']->uuid; ?>" class="btn btn-sm btn-danger pull-right">Delete</a>
+                <a title="Delete this user?" href="/users/delete/<?php echo $details['user']->uuid; ?>" class="btn btn-sm btn-danger pull-right">Delete</a>
             </div>
         <?php } ?>
         <div class="clearfix"></div>

@@ -10,12 +10,12 @@ $oldValue = $this->session->userdata('oldValue');
                 with
                 our platform</p>
             <p>
-                <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+                <a class="btn btn-warning" href="/users/lists"
                    title="Users List">
                     <i class="fa fa-list"></i>
                     Users List
                 </a>
-                <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+                <a class="btn btn-info" href="/roles/lists"
                    title="Check security settings">
                     <i class="fa fa-user-secret"></i>
                     Roles & Permissions
@@ -32,7 +32,7 @@ $oldValue = $this->session->userdata('oldValue');
         <div class="clearfix"></div>
     </div>
     <div class="widget-body">
-        <form action="<?php echo base_url()?>users/create" method="post" id="signup_signupForm">
+        <form action="/users/create" method="post" id="signup_signupForm">
             <div class="form-group <?php echo(isset($error['first_name']) ? 'has-error' : ''); ?>">
                 <label for="exampleInputFirstName" class="control-label">First Name</label>
                 <input required="required" type="text" name="user[first_name]" class="form-control"

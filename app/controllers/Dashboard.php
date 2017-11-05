@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller {
         if($user == null) {
             $message['error'] = 'Sorry! Access Denied. You don’t have permission to do.';
             $this->session->set_userdata($message);
-            redirect('login','refresh');
+            redirect('/login','refresh');
         }
     }
 

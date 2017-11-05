@@ -1,6 +1,6 @@
-<form name="login-form" class="login-form" action="<?php echo base_url()?>security/forgotpwd" method="post">
+<form name="login-form" class="login-form" action="/security/forgotpwd" method="post">
     <div class="header">
-        <img src="<?php echo base_url()?>assets/img/favicon.png" class="logo"><br><br>
+        <img src="/assets/img/favicon.png" class="logo"><br><br>
         <h5>Security - Besofty Software Ltd.</h5>
         <?php
             $error = $this->session->flashdata('error');
@@ -19,7 +19,7 @@
     <div class="footer">
         <input type="submit" name="btnsubmit" id='btn' value="Send" class="button animate-me" />
         <div class="formFooter">
-            <div class="pull-left"><a href="<?php echo base_url()?>login">Login</a></div>
+            <div class="pull-left"><a href="/login">Login</a></div>
         </div>
     </div>
 </form>

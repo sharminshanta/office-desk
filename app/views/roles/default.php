@@ -32,12 +32,12 @@ if (isset($message)) { ?>
          <?php $this->session->unset_userdata('errors'); ?>
     <?php } ?>
     <p class="pull-right">
-        <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
+        <a class="btn btn-primary" href="/users/home"
            title="Add a new user">
             <i class="fa fa-plus"></i>
             Add User
         </a>
-        <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+        <a class="btn btn-warning" href="/users/lists"
            title="Users List">
             <i class="fa fa-list"></i>
             Users List
@@ -100,13 +100,13 @@ if (isset($message)) { ?>
                              */
                             foreach ($roles as $role) { ?>
                                 <tr>
-                                    <td><a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->id ?: '-'); ?></a></td>
-                                    <td><a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->name ?: '-') ?></a></td>
+                                    <td><a href="/roles_Permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->id ?: '-'); ?></a></td>
+                                    <td><a href="/roles_Permissions/assign/<?php echo $role->uuid; ?>" title="Assign permissions"><?php echo ($role->name ?: '-') ?></a></td>
                                     <td><?php echo (date("M d, Y", strtotime($role->created)) ?: '-'); ?></td>
                                     <td><?php echo (date("M d, Y", strtotime($role->modified)) ?: '-')?></td>
                                     <td class="text-right">
-                                        <a href="<?php echo base_url()?>roles_Permissions/assign/<?php echo $role->uuid; ?>" class="btn btn-sm btn-success fa fa-pencil" title="Assign Permissions">Assign Permissions</a>
-                                        <a href="<?php echo base_url()?>roles/delete/<?php echo $role->uuid; ?>" class="btn btn-danger fa fa-trash" title="Delete this role ?" id="deleteBtn"> Delete</a>
+                                        <a href="/roles_Permissions/assign/<?php echo $role->uuid; ?>" class="btn btn-sm btn-success fa fa-pencil" title="Assign Permissions">Assign Permissions</a>
+                                        <a href="/roles/delete/<?php echo $role->uuid; ?>" class="btn btn-danger fa fa-trash" title="Delete this role ?" id="deleteBtn"> Delete</a>
                                         <a class="btn btn-primary fa fa-edit updateRole" title="Update this role ?" data-toggle="modal"
                                            data-name="<?php echo $role->name; ?>"
                                            data-description="<?php echo $role->description; ?>"

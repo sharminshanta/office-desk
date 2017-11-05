@@ -10,12 +10,12 @@ class Logout extends CI_Controller
         if($user == null) {
             $message['error'] = 'Sorry, You have not logged yet.';
             $this->session->set_userdata($message);
-            redirect('login','refresh');
+            redirect('/login','refresh');
         }
 
         $this->session->unset_userdata('details');
         $logoutMessage['success'] = 'You are successfully logout !';
         $this->session->set_userdata($logoutMessage);
-        redirect('login');
+        redirect('/login');
     }
 }

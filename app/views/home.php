@@ -28,17 +28,17 @@ if ($userRole->slug == 'super-administrator') { ?>
                        title="Add user"><i class="fa fa-info"></i>
                         Add User
                     </a>-->
-                    <a class="btn btn-primary" href="<?php echo base_url()?>users/home"
+                    <a class="btn btn-primary" href="/users/home"
                        title="Add a new user">
                         <i class="fa fa-plus"></i>
                         Add User
                     </a>
-                    <a class="btn btn-warning" href="<?php echo base_url()?>users/lists"
+                    <a class="btn btn-warning" href="/users/lists"
                        title="Users List">
                         <i class="fa fa-list"></i>
                         Users List
                     </a>
-                    <a class="btn btn-info" href="<?php echo base_url()?>roles/lists"
+                    <a class="btn btn-info" href="/roles/lists"
                        title="Check security settings">
                         <i class="fa fa-user-secret"></i>
                         Roles & Permissions
@@ -102,9 +102,9 @@ if ($userRole->slug == 'super-administrator') { ?>
                                              */
                                             foreach ($users as $user) { $userDetails = UsersModel::userDetails($user->uuid); ?>
                                                 <tr>
-                                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->id ?: '-'); ?></a></td>
-                                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
-                                                    <td><a href="<?php echo base_url()?>users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->email_address ?: '-'); ?></a></td>
+                                                    <td><a href="/users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->id ?: '-'); ?></a></td>
+                                                    <td><a href="/users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($userDetails['user']->first_name ?: '-') . " " . ($userDetails['user']->last_name ?: '-'); ?></a></td>
+                                                    <td><a href="/users/details/<?php echo $user->uuid; ?>/overview"><?php echo ($user->email_address ?: '-'); ?></a></td>
                                                     <td>
                                                         <?php echo ($user->status == 1 ? '<span class="label label-info">Active</span>': '<span class="label label-danger">Inactive</span>'); ?>
                                                     </td>
@@ -163,21 +163,21 @@ if ($userRole->slug == 'super-administrator') { ?>
                     </h3>
                 </div>
                 <div class="panel-body text-center" id="leftPanel">
-                    <a class="btn btn-primary btnMargin" href="<?php echo base_url()?>users/profile/<?php echo $userDetails['user']->uuid; ?>"
+                    <a class="btn btn-primary btnMargin" href="/users/profile/<?php echo $userDetails['user']->uuid; ?>"
                        title="Update your profile"><i class="fa fa-info"></i>
                         Update Profile
                     </a>
-                    <a class="btn btn-danger btnMargin" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
+                    <a class="btn btn-danger btnMargin" href="/settings/security/<?php echo $userDetails['user']->uuid;''?>"
                        title="Change account password">
                         <i class="fa fa-user-secret"></i>
                         Change Password
                     </a>
-                    <a class="btn btn-info btnMargin" href="<?php echo base_url()?>settings/security/<?php echo $userDetails['user']->uuid;''?>"
+                    <a class="btn btn-info btnMargin" href="/settings/security/<?php echo $userDetails['user']->uuid;''?>"
                        title="Check security settings">
                         <i class="fa fa-shield"></i>
                         Review Security Settings
                     </a>
-                    <a class="btn btn-success btnMargin"  href="<?php echo base_url()?>settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
+                    <a class="btn btn-success btnMargin"  href="/settings/profile_picture/<?php echo $userDetails['user']->uuid;''?>"
                        title="Change Profile Picture">
                         <i class="fa fa-user"></i>
                         Change Profile Picture

@@ -8,12 +8,12 @@
         <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="<?php echo (($this->uri->segment(4)) == 'overview' ? 'active' : '')?>"><a
-                        href="<?php echo base_url()?>users/details/<?php echo $details['user']->uuid; ?>/overview">Overview</a></li>
+                        href="/users/details/<?php echo $details['user']->uuid; ?>/overview">Overview</a></li>
                 <li id="nav_generalInformation2" class="<?php echo (($this->uri->segment(2)) == 'profile' ? 'active' : '')?>"><a
-                        href="<?php echo base_url()?>users/profile/<?php echo $details['user']->uuid; ?>">Profile</a>
+                        href="/users/profile/<?php echo $details['user']->uuid; ?>">Profile</a>
                 </li>
                 <li id="nav_generalInformation3" class="<?php echo (($this->uri->segment(2)) == 'notes' ? 'active' : '')?>"><a
-                        href="<?php echo base_url()?>users/notes/<?php echo $details['user']->uuid; ?>/notes">Notes</a>
+                        href="/users/notes/<?php echo $details['user']->uuid; ?>/notes">Notes</a>
                 </li>
             </ul>
         </div>
