@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use SharminShanta\PHPUtilities\Unique\UUID;
+
 class UsersModel extends CI_Model {
 
     /**
@@ -94,7 +96,7 @@ class UsersModel extends CI_Model {
         $CI->load->model('Utilities');
 
         $userData = [
-            'uuid' => $CI->Utilities->v4(),
+            'uuid' => UUID::generateUUID(),
             'username' => $_POST['user']['email_address'],
             'email_address' => $_POST['user']['email_address'],
             'password' => md5($_POST['user']['password']),
