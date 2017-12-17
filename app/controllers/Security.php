@@ -39,7 +39,7 @@ class Security extends CI_Controller
 
                 $update = UsersModel::updateUserByEmail($userDetails->uuid, $data);
                 if ($update) {
-                    $link = 'http://localhost:8008/security/passwordReset?email='. $email . '&password_token='.$uniqidId;
+                    $link = 'http://besofty.com/security/passwordReset?email='. $email . '&password_token='.$uniqidId;
                     var_dump($link); die();
                 }
             }else {
