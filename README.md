@@ -15,7 +15,7 @@ Create a folder named profiles for upload picture in /public/assets/img
 
 
 ####Credentials
-Admin Username : admin@besofty.com
+Admin Username : admin@gmail.com
 Admin Password : 111111
 
 
