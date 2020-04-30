@@ -1,4 +1,4 @@
-Accounts Web Portal - Besofty Software Limited
+Accounts Web Portal - Office Management Software
 
 ####Installation
 
